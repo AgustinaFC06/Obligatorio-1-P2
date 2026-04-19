@@ -4,7 +4,14 @@ using System.Text;
 
 namespace Biblioteca_de_Clase
 {
-    internal class Phising
+    public class Phising : Incidente
     {
+        #region GET and SET
+
+        #endregion
+
+        #region DONSTRUCTOR
+
+        #endregion
     }
 }

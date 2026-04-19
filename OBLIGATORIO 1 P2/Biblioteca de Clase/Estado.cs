@@ -4,7 +4,12 @@ using System.Text;
 
 namespace Biblioteca_de_Clase
 {
-    internal enum Estado
+    public enum Estado
     {
+        Abierto = 1,
+        EnAnalisis = 2,
+        Contenido = 3,
+        Cerrado = 4
+
     }
 }
