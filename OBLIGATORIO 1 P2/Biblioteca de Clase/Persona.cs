@@ -25,7 +25,7 @@ namespace Biblioteca_de_Clase
         }
 
         public Persona(int cedula, string nombre, string email, string telefono, List<Cuenta> cuentas)
-        {
+        {   
             Id = UltimoId++;
             Cedula = cedula;
             Nombre = nombre;
@@ -47,7 +47,7 @@ namespace Biblioteca_de_Clase
         }
 
         private void ValidarTelefono()
-        {
+        { 
             if (string.IsNullOrWhiteSpace(Telefono))
             throw new Exception("El telefono no puede ser vacio");
         }
