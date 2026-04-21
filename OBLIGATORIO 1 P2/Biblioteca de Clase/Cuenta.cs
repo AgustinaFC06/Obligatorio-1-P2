@@ -43,7 +43,10 @@ namespace Biblioteca_de_Clase
 
         private void ValidarContrasena()
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrWhiteSpace(Contrasena))
+            {
+                throw new Exception("No puede ser vacio");
+            }
         }
         #endregion
 

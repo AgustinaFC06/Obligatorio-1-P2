@@ -16,12 +16,12 @@ namespace Biblioteca_de_Clase
         public int Impacto { get; set; }
         public int Probabilidad { get; set; }
 
-        protected Incidente()
+        public Incidente()
         {
             Id = UltimoId++;
         }
 
-        protected Incidente(DateTime fechaReporte, Activo activo, string descripcion, Estado estado, int impacto, int probabilidad)
+        public Incidente(DateTime fechaReporte, Activo activo, string descripcion, Estado estado, int impacto, int probabilidad)
         {
             Id = UltimoId++;
             FechaReporte = fechaReporte;
