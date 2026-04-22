@@ -53,7 +53,8 @@ namespace Biblioteca_de_Clase
         }
 
         private void ValidarEmail()
-        {
+        { 
+        
             if (string.IsNullOrWhiteSpace(Email) || !Email.Contains("@"))
             throw new Exception("Email tiene que contener @ y no puede ser vacio");
         }
@@ -66,9 +67,12 @@ namespace Biblioteca_de_Clase
             }
         }
 
-        private void ValidarCedula()
+        private void ValidarCedula() //hacer unica
         {
-            throw new NotImplementedException();
+            if (Cedula >= 0)
+            {
+                throw new Exception("No puede ser vacia");  
+            }
         }
 
 
