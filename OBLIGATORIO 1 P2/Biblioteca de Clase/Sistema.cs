@@ -8,9 +8,9 @@ namespace Biblioteca_de_Clase
     {
         #region LISTAS
         private List<Persona> _personas { get; }=new List<Persona>();
-        private List<Cuenta> _Cuentas { get; } =new List<Cuenta>();
-        private List<Activo>_Activos { get; }= new List<Activo>();
-        private List<Incidente> _Incidentes { get; } = new List<Incidente>();
+        private List<Cuenta> _cuentas { get; } =new List<Cuenta>();
+        private List<Activo>_activos { get; }= new List<Activo>();
+        private List<Incidente> _incidentes { get; } = new List<Incidente>();
         private static Sistema _instancia;
         #endregion
 
@@ -29,7 +29,7 @@ namespace Biblioteca_de_Clase
         #endregion
 
 
-
+        #region Alta
         public void AltaPersona(Persona persona)
         {
             persona.Validar();
@@ -44,6 +44,8 @@ namespace Biblioteca_de_Clase
             }
             _personas.Add(persona);
         }
+        #endregion
+
 
 
     }

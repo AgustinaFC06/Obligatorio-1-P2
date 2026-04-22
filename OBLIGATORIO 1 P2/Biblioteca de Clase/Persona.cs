@@ -33,11 +33,10 @@ namespace Biblioteca_de_Clase
             Telefono = telefono;
             _cuentas = cuentas;
             Validar();
-        }
+        }       
+         #endregion
 
-
-        #endregion
-
+        #region VALDACIONES
         public void Validar()
         {
             ValidarCedula();
@@ -89,5 +88,10 @@ namespace Biblioteca_de_Clase
         {
             return $"[{Id}] {Nombre} - CI: {Cedula} - {Email} - Tel: {Telefono}";
         }
+
+        #endregion
+
+        #region
+        #endregion
     }
 }

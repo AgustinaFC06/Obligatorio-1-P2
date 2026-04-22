@@ -4,11 +4,15 @@ using System.Text;
 
 namespace Biblioteca_de_Clase
 {
-    internal class Ramsomweare : Incidente
+    public class Ramsomweare : Incidente
     {
+        #region Get and Set
         public bool Encriptados { get; set; }
         public bool Exfiltracion { get; set; }
 
+        #endregion
+
+        #region CONSTRUCTORES
         public Ramsomweare(){}
 
         public Ramsomweare(bool encriptados, bool exfiltracion, DateTime fechaReporte, Activo activo, string descripcion, Estado estado, int impacto, int probabilidad) :base ( fechaReporte,  activo,  descripcion,  estado,  impacto,  probabilidad)
@@ -16,6 +20,11 @@ namespace Biblioteca_de_Clase
             Encriptados = encriptados;
             Exfiltracion = exfiltracion;
         }
+        #endregion
+
+        #region
+        #endregion
+
     }
 
 }

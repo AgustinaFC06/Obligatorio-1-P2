@@ -13,7 +13,7 @@ namespace Biblioteca_de_Clase
 
         #endregion
 
-        #region DONSTRUCTOR
+        #region CONSTRUCTOR
         public Phising(){}
 
         public Phising(string canal, bool credenciales, bool transferenciaDatos, DateTime fechaReporte, Activo activo, string descripcion, Estado estado, int impacto, int probabilidad) :base (fechaReporte,  activo,  descripcion, estado, impacto, probabilidad)
@@ -23,8 +23,9 @@ namespace Biblioteca_de_Clase
             TransferenciaDatos = transferenciaDatos;
         }
 
+        #endregion
 
-
+        #region
         #endregion
     }
 }
