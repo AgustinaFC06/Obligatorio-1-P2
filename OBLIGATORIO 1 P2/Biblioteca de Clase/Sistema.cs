@@ -15,6 +15,17 @@ namespace Biblioteca_de_Clase
         #endregion
 
         #region PRECARGA de DATOS
+
+
+        //patron Singleton
+        public static Sistema GetInstancia()
+        {
+            if (_instancia == null)
+            {
+                _instancia = new Sistema();
+            }
+            return _instancia;
+        }
         #endregion
 
 
