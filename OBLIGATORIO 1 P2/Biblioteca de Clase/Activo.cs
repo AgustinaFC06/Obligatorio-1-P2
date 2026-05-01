@@ -32,6 +32,17 @@ namespace Biblioteca_de_Clase
         #endregion
 
         #region VALIDACIONES
+        public void ValidarNombre()
+        { ValidarNombre(); }
+
+        private void ValidalNombre()
+        {
+            if (string.IsNullOrWhiteSpace(Nombre))
+            {
+                throw new Exception("Nombre no puede ser vacio");
+            }
+        }
+
         #endregion
 
         #region
