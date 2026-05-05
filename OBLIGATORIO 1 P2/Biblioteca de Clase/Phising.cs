@@ -25,7 +25,21 @@ namespace Biblioteca_de_Clase
 
         #endregion
 
-        #region
-        #endregion
+#region METODOS
+
+        public void Validar()
+        {
+            ValidarCanal();
+        }
+
+        private void ValidarCanal()
+        {
+            if (string.IsNullOrWhiteSpace(Canal))
+            {
+                throw new Exception("Canal no puede ser vacío ni nulo.");
+            }
+        }
+#endregion
+
     }
 }

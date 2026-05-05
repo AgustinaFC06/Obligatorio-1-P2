@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace Biblioteca_de_Clase
@@ -22,8 +23,13 @@ namespace Biblioteca_de_Clase
         }
         #endregion
 
-        #region
-        #endregion
+        #region Metodos
+
+        public override double CalcularSeveridad()
+        {
+            throw new Exception("Se hara en segunda entrega");
+        } 
+        #endregion 
 
     }
 

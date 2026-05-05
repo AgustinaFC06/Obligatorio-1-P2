@@ -13,6 +13,8 @@ namespace Biblioteca_de_Clase
         public string Contrasena { get; set; }
         public DateTime FechaUltimoCambioPassword { get; set; }
         private List<Activo> _activos { get; } = new List<Activo>();
+        public List<Activo> Activo { get { return _activos; } }
+
 
         #endregion
 

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace Biblioteca_de_Clase
-{
+{        
+    #region GET and SET
+
     public abstract class Incidente
     {
-        #region GET adn SET
         public int Id { get; set; }
         public static int UltimoId { get; set; } = 1;
         public DateTime FechaReporte { get; set; }
@@ -15,7 +16,12 @@ namespace Biblioteca_de_Clase
         public Estado Estado { get; set; }
         public int Impacto { get; set; }
         public int Probabilidad { get; set; }
+        private List<Incidente> _incidentes { get; } = new List<Incidente>();
 
+
+        #endregion
+
+        #region CONSTRUCTORES 
         public Incidente()
         {
             Id = UltimoId++;
@@ -35,9 +41,50 @@ namespace Biblioteca_de_Clase
 
         #endregion
 
-        #region 
+        #region METODOS
+
+        public void Validar()
+        {
+            Id = UltimoId++;
+            ValidarDescripcion();
+            ValidarImpacto();
+            ValidarProbabilidad();
+        }
+
+        private void ValidarDescripcion()
+        {
+            if (Descripcion == null)
+            {
+                throw new Exception("La descripcion no puede ser vacia");
+            }
+
+        }
+
+
+        private void ValidarImpacto()
+        {
+            if (Impacto < 1 || Impacto > 5)
+            {
+                throw new Exception("Impacto debe estar entre 1 y 5");
+            }
+        }
+
+        private void ValidarProbabilidad()
+        {
+            if (Probabilidad  < 1 || Probabilidad > 5)
+            {
+                throw new Exception("Probabilidad debe estar entre 1 y 5");
+            }
+        }
+
+
+        public virtual double CalcularSeveridad()
+        {
+            throw new Exception("Se aplicara en la segunda entrega");
+        }
 
 
         #endregion
     }
 }
+ 

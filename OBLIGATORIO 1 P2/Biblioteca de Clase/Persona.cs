@@ -15,6 +15,8 @@ namespace Biblioteca_de_Clase
         public string Email { get; set; }
         public string Telefono { get; set; }
         private List<Cuenta>_cuentas {  get; }= new List<Cuenta>();
+        public List<Cuenta> Cuenta { get { return _cuenta; } }
+
         #endregion
 
         #region CONSTRUCTOR
@@ -68,7 +70,7 @@ namespace Biblioteca_de_Clase
 
         private void ValidarCedula() //hacer unica
         {
-            if (Cedula >= 0)
+            if (Cedula <= 0)
             {
                 throw new Exception("No puede ser vacia");  
             }
@@ -78,7 +80,7 @@ namespace Biblioteca_de_Clase
 
         public void AgregarCuenta(Cuenta cuenta)
         {
-            if(cuenta != null || !_cuentas.Contains(cuenta))
+            if(cuenta != null && !_cuentas.Contains(cuenta))
             {
                 _cuentas.Add(cuenta); 
             }
