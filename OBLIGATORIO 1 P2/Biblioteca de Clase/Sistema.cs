@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace Biblioteca_de_Clase
@@ -18,6 +19,14 @@ namespace Biblioteca_de_Clase
 
 
         //patron Singleton
+        public void PrecargarDatos()
+        {
+            PrecargarActivos();
+            PrecargarCuentas();
+            PrecargarPersonas();
+        }
+
+       
         public static Sistema GetInstancia()
         {
             if (_instancia == null)
@@ -26,27 +35,50 @@ namespace Biblioteca_de_Clase
             }
             return _instancia;
         }
+        private void PrecargarActivos()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void PrecargarCuentas()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void PrecargarPersonas()
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
 
         #region Alta
         public void AltaPersona(Persona persona)
         {
-            persona.Validar();
-
-            //validamos que la cedula sea unica
-            foreach (Persona p in _personas)
+            try
             {
-                if (p.Cedula == persona.Cedula)
+                if (persona != null)
                 {
-                    throw new Exception($"Ya existe una persona con cedula {persona.Cedula}");
+                    persona.Validar();
+
+                    if (!_personas.Contains(persona)) //Equals en persona por ci
+                    {
+                        _personas.Add(persona);
+                    }
+                    else
+                    {
+                        throw new Exception("Ya existe esta persona");
+                    }
                 }
             }
-            _personas.Add(persona);
+            catch (Exception e) { throw e; }
+                    
+            }
         }
+            
         #endregion
 
 
 
-    }
+    
 }
