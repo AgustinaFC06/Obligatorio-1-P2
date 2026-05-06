@@ -26,7 +26,7 @@ namespace Biblioteca_de_Clase
             PrecargarPersonas();
         }
 
-       
+
         public static Sistema GetInstancia()
         {
             if (_instancia == null)
@@ -72,9 +72,9 @@ namespace Biblioteca_de_Clase
                 }
             }
             catch (Exception e) { throw e; }
-                    
-            }
+
         }
+    }
         #endregion
 
         #region 4b Listado de incidentes dada una persona

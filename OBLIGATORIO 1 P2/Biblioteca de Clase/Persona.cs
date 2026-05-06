@@ -15,7 +15,7 @@ namespace Biblioteca_de_Clase
         public string Email { get; set; }
         public string Telefono { get; set; }
         private List<Cuenta>_cuentas {  get; }= new List<Cuenta>();
-        public List<Cuenta> Cuenta { get { return _cuenta; } }
+        public List<Cuenta> Cuenta { get { return _cuentas; } }
 
         #endregion
 
