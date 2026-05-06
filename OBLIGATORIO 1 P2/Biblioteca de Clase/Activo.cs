@@ -34,7 +34,10 @@ namespace Biblioteca_de_Clase
 
         #region VALIDACIONES
         public void Validar()
-        { ValidarNombre(); }
+        {   ValidarNombre();
+            ValidarCriticidad();
+        }
+
 
         private void ValidarNombre()
         {
