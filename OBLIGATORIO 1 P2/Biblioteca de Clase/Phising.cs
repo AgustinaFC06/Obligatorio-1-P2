@@ -39,7 +39,12 @@ namespace Biblioteca_de_Clase
                 throw new Exception("Canal no puede ser vacío ni nulo.");
             }
         }
-#endregion
+
+        public override string ToString()
+        {
+            return $"[{Id}] Phising - {Descripcion} - Estado: {Estado} - Canal: {Canal}";
+        }
+        #endregion
 
     }
 }

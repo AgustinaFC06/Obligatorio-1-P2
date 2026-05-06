@@ -28,8 +28,13 @@ namespace Biblioteca_de_Clase
         public override double CalcularSeveridad()
         {
             throw new Exception("Se hara en segunda entrega");
-        } 
-        #endregion 
+        }
+        #endregion
+
+        public override string ToString()
+        {
+            return $"[{Id}] Ransomware - {Descripcion} - Estado: {Estado} - Encriptados: {(Encriptados ? "Si" : "No")}";
+        }
 
     }
 

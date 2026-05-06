@@ -15,7 +15,8 @@ namespace Biblioteca_de_Clase
         public string Email { get; set; }
         public string Telefono { get; set; }
         private List<Cuenta>_cuentas {  get; }= new List<Cuenta>();
-        public List<Cuenta> Cuenta { get { return _cuenta; } }
+        public List<Cuenta> Cuenta { get { return _cuentas; } }
+
 
         #endregion
 
@@ -23,17 +24,15 @@ namespace Biblioteca_de_Clase
         public Persona()
         {
             Id = UltimoId++;
-            _cuentas = new List<Cuenta>();
         }
 
-        public Persona(int cedula, string nombre, string email, string telefono, List<Cuenta> cuentas)
+        public Persona(int cedula, string nombre, string email, string telefono)
         {   
             Id = UltimoId++;
             Cedula = cedula;
             Nombre = nombre;
             Email = email;
             Telefono = telefono;
-            _cuentas = cuentas;
             Validar();
         }       
          #endregion
@@ -42,7 +41,7 @@ namespace Biblioteca_de_Clase
         public void Validar()
         {
             ValidarCedula();
-            ValidalNombre();
+            ValidarNombre();
             ValidarEmail();
             ValidarTelefono();
         }
@@ -60,7 +59,7 @@ namespace Biblioteca_de_Clase
             throw new Exception("Email tiene que contener @ y no puede ser vacio");
         }
 
-        private void ValidalNombre()
+        private void ValidarNombre()
         {
             if (string.IsNullOrWhiteSpace(Nombre))
             {

@@ -28,6 +28,7 @@ namespace Biblioteca_de_Clase
             TipoActivo = tipoActivo;
             Criticidad = criticidad;
             Backup = backup;
+            Validar();
         }
         #endregion
 
@@ -53,7 +54,13 @@ namespace Biblioteca_de_Clase
 
         #endregion
 
-        #region
+        #region Alfanumerico
+        public string CrearAlfanumerico()
+        {
+            string tipo = TipoActivo.ToString().ToUpper();
+            return $"{tipo}{Id:D4}";
+        }
+
         #endregion
 
     }

@@ -22,15 +22,16 @@ namespace Biblioteca_de_Clase
         public Cuenta()
         {
             Id = UltimoId++;
+            FechaUltimoCambioPassword = DateTime.Now;
+
         }
 
-        public Cuenta(bool mfa, string contrasena, DateTime fechaUltimoCambioPassword, List<Activo> activos)
+        public Cuenta(bool mfa, string contrasena)
         {
             Id = UltimoId++;
             Mfa = mfa;
             Contrasena = contrasena;
-            FechaUltimoCambioPassword = fechaUltimoCambioPassword;
-            _activos = activos;
+            FechaUltimoCambioPassword = DateTime.Now;
             Validar();
         }
                  

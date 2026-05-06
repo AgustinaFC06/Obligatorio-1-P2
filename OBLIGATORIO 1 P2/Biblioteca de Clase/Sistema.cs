@@ -15,18 +15,6 @@ namespace Biblioteca_de_Clase
         private static Sistema _instancia;
         #endregion
 
-        #region PRECARGA de DATOS
-
-
-        //patron Singleton
-        public void PrecargarDatos()
-        {
-            PrecargarActivos();
-            PrecargarCuentas();
-            PrecargarPersonas();
-        }
-
-       
         public static Sistema GetInstancia()
         {
             if (_instancia == null)
@@ -35,24 +23,55 @@ namespace Biblioteca_de_Clase
             }
             return _instancia;
         }
-        private void PrecargarActivos()
-        {
-            throw new NotImplementedException();
-        }
 
-        private void PrecargarCuentas()
-        {
-            throw new NotImplementedException();
-        }
+        #region PRECARGA DE DATOS
 
-        private void PrecargarPersonas()
-        {
-            throw new NotImplementedException();
-        }
         #endregion
 
 
-        #region Alta
+
+
+
+        #region 4a Listar todas las personas con sus activos
+
+        public void ListarPersonasConActivos()
+        {
+            if (_personas.Count == 0)
+            {
+                Console.WriteLine("No hay personas registradas.");
+                return;
+            }
+
+            Console.WriteLine("=== LISTADO DE PERSONAS Y SUS ACTIVOS ===");
+
+            foreach (Persona persona in _personas)
+            {
+                Console.WriteLine(persona.ToString());
+
+                bool tieneActivos = false;
+
+                foreach (Cuenta cuenta in persona.Cuenta)
+                {
+                    foreach (Activo activo in cuenta.Activo)
+                    {
+                        Console.WriteLine($"  - {activo.CrearAlfanumerico()} - {activo.Nombre}"); //aca crea ej pc001 - DELL
+                        tieneActivos = true;
+                    }
+                }
+
+                if (!tieneActivos)
+                {
+                    Console.WriteLine("  (Sin activos asignados)");
+                }
+
+                Console.WriteLine();
+            }
+        }
+
+        #endregion
+
+
+        #region 4c Alta
         public void AltaPersona(Persona persona)
         {
             try
@@ -72,9 +91,10 @@ namespace Biblioteca_de_Clase
                 }
             }
             catch (Exception e) { throw e; }
-                    
-            }
+
         }
+
+
         #endregion
 
         #region 4b Listado de incidentes dada una persona
@@ -113,8 +133,11 @@ namespace Biblioteca_de_Clase
                 }
             }
             return aux;
-        } 
-            
+        }
+
         #endregion
-}
+
+
+
+    }
 }

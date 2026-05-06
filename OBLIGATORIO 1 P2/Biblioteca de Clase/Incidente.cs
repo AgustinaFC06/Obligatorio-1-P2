@@ -16,7 +16,6 @@ namespace Biblioteca_de_Clase
         public Estado Estado { get; set; }
         public int Impacto { get; set; }
         public int Probabilidad { get; set; }
-        private List<Incidente> _incidentes { get; } = new List<Incidente>();
 
 
         #endregion
@@ -25,17 +24,19 @@ namespace Biblioteca_de_Clase
         public Incidente()
         {
             Id = UltimoId++;
+            FechaReporte = DateTime.Now; 
         }
 
         public Incidente(DateTime fechaReporte, Activo activo, string descripcion, Estado estado, int impacto, int probabilidad)
         {
             Id = UltimoId++;
-            FechaReporte = fechaReporte;
+            FechaReporte = DateTime.Now;
             Activo = activo;
             Descripcion = descripcion;
             Estado = estado;
             Impacto = impacto;
             Probabilidad = probabilidad;
+            Validar();
         }
 
 
@@ -45,10 +46,10 @@ namespace Biblioteca_de_Clase
 
         public void Validar()
         {
-            Id = UltimoId++;
             ValidarDescripcion();
             ValidarImpacto();
             ValidarProbabilidad();
+           
         }
 
         private void ValidarDescripcion()
