@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Biblioteca_de_Clase
 {
-    public class Phising : Incidente
+    public class Phishing : Incidente
     {
         #region GET and SET
         public string Canal { get; set; }
@@ -14,9 +14,9 @@ namespace Biblioteca_de_Clase
         #endregion
 
         #region CONSTRUCTOR
-        public Phising(){}
+        public Phishing(){}
 
-        public Phising(string canal, bool credenciales, bool transferenciaDatos, DateTime fechaReporte, Activo activo, string descripcion, Estado estado, int impacto, int probabilidad) :base (fechaReporte,  activo,  descripcion, estado, impacto, probabilidad)
+        public Phishing(string canal, bool credenciales, bool transferenciaDatos, DateTime fechaReporte, Activo activo, string descripcion, Estado estado, int impacto, int probabilidad) :base (fechaReporte,  activo,  descripcion, estado, impacto, probabilidad)
         {
             Canal = canal;
             Credenciales = credenciales;

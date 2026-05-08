@@ -39,7 +39,7 @@ namespace Biblioteca_de_Clase
         #endregion
 
         #region VALIDACIONES
-        private void Validar()
+        public void Validar()
         {
             ValidarContrasena();
         }
@@ -53,7 +53,7 @@ namespace Biblioteca_de_Clase
         }
         #endregion
 
-        #region
+        #region    
         #endregion
 
     }

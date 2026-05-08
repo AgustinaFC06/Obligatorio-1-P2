@@ -6,8 +6,8 @@ namespace Biblioteca_de_Clase
 {
     public enum TipoActivo
     {
-        Pc = 1,
-        Server = 2,
-        Movil = 3
+        PC = 1,
+        SERVER = 2,
+        MOVIL = 3
     }
 }
