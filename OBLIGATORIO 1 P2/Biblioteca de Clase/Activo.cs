@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Biblioteca_de_Clase
 {
-    public class Activo
+    public class Activo : IValidar
     {
         #region GET and SET
         public int Id { get; set; }
