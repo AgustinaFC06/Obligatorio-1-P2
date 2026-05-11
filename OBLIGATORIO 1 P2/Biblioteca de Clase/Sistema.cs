@@ -31,28 +31,28 @@ namespace Biblioteca_de_Clase
             PrecargarDatos();
         }
 
-        private void PrecargarDatos() 
-        { 
+        private void PrecargarDatos()
+        {
             PrecargarPersonas();
             PrecargarActivos();
             PrecargarCuentas();
             PrecargarIncidentes();
         }
-        private void PrecargarPersonas() 
-            {
-                AltaPersona(new Persona(12345678, "Ana García", "ana.garcia@empresa.com", "099111222"));
-                AltaPersona(new Persona(23456789, "Luis Pérez", "luis.perez@empresa.com", "098222333"));
-                AltaPersona(new Persona(34567890, "María López", "maria.lopez@empresa.com", "097333444"));
-                AltaPersona(new Persona(45678901, "Carlos Rodríguez", "carlos.rodriguez@empresa.com", "096444555"));
-                AltaPersona(new Persona(56789012, "Laura Martínez", "laura.martinez@empresa.com", "095555666"));
-                AltaPersona(new Persona(67890123, "Diego Fernández", "diego.fernandez@empresa.com", "094666777"));
-                AltaPersona(new Persona(78901234, "Sofía González", "sofia.gonzalez@empresa.com", "093777888"));
-                AltaPersona(new Persona(89012345, "Martín Díaz", "martin.diaz@empresa.com", "092888999"));
-                AltaPersona(new Persona(90123456, "Valentina Torres", "valentina.torres@empresa.com", "091999000"));
-                AltaPersona(new Persona(11223344, "Pablo Sánchez", "pablo.sanchez@empresa.com", "090000111"));
-            }
+        private void PrecargarPersonas()
+        {
+            AltaPersona(new Persona(12345678, "Ana García", "ana.garcia@empresa.com", "099111222"));
+            AltaPersona(new Persona(23456789, "Luis Pérez", "luis.perez@empresa.com", "098222333"));
+            AltaPersona(new Persona(34567890, "María López", "maria.lopez@empresa.com", "097333444"));
+            AltaPersona(new Persona(45678901, "Carlos Rodríguez", "carlos.rodriguez@empresa.com", "096444555"));
+            AltaPersona(new Persona(56789012, "Laura Martínez", "laura.martinez@empresa.com", "095555666"));
+            AltaPersona(new Persona(67890123, "Diego Fernández", "diego.fernandez@empresa.com", "094666777"));
+            AltaPersona(new Persona(78901234, "Sofía González", "sofia.gonzalez@empresa.com", "093777888"));
+            AltaPersona(new Persona(89012345, "Martín Díaz", "martin.diaz@empresa.com", "092888999"));
+            AltaPersona(new Persona(90123456, "Valentina Torres", "valentina.torres@empresa.com", "091999000"));
+            AltaPersona(new Persona(11223344, "Pablo Sánchez", "pablo.sanchez@empresa.com", "090000111"));
+        }
 
-        private void PrecargarActivos() 
+        private void PrecargarActivos()
         {
             AltaActivo(new Activo("Laptop Ventas", TipoActivo.PC, 3, true));
             AltaActivo(new Activo("Laptop Gerencia", TipoActivo.PC, 5, true));
@@ -71,7 +71,7 @@ namespace Biblioteca_de_Clase
             AltaActivo(new Activo("Tablet Logística", TipoActivo.MOVIL, 1, false));
         }
 
-        private void PrecargarCuentas() 
+        private void PrecargarCuentas()
         {
             AltaCuenta(new Cuenta(true, "Pass123!"));
             AltaCuenta(new Cuenta(false, "Clave456!"));
@@ -124,8 +124,8 @@ namespace Biblioteca_de_Clase
             AltaIncidente(new Ramsomware(true, true, new DateTime(2024, 9, 25), _activos[13], "Ransomware cifró tablet dirección", Estado.Abierto, 4, 5));
             AltaIncidente(new Ramsomware(false, false, new DateTime(2024, 10, 3), _activos[14], "Ransomware en tablet logística", Estado.EnAnalisis, 2, 3));
         }
-          
-         #endregion
+
+        #endregion
 
 
 
@@ -240,7 +240,7 @@ namespace Biblioteca_de_Clase
 
         public void AltaIncidente(Incidente incidente)
         {
-            if (!_incidentes.Contains(incidente)) 
+            if (!_incidentes.Contains(incidente))
             {
                 _incidentes.Add(incidente);
             }
