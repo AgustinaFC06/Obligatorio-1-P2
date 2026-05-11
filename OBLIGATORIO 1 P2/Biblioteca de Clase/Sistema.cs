@@ -286,7 +286,17 @@ namespace Biblioteca_de_Clase
         }
         #endregion
 
-
+        #region Buscar persona por CI para parte 4b????????????????????????????
+        public Persona BuscarPersonaPorCedula(int cedula)
+        {
+            foreach (Persona p in _personas)
+            {
+                if (p.Cedula == cedula)
+                    return p;
+            }
+            return null;
+        }
+        #endregion
 
     }
 }
