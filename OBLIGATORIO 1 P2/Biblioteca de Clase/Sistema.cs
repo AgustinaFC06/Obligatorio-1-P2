@@ -196,29 +196,47 @@ namespace Biblioteca_de_Clase
 
 
         #endregion
-
-        #region 4b Listado de incidentes dada una persona
+        #region Buscar persona por CI para parte 4b????????????????????????????
+        public Persona BuscarPersonaPorCedula(int cedula)
+        {
+            foreach (Persona p in _personas)
+            {
+                if (p.Cedula == cedula)
+                    return p;
+            }
+            return null;
+        }
 
         public List<Incidente> ListarIncidentesPersona(Persona p)
         {
-            List<Incidente> aux = new List<Incidente>();
-
-            foreach (Cuenta cuenta in p.Cuenta)
-            {
-                foreach (Activo activo in cuenta.Activo)
-                {
-                    foreach (Incidente incidente in _incidentes)
-                    {
-                        if (incidente.Activo == activo)
-                        {
-                            aux.Add(incidente);
-                        }
-                    }
-                }
-            }
-            return aux;
+            return p.ObtenerMisIncidentes(_incidentes);
         }
         #endregion
+
+        //#region 4b Listado de incidentes dada una persona
+
+        //public List<Incidente> ListarIncidentesPersona(Persona p)
+        //{
+        //    List<Incidente> aux = new List<Incidente>();
+        //
+        //    foreach (Cuenta cuenta in p.Cuenta)
+        //    {
+        //        foreach (Activo activo in cuenta.Activo)
+        //        {
+        //            foreach (Incidente incidente in _incidentes)
+        //            {
+        //                if (incidente.Activo == activo)
+        //                {
+        //                    aux.Add(incidente);
+        //                }
+        //            }
+        //        }
+        //    }
+        //    return aux;
+        //}
+
+
+        //#endregion
 
         #region 4d Listar activos que carecen de BackUp
 
@@ -286,17 +304,7 @@ namespace Biblioteca_de_Clase
         }
         #endregion
 
-        #region Buscar persona por CI para parte 4b????????????????????????????
-        public Persona BuscarPersonaPorCedula(int cedula)
-        {
-            foreach (Persona p in _personas)
-            {
-                if (p.Cedula == cedula)
-                    return p;
-            }
-            return null;
-        }
-        #endregion
+      
 
     }
 }

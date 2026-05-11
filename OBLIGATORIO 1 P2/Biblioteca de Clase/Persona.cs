@@ -102,5 +102,29 @@ namespace Biblioteca_de_Clase
 
         #endregion
 
+        #region 4B con Polimorfismo
+        
+        public List<Incidente> ObtenerMisIncidentes(List<Incidente> todosLosIncidentes)
+        {
+            List<Incidente> listRet = new List<Incidente>();
+
+            
+            foreach (Cuenta c in this.Cuenta) // Recorremos las cuentas de la persona
+            {                
+                foreach (Activo a in c.Activo)  // Recorremos los activos de cada cuenta
+                {                    
+                    foreach (Incidente i in todosLosIncidentes)  // Recorremos la lista total de incidentes
+                    {                        
+                        if (i.Activo != null && i.Activo.Equals(a))  // POLIMORFISMO: a) El 'i' puede ser Phishing o Ransomware, pero comparamos su propiedad 'Activo' b) que es común a todos los Incidentes.
+                        {
+                            listRet.Add(i);
+                        }
+                    }
+                }
+            }
+            return listRet;
+        }
+        #endregion
+
     }
 }
