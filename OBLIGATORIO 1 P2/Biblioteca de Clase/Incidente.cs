@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace Biblioteca_de_Clase
-{        
+{
     #region GET and SET
 
     public abstract class Incidente : IValidar
