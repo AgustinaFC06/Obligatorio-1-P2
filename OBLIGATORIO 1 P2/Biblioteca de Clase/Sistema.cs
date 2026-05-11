@@ -16,7 +16,20 @@ namespace Biblioteca_de_Clase
         private static Sistema _instancia;
         #endregion
 
-        public static Sistema GetInstancia()
+
+        #region PRECARGA DE DATOS
+        public void PrecargarDatos()
+        {
+            PrecargarPersonas();
+            PrecargarActivos();
+            PrecargarCuentas();
+            PrecargarIncidentes();
+        }
+        private Sistema()  //Constructor de sistema
+        {
+            PrecargarDatos();
+        }
+        public static Sistema GetInstancia()   //Patron Singlenton
         {
             if (_instancia == null)
             {
@@ -25,19 +38,7 @@ namespace Biblioteca_de_Clase
             return _instancia;
         }
 
-        #region PRECARGA DE DATOS
-        private Sistema()
-        {
-            PrecargarDatos();
-        }
 
-        private void PrecargarDatos()
-        {
-            PrecargarPersonas();
-            PrecargarActivos();
-            PrecargarCuentas();
-            PrecargarIncidentes();
-        }
         private void PrecargarPersonas()
         {
             AltaPersona(new Persona(12345678, "Ana García", "ana.garcia@empresa.com", "099111222"));
