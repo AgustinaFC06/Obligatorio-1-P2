@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Biblioteca_de_Clase
 {
-    public interface IValidar
+    public interface IValidable
     {
         public void Validar();
     }

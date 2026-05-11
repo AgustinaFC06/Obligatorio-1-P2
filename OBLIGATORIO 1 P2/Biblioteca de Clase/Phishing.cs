@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Biblioteca_de_Clase
 {
-    public class Phishing : Incidente, IValidar
+    public class Phishing : Incidente, IValidable
     {
         #region GET and SET
         public string Canal { get; set; }

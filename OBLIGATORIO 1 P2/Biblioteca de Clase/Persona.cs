@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Biblioteca_de_Clase
 {
-    public class Persona : IValidar
+    public class Persona : IValidable
     {
         #region GET and SET
         public int Id { get; set; }

@@ -6,7 +6,7 @@ namespace Biblioteca_de_Clase
 {
     #region GET and SET
 
-    public abstract class Incidente : IValidar
+    public abstract class Incidente : IValidable
     {
         public int Id { get; set; }
         public static int UltimoId { get; set; } = 1;
