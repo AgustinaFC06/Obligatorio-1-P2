@@ -22,7 +22,7 @@ namespace Biblioteca_de_Clase
         public Cuenta()
         {
             Id = UltimoId++;
-            FechaUltimoCambioPassword = DateTime.Now;
+            FechaUltimoCambioPassword = DateTime.Now; ////?????
 
         }
 
