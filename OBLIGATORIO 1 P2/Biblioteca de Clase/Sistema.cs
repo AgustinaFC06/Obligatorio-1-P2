@@ -15,6 +15,28 @@ namespace Biblioteca_de_Clase
         private static Sistema _instancia;
         #endregion
 
+        #region Corroboracion de cuenta tiene que tener una persona
+        private void CuentaTienePersona()
+        {
+            foreach (Cuenta cuenta in _cuentas)
+            {
+                bool tienePersona = false;
+                foreach (Persona persona in _personas)
+                {
+                    if (persona.Cuenta.Contains(cuenta))
+                    {
+                        tienePersona = true;
+                        break;
+                    }
+                }
+
+                if (!tienePersona)
+                {
+                    throw new Exception("Esta cuenta no tiene persona, no es valido");
+                }
+            }
+        }
+        #endregion
 
         #region PRECARGA DE DATOS
         public void PrecargarDatos()
@@ -23,6 +45,7 @@ namespace Biblioteca_de_Clase
             PrecargarActivos();
             PrecargarCuentas();
             PrecargarIncidentes();
+            CuentaTienePersona();
         }
         private Sistema()  //Constructor de sistema
         {
@@ -213,16 +236,16 @@ namespace Biblioteca_de_Clase
 
             if (persona == null)
             {
-                Console.WriteLine("No se encontro ninguna persona con esa cedula.");
+                throw new Exception("No se encontro ninguna persona con esa cedula.");
             }
             else
             {
-                Console.WriteLine($"Persona: {persona}");
+                throw new Exception($"Persona: {persona}");
                 List<Incidente> incidentes = persona.ObtenerMisIncidentes(_incidentes);
 
                 if (incidentes.Count == 0)
                 {
-                    Console.WriteLine("  (Sin incidentes registrados)");
+                    throw new Exception("  (Sin incidentes registrados)");
                 }
                 else
                 {
@@ -230,7 +253,7 @@ namespace Biblioteca_de_Clase
                     {
                         // POLIMORFISMO: inc es Incidente pero ejecuta
                         // el ToString() de Phishing o Ransomware segun corresponda
-                        Console.WriteLine(inc.ToString());
+                        throw new Exception(inc.ToString());
                     }
                 }
             }

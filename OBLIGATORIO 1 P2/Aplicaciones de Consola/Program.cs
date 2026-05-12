@@ -35,7 +35,7 @@ namespace Aplicaciones_de_Consola
                         s.MostrarIncidentesPersona(cedula);
                         Console.ReadKey();
                     }
-                    // Pide cédula y muestra los incidentes de esa persona
+                    // Pide cedula y muestra los incidentes de esa persona
 
                     else if (opcionSeleccionada == 3)
                     {
