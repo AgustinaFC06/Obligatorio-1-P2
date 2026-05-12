@@ -171,7 +171,7 @@ namespace Biblioteca_de_Clase
         #endregion
 
 
-        #region 4c Alta
+        #region 4c Alta persona
         public void AltaPersona(Persona persona)
         {
             try
@@ -196,7 +196,8 @@ namespace Biblioteca_de_Clase
 
 
         #endregion
-        #region Buscar persona por CI para parte 4b????????????????????????????
+
+        #region 4b Mosttrar inciddente de una persona
         public Persona BuscarPersonaPorCedula(int cedula)
         {
             foreach (Persona p in _personas)

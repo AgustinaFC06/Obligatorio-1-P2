@@ -43,7 +43,7 @@ namespace Aplicaciones_de_Consola
                         else
                         {
                             Console.WriteLine($"Persona: {persona}");
-                            Console.WriteLine("Incidentes asociados:");
+                            
 
                             List<Incidente> incidentes = s.ListarIncidentesPersona(persona);
 

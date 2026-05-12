@@ -77,7 +77,7 @@ namespace Biblioteca_de_Clase
 
 
 
-        public void AgregarCuenta(Cuenta cuenta)
+        public void AgregarCuenta(Cuenta cuenta) //??????????
         {
             if(cuenta != null && !_cuentas.Contains(cuenta))
             {
@@ -102,20 +102,20 @@ namespace Biblioteca_de_Clase
 
         #endregion
 
-        #region 4B con Polimorfismo
+        #region 4B Encapsulamiento
         
         public List<Incidente> ObtenerMisIncidentes(List<Incidente> todosLosIncidentes)
         {
             List<Incidente> listRet = new List<Incidente>();
 
             
-            foreach (Cuenta c in this.Cuenta) // Recorremos las cuentas de la persona
+            foreach (Cuenta c in this.Cuenta) 
             {                
-                foreach (Activo a in c.Activo)  // Recorremos los activos de cada cuenta
+                foreach (Activo a in c.Activo)  
                 {                    
-                    foreach (Incidente i in todosLosIncidentes)  // Recorremos la lista total de incidentes
+                    foreach (Incidente i in todosLosIncidentes)
                     {                        
-                        if (i.Activo != null && i.Activo.Equals(a))  // POLIMORFISMO: a) El 'i' puede ser Phishing o Ransomware, pero comparamos su propiedad 'Activo' b) que es común a todos los Incidentes.
+                        if (i.Activo != null && i.Activo.Equals(a))   //Persona conoce sus propios y filtra sus propios incidentes
                         {
                             listRet.Add(i);
                         }

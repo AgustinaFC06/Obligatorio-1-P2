@@ -58,7 +58,7 @@ namespace Biblioteca_de_Clase
         #endregion
 
         #region Alfanumerico
-        public string CrearAlfanumerico()
+        public string CrearAlfanumerico()   //????????????????
         {
             string tipo = TipoActivo.ToString().ToUpper();
             return $"{tipo}{Id:D4}";

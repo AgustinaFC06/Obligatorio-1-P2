@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Biblioteca_de_Clase
 {
-    public class Phishing : Incidente, IValidable
+    public class Phishing : Incidente
     {
         #region GET and SET
         public string Canal { get; set; }
@@ -25,10 +25,11 @@ namespace Biblioteca_de_Clase
 
         #endregion
 
-#region METODOS
+        #region Validar
 
         public void Validar()
         {
+            base.Validar();
             ValidarCanal();
         }
 
@@ -39,10 +40,12 @@ namespace Biblioteca_de_Clase
                 throw new Exception("Canal no puede ser vacío ni nulo.");
             }
         }
+        #endregion
 
+        #region ToString
         public override string ToString()
         {
-            return $"[{Id}] Phising - {Descripcion} - Estado: {Estado} - Canal: {Canal}";
+            return $"[{Id}] Phishing - {Descripcion} - Estado: {Estado} - Canal: {Canal}";
         }
         #endregion
 
