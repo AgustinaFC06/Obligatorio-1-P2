@@ -208,9 +208,33 @@ namespace Biblioteca_de_Clase
             return null;
         }
 
-        public List<Incidente> ListarIncidentesPersona(Persona p)
+        public void MostrarIncidentesPersona(int cedula)
         {
-            return p.ObtenerMisIncidentes(_incidentes);
+            Persona persona = BuscarPersonaPorCedula(cedula);
+
+            if (persona == null)
+            {
+                Console.WriteLine("No se encontro ninguna persona con esa cedula.");
+            }
+            else
+            {
+                Console.WriteLine($"Persona: {persona}");
+                List<Incidente> incidentes = persona.ObtenerMisIncidentes(_incidentes);
+
+                if (incidentes.Count == 0)
+                {
+                    Console.WriteLine("  (Sin incidentes registrados)");
+                }
+                else
+                {
+                    foreach (Incidente inc in incidentes)
+                    {
+                        // POLIMORFISMO: inc es Incidente pero ejecuta
+                        // el ToString() de Phishing o Ransomware segun corresponda
+                        Console.WriteLine(inc.ToString());
+                    }
+                }
+            }
         }
         #endregion
 

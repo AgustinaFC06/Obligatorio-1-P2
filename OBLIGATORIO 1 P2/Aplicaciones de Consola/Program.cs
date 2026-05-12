@@ -30,38 +30,13 @@ namespace Aplicaciones_de_Consola
                     }
                     else if (opcionSeleccionada == 2)
                     {
-                        // Pide cédula y muestra los incidentes de esa persona
                         Console.WriteLine("Ingrese la cedula de la persona: ");
                         int cedula = int.Parse(Console.ReadLine());
-
-                        Persona persona = s.BuscarPersonaPorCedula(cedula);  //Para que la persona sea unica podemos buscarla por cI????
-
-                        if (persona == null)
-                        {
-                            Console.WriteLine("No se encontro ninguna persona con esa cedula.");
-                        }
-                        else
-                        {
-                            Console.WriteLine($"Persona: {persona}");
-                            
-
-                            List<Incidente> incidentes = s.ListarIncidentesPersona(persona);
-
-                            if (incidentes.Count == 0)
-                            {
-                                Console.WriteLine("  (Sin incidentes registrados)");
-                            }
-                            else
-                            {
-                                foreach (Incidente inc in incidentes)
-                                {
-                                    // ToString() es polimórfico: llama al de Phishing o Ransomware según corresponda
-                                    Console.WriteLine($"  - {inc.ToString()}");
-                                }
-                            }
-                        }
+                        s.MostrarIncidentesPersona(cedula);
                         Console.ReadKey();
                     }
+                    // Pide cédula y muestra los incidentes de esa persona
+
                     else if (opcionSeleccionada == 3)
                     {
                         // Pide todos los datos y da de alta la persona con lista de Cuenta vacía
