@@ -22,80 +22,87 @@ namespace Aplicaciones_de_Consola
 
                     opcionSeleccionada = int.Parse(Console.ReadLine());
 
-                    if (opcionSeleccionada == 1)
+                    switch (opcionSeleccionada)
                     {
-                        // Lista TODAS las personas con sus activos sin pedir nada
-                        s.ListarPersonasConActivos();
-                        Console.ReadKey();
-                    }
-                    else if (opcionSeleccionada == 2)
-                    {
-                        Console.WriteLine("Ingrese la cedula de la persona: ");
-                        int cedula = int.Parse(Console.ReadLine());
-                        List<Incidente> listaIncidentes = new List<Incidente>();
-                        listaIncidentes = s.MostrarIncidentesPersona(cedula);
-                         if(listaIncidentes.Count == 0)
-                        {
-                            Console.WriteLine("Esta persona no tiene Activos");
-                        }
-                         if (listaIncidentes[0] == null)
-                        {
-                            Console.WriteLine("Esta persona no tiene Activos");
-                        }
-                         if(listaIncidentes.Count >0)
-                        //count
-                        //recorrer y mostrar con el tostring
+                        case 1:
+                            // 4a) Lista TODAS las personas con sus activos
+                            s.ListarPersonasConActivos();
+                            Console.ReadKey();
+                            break;
 
-                        Console.ReadKey();
-                    }
-                    // Pide cedula y muestra los incidentes de esa persona
+                        case 2:
+                            // 4b) Pide cedula y muestra incidentes de esa persona
+                            Console.WriteLine("Ingrese la cedula de la persona: ");
+                            int cedula2 = int.Parse(Console.ReadLine());
 
-                    else if (opcionSeleccionada == 3)
-                    {
-                        // Pide todos los datos y da de alta la persona con lista de Cuenta vacía
-                        Console.WriteLine("Ingrese la cedula: ");
-                        int cedula = int.Parse(Console.ReadLine());
+                            List<Incidente> listaIncidentes = s.ListarIncidentesPersona(cedula2);
 
-                        Console.WriteLine("Ingrese el nombre: ");
-                        string nombre = Console.ReadLine();
-
-                        Console.WriteLine("Ingrese el email: ");
-                        string email = Console.ReadLine();
-
-                        Console.WriteLine("Ingrese el telefono: ");
-                        string telefono = Console.ReadLine();
-
-                        Persona nueva = new Persona(cedula, nombre, email, telefono);
-                        s.AltaPersona(nueva);
-
-                        Console.WriteLine($"Persona '{nombre}' agregada correctamente.");
-                        Console.ReadKey();
-                    }
-                    else if (opcionSeleccionada == 4)
-                    {
-                        // Lista todos los activos que no tienen backup
-                        List<Activo> sinBackup = s.ActivosSinBackup();
-
-                        if (sinBackup.Count == 0)
-                        {
-                            Console.WriteLine("Todos los activos tienen backup.");
-                        }
-                        else
-                        {
-                            foreach (Activo activo in sinBackup)
+                            if (listaIncidentes == null)
                             {
-                                Console.WriteLine($"{activo.CrearAlfanumerico()} - {activo.Nombre} - Tipo: {activo.TipoActivo} - Criticidad: {activo.Criticidad}");
+                                Console.WriteLine("No se encontro ninguna persona con esa cedula.");
                             }
-                        }
-                        Console.ReadKey();
-                    }
-                    else if (opcionSeleccionada == 0)
-                    {
-                        Console.ReadKey();
-                    }
-                    else
-                    {
-                        Console.WriteLine("Ingrese una opcion valida");
+                            else if (listaIncidentes.Count == 0)
+                            {
+                                Console.WriteLine("Esta persona no tiene incidentes registrados.");
+                            }
+                            else
+                            {
+                                foreach (Incidente inc in listaIncidentes)
+                                {
+                                    // POLIMORFISMO: inc es Incidente pero ejecuta
+                                    // el ToString() de Phishing o Ransomware segun corresponda
+                                    Console.WriteLine(inc.ToString());
+                                }
+                            }
+                            Console.ReadKey();
+                            break;
+
+                        case 3:
+                            // 4c) Alta de persona con lista de Cuenta vacia
+                            Console.WriteLine("Ingrese la cedula: ");
+                            int cedula3 = int.Parse(Console.ReadLine());
+
+                            Console.WriteLine("Ingrese el nombre: ");
+                            string nombre = Console.ReadLine();
+
+                            Console.WriteLine("Ingrese el email: ");
+                            string email = Console.ReadLine();
+
+                            Console.WriteLine("Ingrese el telefono: ");
+                            string telefono = Console.ReadLine();
+
+                            Persona nueva = new Persona(cedula3, nombre, email, telefono);
+                            s.AltaPersona(nueva);
+
+                            Console.WriteLine($"Persona '{nombre}' agregada correctamente.");
+                            Console.ReadKey();
+                            break;
+
+                        case 4:
+                            // 4d) Lista activos sin backup
+                            List<Activo> sinBackup = s.ActivosSinBackup();
+
+                            if (sinBackup.Count == 0)
+                            {
+                                Console.WriteLine("Todos los activos tienen backup.");
+                            }
+                            else
+                            {
+                                foreach (Activo activo in sinBackup)
+                                {
+                                    Console.WriteLine($"{activo.CrearAlfanumerico()} - {activo.Nombre} - Tipo: {activo.TipoActivo} - Criticidad: {activo.Criticidad}");
+                                }
+                            }
+                            Console.ReadKey();
+                            break;
+
+                        case 0:
+                            Console.ReadKey();
+                            break;
+
+                        default:
+                            Console.WriteLine("Ingrese una opcion valida");
+                            break;
                     }
                 }
                 catch (Exception e)
@@ -103,13 +110,6 @@ namespace Aplicaciones_de_Consola
                     Console.WriteLine("Ha ocurrido un error: " + e.Message);
                 }
             }
-
         }
     }
 }
-
-
-
-
-
-

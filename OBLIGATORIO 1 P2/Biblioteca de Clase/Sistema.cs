@@ -73,8 +73,6 @@ namespace Biblioteca_de_Clase
             AltaPersona(new Persona(89012345, "Martín Díaz", "martin.diaz@empresa.com", "092888999"));
             AltaPersona(new Persona(90123456, "Valentina Torres", "valentina.torres@empresa.com", "091999000"));
             AltaPersona(new Persona(11223344, "Pablo Sánchez", "pablo.sanchez@empresa.com", "090000111"));
-            AltaPersona(new Persona(11228344, "Pedro Perez", "pedro.perez@empresa.com", "011100111"));
-            AltaPersona(new Persona(41223344, "Jose Munoz", "jose.munoz@empresa.com", "090000211"));
         }
 
         private void PrecargarActivos()
@@ -98,67 +96,19 @@ namespace Biblioteca_de_Clase
 
         private void PrecargarCuentas()
         {
-            // Cuenta 1 → Persona 0 (Ana García)
-            Cuenta c1 = new Cuenta(true, "Pass123!");
-            _personas[0].AgregarCuenta(c1);
-            AltaCuenta(c1);
-
-            // Cuenta 2 → Persona 1 (Luis Pérez)
-            Cuenta c2 = new Cuenta(false, "Clave456!");
-            _personas[1].AgregarCuenta(c2);
-            AltaCuenta(c2);
-
-            // Cuenta 3 → Persona 2 (María López)
-            Cuenta c3 = new Cuenta(true, "Segura789!");
-            _personas[2].AgregarCuenta(c3);
-            AltaCuenta(c3);
-
-            // Cuenta 4 → Persona 3 (Carlos Rodríguez)
-            Cuenta c4 = new Cuenta(false, "Admin2024!");
-            _personas[3].AgregarCuenta(c4);
-            AltaCuenta(c4);
-
-            // Cuenta 5 → Persona 4 (Laura Martínez)
-            Cuenta c5 = new Cuenta(true, "Empresa001!");
-            _personas[4].AgregarCuenta(c5);
-            AltaCuenta(c5);
-
-            // Cuenta 6 → Persona 5 (Diego Fernández)
-            Cuenta c6 = new Cuenta(false, "Usuario555!");
-            _personas[5].AgregarCuenta(c6);
-            AltaCuenta(c6);
-
-            // Cuenta 7 → Persona 6 (Sofía González)
-            Cuenta c7 = new Cuenta(true, "Acceso321!");
-            _personas[6].AgregarCuenta(c7);
-            AltaCuenta(c7);
-
-            // Cuenta 8 → Persona 7 (Martín Díaz)
-            Cuenta c8 = new Cuenta(true, "Sistema789!");
-            _personas[7].AgregarCuenta(c8);
-            AltaCuenta(c8);
-
-            // Cuenta 9 → Persona 8 (Valentina Torres)
-            Cuenta c9 = new Cuenta(false, "Contable11!");
-            _personas[8].AgregarCuenta(c9);
-            AltaCuenta(c9);
-
-            // Cuenta 10 → Persona 9 (Pablo Sánchez)
-            Cuenta c10 = new Cuenta(true, "Gerencia22!");
-            _personas[9].AgregarCuenta(c10);
-            AltaCuenta(c10);
-
-            // Cuenta 11 → Persona 10 (Pedro Perez)
-            Cuenta c11 = new Cuenta(false, "Soporte333!");
-            _personas[10].AgregarCuenta(c11);
-            AltaCuenta(c11);
-
-            // Cuenta 12 → Persona 11 (Jose Munoz)
-            Cuenta c12 = new Cuenta(true, "Ventas4444!");
-            _personas[11].AgregarCuenta(c12);
-            AltaCuenta(c12);
+            AltaCuenta(new Cuenta(true, "Pass123!"));
+            AltaCuenta(new Cuenta(false, "Clave456!"));
+            AltaCuenta(new Cuenta(true, "Segura789!"));
+            AltaCuenta(new Cuenta(false, "Admin2024!"));
+            AltaCuenta(new Cuenta(true, "Empresa001!"));
+            AltaCuenta(new Cuenta(false, "Usuario555!"));
+            AltaCuenta(new Cuenta(true, "Acceso321!"));
+            AltaCuenta(new Cuenta(true, "Sistema789!"));
+            AltaCuenta(new Cuenta(false, "Contable11!"));
+            AltaCuenta(new Cuenta(true, "Gerencia22!"));
+         // AltaCuenta(new Cuenta(false, "Soporte333!"));
+         // AltaCuenta(new Cuenta(true, "Ventas4444!"));
         }
-
 
 
         private void PrecargarIncidentes()
@@ -210,15 +160,15 @@ namespace Biblioteca_de_Clase
         {
             if (_personas.Count == 0)
             {
-                throw new Exception("No hay personas registradas.");
+                Console.WriteLine("No hay personas registradas.");
                 return;
             }
 
-            throw new Exception("=== LISTADO DE PERSONAS Y SUS ACTIVOS ===");
+            Console.WriteLine("=== LISTADO DE PERSONAS Y SUS ACTIVOS ===");
 
             foreach (Persona persona in _personas)
             {
-                throw new Exception(persona.ToString());
+                Console.WriteLine(persona.ToString());
 
                 bool tieneActivos = false;
 
@@ -226,17 +176,17 @@ namespace Biblioteca_de_Clase
                 {
                     foreach (Activo activo in cuenta.Activo)
                     {
-                        throw new Exception($"  - {activo.CrearAlfanumerico()} - {activo.Nombre}"); //aca crea ej pc001 - DELL
+                        Console.WriteLine($"  - {activo.CrearAlfanumerico()} - {activo.Nombre}"); //aca crea ej pc001 - DELL
                         tieneActivos = true;
                     }
                 }
 
                 if (!tieneActivos)
                 {
-                    throw new Exception("  (Sin activos asignados)");
+                    Console.WriteLine("  (Sin activos asignados)");
                 }
 
-                throw new Exception();
+                Console.WriteLine();
             }
         }
 
@@ -280,48 +230,21 @@ namespace Biblioteca_de_Clase
             return null;
         }
 
-        public List<Incidente> MostrarIncidentesPersona(int cedula)
+        public List<Incidente> ListarIncidentesPersona(int cedula)
         {
             Persona persona = BuscarPersonaPorCedula(cedula);
 
             if (persona == null)
             {
-                throw new Exception("No se encontro ninguna persona con esa cedula.");
+                return null;
             }
-            else
-            {
-                throw new Exception($"Persona: {persona}");
-                List<Incidente> incidentes = persona.ObtenerMisIncidentes(_incidentes);
 
-                return incidentes;
-            }
+            List<Incidente> incidentes = persona.ObtenerMisIncidentes(_incidentes);
+
+            return incidentes;
+
         }
         #endregion
-
-        //#region 4b Listado de incidentes dada una persona
-
-        //public List<Incidente> ListarIncidentesPersona(Persona p)
-        //{
-        //    List<Incidente> aux = new List<Incidente>();
-        //
-        //    foreach (Cuenta cuenta in p.Cuenta)
-        //    {
-        //        foreach (Activo activo in cuenta.Activo)
-        //        {
-        //            foreach (Incidente incidente in _incidentes)
-        //            {
-        //                if (incidente.Activo == activo)
-        //                {
-        //                    aux.Add(incidente);
-        //                }
-        //            }
-        //        }
-        //    }
-        //    return aux;
-        //}
-
-
-        //#endregion
 
         #region 4d Listar activos que carecen de BackUp
 
@@ -389,7 +312,7 @@ namespace Biblioteca_de_Clase
         }
         #endregion
 
-      
+
 
     }
 }
