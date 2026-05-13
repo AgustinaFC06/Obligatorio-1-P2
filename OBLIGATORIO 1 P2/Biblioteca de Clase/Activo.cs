@@ -69,7 +69,18 @@ namespace Biblioteca_de_Clase
 
         #endregion
 
+        #region Equals
+        public override bool Equals(object? obj)
+        {
+            return obj is Activo activo &&
+            Nombre == activo.Nombre &&
+        Criticidad == activo.Criticidad &&
+        TipoActivo == activo.TipoActivo &&
+        Backup == activo.Backup;
+        }
 
-        
+
+        #endregion
+
     }
 }

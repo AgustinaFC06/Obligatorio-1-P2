@@ -53,9 +53,14 @@ namespace Biblioteca_de_Clase
         }
         #endregion
 
-        #region    
+        #region   Equals
+        public override bool Equals(object? obj)
+        {
+            return obj is Cuenta cuenta &&
+                Id == cuenta.Id;
+        }
         #endregion
-        
+
 
     }
 }
