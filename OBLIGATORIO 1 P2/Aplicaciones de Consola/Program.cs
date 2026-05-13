@@ -32,7 +32,20 @@ namespace Aplicaciones_de_Consola
                     {
                         Console.WriteLine("Ingrese la cedula de la persona: ");
                         int cedula = int.Parse(Console.ReadLine());
-                        s.MostrarIncidentesPersona(cedula);
+                        List<Incidente> listaIncidentes = new List<Incidente>();
+                        listaIncidentes = s.MostrarIncidentesPersona(cedula);
+                         if(listaIncidentes.Count == 0)
+                        {
+                            Console.WriteLine("Esta persona no tiene Activos");
+                        }
+                         if (listaIncidentes[0] == null)
+                        {
+                            Console.WriteLine("Esta persona no tiene Activos");
+                        }
+                         if(listaIncidentes.Count >0)
+                        //count
+                        //recorrer y mostrar con el tostring
+
                         Console.ReadKey();
                     }
                     // Pide cedula y muestra los incidentes de esa persona
@@ -94,9 +107,9 @@ namespace Aplicaciones_de_Consola
         }
     }
 }
- 
 
 
-        
-    
+
+
+
 

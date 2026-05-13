@@ -280,7 +280,7 @@ namespace Biblioteca_de_Clase
             return null;
         }
 
-        public void MostrarIncidentesPersona(int cedula)
+        public List<Incidente> MostrarIncidentesPersona(int cedula)
         {
             Persona persona = BuscarPersonaPorCedula(cedula);
 
@@ -293,19 +293,7 @@ namespace Biblioteca_de_Clase
                 throw new Exception($"Persona: {persona}");
                 List<Incidente> incidentes = persona.ObtenerMisIncidentes(_incidentes);
 
-                if (incidentes.Count == 0)
-                {
-                    throw new Exception("  (Sin incidentes registrados)");
-                }
-                else
-                {
-                    foreach (Incidente inc in incidentes)
-                    {
-                        // POLIMORFISMO: inc es Incidente pero ejecuta
-                        // el ToString() de Phishing o Ransomware segun corresponda
-                        throw new Exception(inc.ToString());
-                    }
-                }
+                return incidentes;
             }
         }
         #endregion
