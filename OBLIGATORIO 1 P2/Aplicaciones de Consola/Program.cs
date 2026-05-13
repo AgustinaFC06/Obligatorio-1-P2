@@ -1,5 +1,6 @@
 ﻿using Biblioteca_de_Clase;
-
+using System;
+using System.Collections.Generic;
 namespace Aplicaciones_de_Consola
 {
     internal class Program
@@ -7,109 +8,194 @@ namespace Aplicaciones_de_Consola
         static void Main(string[] args)
         {
             Sistema s = Sistema.GetInstancia();
-
             int opcionSeleccionada = -1;
 
             while (opcionSeleccionada != 0)
             {
                 try
                 {
-                    Console.WriteLine("1- Listar todas las personas con sus activos");
-                    Console.WriteLine("2- Listar incidentes de una persona");
-                    Console.WriteLine("3- Alta de persona");
-                    Console.WriteLine("4- Listar activos sin backup");
-                    Console.WriteLine("0- Salir");
+                    Console.Clear();
+                    Console.WriteLine("\n╔══════════════════════════════════════════╗");
+                    Console.WriteLine("║   SISTEMA DE GESTIÓN DE INCIDENTES      ║");
+                    Console.WriteLine("╚══════════════════════════════════════════╝\n");
+                    Console.WriteLine("1. Listar todas las personas con sus activos");
+                    Console.WriteLine("2. Listar incidentes de una persona");
+                    Console.WriteLine("3. Alta de persona");
+                    Console.WriteLine("4. Listar activos sin backup");
+                    Console.WriteLine("0. Salir");
+                    Console.Write("\nSeleccione una opcion: ");
 
                     opcionSeleccionada = int.Parse(Console.ReadLine());
 
                     switch (opcionSeleccionada)
                     {
                         case 1:
-                            // 4a) Lista TODAS las personas con sus activos
-                            s.ListarPersonasConActivos();
-                            Console.ReadKey();
+                            Opcion1_ListarPersonasConActivos(s);
                             break;
 
                         case 2:
-                            // 4b) Pide cedula y muestra incidentes de esa persona
-                            Console.WriteLine("Ingrese la cedula de la persona: ");
-                            int cedula2 = int.Parse(Console.ReadLine());
-
-                            List<Incidente> listaIncidentes = s.ListarIncidentesPersona(cedula2);
-
-                            if (listaIncidentes == null)
-                            {
-                                Console.WriteLine("No se encontro ninguna persona con esa cedula.");
-                            }
-                            else if (listaIncidentes.Count == 0)
-                            {
-                                Console.WriteLine("Esta persona no tiene incidentes registrados.");
-                            }
-                            else
-                            {
-                                foreach (Incidente inc in listaIncidentes)
-                                {
-                                    // POLIMORFISMO: inc es Incidente pero ejecuta
-                                    // el ToString() de Phishing o Ransomware segun corresponda
-                                    Console.WriteLine(inc.ToString());
-                                }
-                            }
-                            Console.ReadKey();
+                            Opcion2_ListarIncidentesPersona(s);
                             break;
 
                         case 3:
-                            // 4c) Alta de persona con lista de Cuenta vacia
-                            Console.WriteLine("Ingrese la cedula: ");
-                            int cedula3 = int.Parse(Console.ReadLine());
-
-                            Console.WriteLine("Ingrese el nombre: ");
-                            string nombre = Console.ReadLine();
-
-                            Console.WriteLine("Ingrese el email: ");
-                            string email = Console.ReadLine();
-
-                            Console.WriteLine("Ingrese el telefono: ");
-                            string telefono = Console.ReadLine();
-
-                            Persona nueva = new Persona(cedula3, nombre, email, telefono);
-                            s.AltaPersona(nueva);
-
-                            Console.WriteLine($"Persona '{nombre}' agregada correctamente.");
-                            Console.ReadKey();
+                            Opcion3_AltaPersona(s);
                             break;
 
                         case 4:
-                            // 4d) Lista activos sin backup
-                            List<Activo> sinBackup = s.ActivosSinBackup();
-
-                            if (sinBackup.Count == 0)
-                            {
-                                Console.WriteLine("Todos los activos tienen backup.");
-                            }
-                            else
-                            {
-                                foreach (Activo activo in sinBackup)
-                                {
-                                    Console.WriteLine($"{activo.CrearAlfanumerico()} - {activo.Nombre} - Tipo: {activo.TipoActivo} - Criticidad: {activo.Criticidad}");
-                                }
-                            }
-                            Console.ReadKey();
+                            Opcion4_ListarActivosSinBackup(s);
                             break;
 
                         case 0:
-                            Console.ReadKey();
+                            Console.WriteLine("\n¡Nos vemos la proxima profe!");
                             break;
 
                         default:
-                            Console.WriteLine("Ingrese una opcion valida");
+                            Console.WriteLine("\nOpcion invalida");
+                            Console.WriteLine("\nPresiona cualquier tecla para continuar");
+                            Console.ReadKey();
                             break;
                     }
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("Ha ocurrido un error: " + e.Message);
+                    Console.WriteLine($"\nError: {e.Message}");
+                    Console.WriteLine("\nPresiona cualquier tecla para continuar");
+                    Console.ReadKey();
                 }
             }
         }
+
+        #region Metodos del UI
+
+        static void Opcion1_ListarPersonasConActivos(Sistema s)
+        {
+            Console.Clear();
+            Console.WriteLine("\n=== LISTADO DE PERSONAS Y SUS ACTIVOS ===\n");
+
+            List<Persona> personas = s.ObtenerPersonasConActivos();
+
+            if (personas.Count == 0)
+            {
+                Console.WriteLine("No hay personas registradas");
+            }
+            else
+            {
+                foreach (Persona persona in personas)
+                {
+                    Console.WriteLine(persona.ToString());
+
+                    bool tieneActivos = false;
+
+                    foreach (Cuenta cuenta in persona.Cuenta)
+                    {
+                        foreach (Activo activo in cuenta.Activo)
+                        {
+                            Console.WriteLine($"-{activo.CrearAlfanumerico()}-{activo.Nombre}");
+                            tieneActivos = true;
+                        }
+                    }
+
+                    if (!tieneActivos)
+                    {
+                        Console.WriteLine("(Sin activos asignados)");
+                    }
+
+                    Console.WriteLine();
+                }
+            }
+
+            Console.WriteLine("\nPresione cualquier tecla para continuar");
+            Console.ReadKey();
+        }
+
+        static void Opcion2_ListarIncidentesPersona(Sistema s)
+        {
+            Console.Clear();
+            Console.WriteLine("\n=== LISTAR INCIDENTES DE UNA PERSONA ===\n");
+
+            Console.Write("Ingrese la cedula de la persona: ");
+            int cedula = int.Parse(Console.ReadLine());
+
+            Persona persona = s.BuscarPersonaPorCedula(cedula);
+
+            if (persona == null)
+            {
+                Console.WriteLine("\nNo se encontro ninguna persona con esa cedula");
+            }
+            else
+            {
+                Console.WriteLine($"\nPersona: {persona}");
+                Console.WriteLine("\n--- INCIDENTES ---\n");
+
+                List<Incidente> incidentes = persona.ObtenerMisIncidentes(s.Incidentes);
+
+                if (incidentes.Count == 0)
+                {
+                    Console.WriteLine("  (Sin incidentes registrados)");
+                }
+                else
+                {
+                    foreach (Incidente inc in incidentes)
+                    {
+                        Console.WriteLine(inc.ToString());  // Polimorfismo
+                    }
+                }
+            }
+
+            Console.WriteLine("\nPresione cualquier tecla para continuar");
+            Console.ReadKey();
+        }
+
+        static void Opcion3_AltaPersona(Sistema s)
+        {
+            Console.Clear();
+            Console.WriteLine("\n=== ALTA DE PERSONA ===\n");
+
+            Console.Write("Ingrese la cedula: ");
+            int cedula = int.Parse(Console.ReadLine());
+
+            Console.Write("Ingrese el nombre: ");
+            string nombre = Console.ReadLine();
+
+            Console.Write("Ingrese el email: ");
+            string email = Console.ReadLine();
+
+            Console.Write("Ingrese el teléfono: ");
+            string telefono = Console.ReadLine();
+
+            Persona nueva = new Persona(cedula, nombre, email, telefono);
+            s.AltaPersona(nueva);
+
+            Console.WriteLine($"\n✓ Persona '{nombre}' agregada correctamente.");
+
+            Console.WriteLine("\nPresione cualquier tecla para continuar...");
+            Console.ReadKey();
+        }
+
+        static void Opcion4_ListarActivosSinBackup(Sistema s)
+        {
+            Console.Clear();
+            Console.WriteLine("\n=== ACTIVOS SIN BACKUP ===\n");
+
+            List<Activo> sinBackup = s.ActivosSinBackup();
+
+            if (sinBackup.Count == 0)
+            {
+                Console.WriteLine("Todos los activos tienen backup");
+            }
+            else
+            {
+                Console.WriteLine($"Se encontraron {sinBackup.Count} activos sin backup:\n");
+                foreach (Activo activo in sinBackup)
+                {
+                    Console.WriteLine($"  - {activo.ToString()}");  
+                                   
+                }
+            }
+
+            Console.WriteLine("\nPresione cualquier tecla para continuar...");
+            Console.ReadKey();
+        }
     }
-}
+    }
+    #endregion

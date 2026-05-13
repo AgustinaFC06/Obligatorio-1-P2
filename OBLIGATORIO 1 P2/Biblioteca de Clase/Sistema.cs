@@ -12,11 +12,13 @@ namespace Biblioteca_de_Clase
         private List<Cuenta> _cuentas { get; } = new List<Cuenta>();
         private List<Activo> _activos { get; } = new List<Activo>();
         private List<Incidente> _incidentes { get; } = new List<Incidente>();
+        public List<Incidente> Incidentes { get { return _incidentes; } }
+
         private static Sistema _instancia;
         #endregion
 
         #region Corroboracion de cuenta tiene que tener una persona
-        private void CuentaTienePersona() ///SE ROMPE///////
+        private void CuentaTienePersona() 
         {
             foreach (Cuenta cuenta in _cuentas)
             {
@@ -42,8 +44,8 @@ namespace Biblioteca_de_Clase
         public void PrecargarDatos()
         {
             PrecargarPersonas();
-            PrecargarActivos();
             PrecargarCuentas();
+            PrecargarActivos();
             PrecargarIncidentes();
             CuentaTienePersona();
         }
@@ -75,40 +77,115 @@ namespace Biblioteca_de_Clase
             AltaPersona(new Persona(11223344, "Pablo Sánchez", "pablo.sanchez@empresa.com", "090000111"));
         }
 
+
         private void PrecargarActivos()
         {
-            AltaActivo(new Activo("Laptop Ventas", TipoActivo.PC, 3, true));
-            AltaActivo(new Activo("Laptop Gerencia", TipoActivo.PC, 5, true));
-            AltaActivo(new Activo("PC Recepción", TipoActivo.PC, 1, false));
-            AltaActivo(new Activo("PC Contabilidad", TipoActivo.PC, 4, true));
-            AltaActivo(new Activo("PC Soporte", TipoActivo.PC, 2, false));
-            AltaActivo(new Activo("Servidor Principal", TipoActivo.SERVER, 5, true));
-            AltaActivo(new Activo("Servidor Backup", TipoActivo.SERVER, 4, true));
-            AltaActivo(new Activo("Servidor Web", TipoActivo.SERVER, 5, false));
-            AltaActivo(new Activo("Servidor Base de Datos", TipoActivo.SERVER, 5, true));
-            AltaActivo(new Activo("Servidor de Correo", TipoActivo.SERVER, 3, false));
-            AltaActivo(new Activo("Celular Gerencia", TipoActivo.MOVIL, 4, true));
-            AltaActivo(new Activo("Celular Ventas", TipoActivo.MOVIL, 2, false));
-            AltaActivo(new Activo("Celular Soporte", TipoActivo.MOVIL, 2, false));
-            AltaActivo(new Activo("Tablet Dirección", TipoActivo.MOVIL, 3, true));
-            AltaActivo(new Activo("Tablet Logística", TipoActivo.MOVIL, 1, false));
+            Activo a1 = new Activo("Laptop Ventas", TipoActivo.PC, 3, true);
+            _cuentas[0].Activo.Add(a1);
+            AltaActivo(a1);
+
+            Activo a2 = new Activo("Laptop Gerencia", TipoActivo.PC, 5, true);
+            _cuentas[1].Activo.Add(a2);
+            AltaActivo(a2);
+
+            Activo a3 = new Activo("PC Recepción", TipoActivo.PC, 1, false);
+            _cuentas[2].Activo.Add(a3);
+            AltaActivo(a3);
+
+            Activo a4 = new Activo("PC Contabilidad", TipoActivo.PC, 4, true);
+            _cuentas[3].Activo.Add(a4);
+            AltaActivo(a4);
+
+            Activo a5 = new Activo("PC Soporte", TipoActivo.PC, 2, false);
+            _cuentas[4].Activo.Add(a5);
+            AltaActivo(a5);
+
+            Activo a6 = new Activo("Servidor Principal", TipoActivo.SERVER, 5, true);
+            _cuentas[5].Activo.Add(a6);
+            AltaActivo(a6);
+
+            Activo a7 = new Activo("Servidor Backup", TipoActivo.SERVER, 4, true);
+            _cuentas[6].Activo.Add(a7);
+            AltaActivo(a7);
+
+            Activo a8 = new Activo("Servidor Web", TipoActivo.SERVER, 5, false);
+            _cuentas[7].Activo.Add(a8);
+            AltaActivo(a8);
+
+            Activo a9 = new Activo("Servidor Base de Datos", TipoActivo.SERVER, 5, true);
+            _cuentas[8].Activo.Add(a9);
+            AltaActivo(a9);
+
+            Activo a10 = new Activo("Servidor de Correo", TipoActivo.SERVER, 3, false);
+            _cuentas[9].Activo.Add(a10);
+            AltaActivo(a10);
+
+            Activo a11 = new Activo("Celular Gerencia", TipoActivo.MOVIL, 4, true);
+            _cuentas[0].Activo.Add(a11);
+            AltaActivo(a11);
+
+            Activo a12 = new Activo("Celular Ventas", TipoActivo.MOVIL, 2, false);
+            _cuentas[1].Activo.Add(a12);
+            AltaActivo(a12);
+
+            Activo a13 = new Activo("Celular Soporte", TipoActivo.MOVIL, 2, false);
+            _cuentas[2].Activo.Add(a13);
+            AltaActivo(a13);
+
+            Activo a14 = new Activo("Tablet Dirección", TipoActivo.MOVIL, 3, true);
+            _cuentas[3].Activo.Add(a14);
+            AltaActivo(a14);
+
+            Activo a15 = new Activo("Tablet Logística", TipoActivo.MOVIL, 1, false);
+            _cuentas[4].Activo.Add(a15);
+            AltaActivo(a15);
         }
+
+        
 
         private void PrecargarCuentas()
         {
-            AltaCuenta(new Cuenta(true, "Pass123!"));
-            AltaCuenta(new Cuenta(false, "Clave456!"));
-            AltaCuenta(new Cuenta(true, "Segura789!"));
-            AltaCuenta(new Cuenta(false, "Admin2024!"));
-            AltaCuenta(new Cuenta(true, "Empresa001!"));
-            AltaCuenta(new Cuenta(false, "Usuario555!"));
-            AltaCuenta(new Cuenta(true, "Acceso321!"));
-            AltaCuenta(new Cuenta(true, "Sistema789!"));
-            AltaCuenta(new Cuenta(false, "Contable11!"));
-            AltaCuenta(new Cuenta(true, "Gerencia22!"));
-         // AltaCuenta(new Cuenta(false, "Soporte333!"));
-         // AltaCuenta(new Cuenta(true, "Ventas4444!"));
+            Cuenta c1 = new Cuenta(true, "Pass123!");
+            _personas[0].AgregarCuenta(c1);
+            AltaCuenta(c1);
+
+            Cuenta c2 = new Cuenta(false, "Clave456!");
+            _personas[1].AgregarCuenta(c2);
+            AltaCuenta(c2);
+
+            Cuenta c3 = new Cuenta(true, "Segura789!");
+            _personas[2].AgregarCuenta(c3);
+            AltaCuenta(c3);
+
+            Cuenta c4 = new Cuenta(false, "Admin2024!");
+            _personas[3].AgregarCuenta(c4);
+            AltaCuenta(c4);
+
+            Cuenta c5 = new Cuenta(true, "Empresa001!");
+            _personas[4].AgregarCuenta(c5);
+            AltaCuenta(c5);
+
+            Cuenta c6 = new Cuenta(false, "Usuario555!");
+            _personas[5].AgregarCuenta(c6);
+            AltaCuenta(c6);
+
+            Cuenta c7 = new Cuenta(true, "Acceso321!");
+            _personas[6].AgregarCuenta(c7);
+            AltaCuenta(c7);
+
+            Cuenta c8 = new Cuenta(true, "Sistema789!");
+            _personas[7].AgregarCuenta(c8);
+            AltaCuenta(c8);
+
+            Cuenta c9 = new Cuenta(false, "Contable11!");
+            _personas[8].AgregarCuenta(c9);
+            AltaCuenta(c9);
+
+            Cuenta c10 = new Cuenta(true, "Gerencia22!");
+            _personas[9].AgregarCuenta(c10);
+            AltaCuenta(c10);
         }
+
 
 
         private void PrecargarIncidentes()
@@ -154,42 +231,12 @@ namespace Biblioteca_de_Clase
 
 
 
-        #region 4a Listar todas las personas con sus activos
 
-        public void ListarPersonasConActivos()
+        #region 4a Obtener personas
+        public List<Persona> ObtenerPersonasConActivos()
         {
-            if (_personas.Count == 0)
-            {
-                Console.WriteLine("No hay personas registradas.");
-                return;
-            }
-
-            Console.WriteLine("=== LISTADO DE PERSONAS Y SUS ACTIVOS ===");
-
-            foreach (Persona persona in _personas)
-            {
-                Console.WriteLine(persona.ToString());
-
-                bool tieneActivos = false;
-
-                foreach (Cuenta cuenta in persona.Cuenta)
-                {
-                    foreach (Activo activo in cuenta.Activo)
-                    {
-                        Console.WriteLine($"  - {activo.CrearAlfanumerico()} - {activo.Nombre}"); //aca crea ej pc001 - DELL
-                        tieneActivos = true;
-                    }
-                }
-
-                if (!tieneActivos)
-                {
-                    Console.WriteLine("  (Sin activos asignados)");
-                }
-
-                Console.WriteLine();
-            }
+            return _personas;
         }
-
         #endregion
 
 
@@ -230,20 +277,6 @@ namespace Biblioteca_de_Clase
             return null;
         }
 
-        public List<Incidente> ListarIncidentesPersona(int cedula)
-        {
-            Persona persona = BuscarPersonaPorCedula(cedula);
-
-            if (persona == null)
-            {
-                return null;
-            }
-
-            List<Incidente> incidentes = persona.ObtenerMisIncidentes(_incidentes);
-
-            return incidentes;
-
-        }
         #endregion
 
         #region 4d Listar activos que carecen de BackUp

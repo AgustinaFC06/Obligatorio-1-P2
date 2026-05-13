@@ -82,5 +82,14 @@ namespace Biblioteca_de_Clase
 
         #endregion
 
+        #region ToString
+
+        public override string ToString()
+        {
+            return $"{CrearAlfanumerico()} - {Nombre} - Tipo: {TipoActivo} - Criticidad: {Criticidad} - Backup: {(Backup ? "Si" : "No")}";
+        }
+
+        #endregion
+
     }
 }
