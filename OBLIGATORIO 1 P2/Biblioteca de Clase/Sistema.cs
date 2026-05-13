@@ -277,6 +277,13 @@ namespace Biblioteca_de_Clase
             return null;
         }
 
+        public List<Incidente> ListarIncidentesPersona(int cedula)
+        {
+            Persona persona = BuscarPersonaPorCedula(cedula);
+            if (persona == null) return new List<Incidente>();
+            return persona.ObtenerMisIncidentes(_incidentes);
+        }
+
         #endregion
 
         #region 4d Listar activos que carecen de BackUp
