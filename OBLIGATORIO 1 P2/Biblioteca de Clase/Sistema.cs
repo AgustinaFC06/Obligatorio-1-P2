@@ -16,7 +16,7 @@ namespace Biblioteca_de_Clase
         #endregion
 
         #region Corroboracion de cuenta tiene que tener una persona
-        private void CuentaTienePersona()
+        private void CuentaTienePersona() ///SE ROMPE///////
         {
             foreach (Cuenta cuenta in _cuentas)
             {
