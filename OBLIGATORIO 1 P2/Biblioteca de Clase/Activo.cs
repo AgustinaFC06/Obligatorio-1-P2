@@ -13,6 +13,8 @@ namespace Biblioteca_de_Clase
         public TipoActivo TipoActivo { get; set; }
         public int Criticidad { get; set; }
         public bool Backup { get; set; }
+
+        public string CodAlfamumerico { get; set; }
         #endregion
 
         #region CONSTRUCTORES
@@ -29,6 +31,7 @@ namespace Biblioteca_de_Clase
             Criticidad = criticidad;
             Backup = backup;
             Validar();
+            CodAlfamumerico = CrearAlfanumerico();
         }
         #endregion
 
