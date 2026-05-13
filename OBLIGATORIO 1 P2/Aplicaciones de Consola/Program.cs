@@ -91,7 +91,6 @@ namespace Aplicaciones_de_Consola
                 }
             }
 
-            Console.ReadKey();
         }
     }
 }
