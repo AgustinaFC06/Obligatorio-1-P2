@@ -75,6 +75,9 @@ namespace Biblioteca_de_Clase
             AltaPersona(new Persona(89012345, "Martín Díaz", "martin.diaz@empresa.com", "092888999"));
             AltaPersona(new Persona(90123456, "Valentina Torres", "valentina.torres@empresa.com", "091999000"));
             AltaPersona(new Persona(11223344, "Pablo Sánchez", "pablo.sanchez@empresa.com", "090000111"));
+            AltaPersona(new Persona(47485283, "Agustina Figueroa", "agustinafigueroacardozo@gmail.com", "099456653"));
+            AltaPersona(new Persona(52066838, "Enzo Curbelo", "enzo.curbelo@koin.com.br", "091186172"));
+
         }
 
 
@@ -184,6 +187,15 @@ namespace Biblioteca_de_Clase
             Cuenta c10 = new Cuenta(true, "Gerencia22!");
             _personas[9].AgregarCuenta(c10);
             AltaCuenta(c10);
+
+            Cuenta c11 = new Cuenta(true, "Contaduria12!");
+            _personas[10].AgregarCuenta(c11);
+            AltaCuenta(c11);
+
+            Cuenta c12 = new Cuenta(true, "Porteria01!");
+            _personas[11].AgregarCuenta(c12);
+            AltaCuenta(c12);
+
         }
 
 
