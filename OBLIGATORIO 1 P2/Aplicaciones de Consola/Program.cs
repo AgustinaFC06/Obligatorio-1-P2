@@ -7,6 +7,8 @@ namespace Aplicaciones_de_Consola
     {
         static void Main(string[] args)
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8; //agregado para usar caracteres de diseño
+
             Sistema s = Sistema.GetInstancia();
             #region Opciones en Consola
             int opcionSeleccionada = -1;
@@ -15,15 +17,27 @@ namespace Aplicaciones_de_Consola
             {
                 try
                 {
-                    //Console.Clear();// se repite titulo en opcion 1 si se pone en cada opcion no repite pero queda registro
-                    Console.WriteLine("\n╔══════════════════════════════════════════╗");
-                    Console.WriteLine("║   SISTEMA DE GESTIÓN DE INCIDENTES      ║");
-                    Console.WriteLine("╚══════════════════════════════════════════╝\n");
-                    Console.WriteLine("1. Listar todas las personas con sus activos");
-                    Console.WriteLine("2. Listar incidentes de una persona");
-                    Console.WriteLine("3. Alta de persona");
-                    Console.WriteLine("4. Listar activos sin backup");
-                    Console.WriteLine("0. Salir");
+
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+
+                    Console.WriteLine("╔════════════════════════════════════════════╗");
+                    Console.WriteLine("║      SISTEMA DE GESTION DE INCIDENTES      ║");
+                    Console.WriteLine("╠════════════════════════════════════════════╣");
+
+                    Console.ResetColor();
+
+                    Console.WriteLine("║  [1] Listar personas y activos             ║");
+                    Console.WriteLine("║  [2] Ver incidentes de una persona         ║");
+                    Console.WriteLine("║  [3] Alta de persona                       ║");
+                    Console.WriteLine("║  [4] Activos sin backup                    ║");
+
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("║  [0] Salir                                 ║");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine("╚════════════════════════════════════════════╝");
+
+                    Console.ResetColor();
+
                     Console.Write("\nSeleccione una opcion: ");
 
                     opcionSeleccionada = int.Parse(Console.ReadLine());
@@ -77,8 +91,9 @@ namespace Aplicaciones_de_Consola
         static void Opcion1_ListarPersonasConActivos(Sistema s)
         {
             // Console.Clear();
-            Console.WriteLine("\n=== LISTADO DE PERSONAS Y SUS ACTIVOS ===\n");
-
+            Console.WriteLine("╔═════════════════════════════════════════════╗");
+            Console.WriteLine("║      LISTADO DE PERSONAS Y SUS ACTIVOS      ║");
+            Console.WriteLine("╚═════════════════════════════════════════════╝");
             List<Persona> personas = s.ObtenerPersonasConActivos();
 
             if (personas.Count == 0)
@@ -119,12 +134,22 @@ namespace Aplicaciones_de_Consola
         static void Opcion2_ListarIncidentesPersona(Sistema s)
         {
             //Console.Clear();
-            Console.WriteLine("\n=== LISTAR INCIDENTES DE UNA PERSONA ===\n");
+            Console.ForegroundColor = ConsoleColor.Cyan;
 
+            Console.WriteLine("╔═════════════════════════════════════════╗");
+            Console.WriteLine("║       LISTAR INCIDENTES DE PERSONAS     ║");
+            Console.WriteLine("╚═════════════════════════════════════════╝");
+
+            Console.ResetColor();
             Console.Write("Ingrese la cedula de la persona: ");
             int cedula = int.Parse(Console.ReadLine());
-            Console.WriteLine("\n--- INCIDENTES ---\n");
-            List<Incidente> incidentes = s.ListarIncidentesPersona(cedula);
+            Console.ForegroundColor = ConsoleColor.Cyan;
+
+            Console.WriteLine("╔════════════════════════════╗");
+            Console.WriteLine("║         INCIDENTES         ║");
+            Console.WriteLine("╚════════════════════════════╝");
+
+            Console.ResetColor(); List<Incidente> incidentes = s.ListarIncidentesPersona(cedula);
             if (incidentes.Count == 0)
             {
                 Console.WriteLine("  Sin incidentes registrados o no se encontro persona con esta cedula");
@@ -146,8 +171,13 @@ namespace Aplicaciones_de_Consola
         {
             try
             {
-                //Console.Clear();
-                Console.WriteLine("\n=== ALTA DE PERSONA ===\n");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+
+                Console.WriteLine("╔════════════════════════════╗");
+                Console.WriteLine("║      ALTA DE PERSONA       ║");
+                Console.WriteLine("╚════════════════════════════╝");
+
+                Console.ResetColor();
 
                 Console.Write("Ingrese la cedula: ");
                 int cedula = int.Parse(Console.ReadLine());
@@ -183,8 +213,10 @@ namespace Aplicaciones_de_Consola
 
         static void Opcion4_ListarActivosSinBackup(Sistema s)
         {
-            //Console.Clear();
-            Console.WriteLine("\n=== ACTIVOS SIN BACKUP ===\n");
+
+            Console.WriteLine("╔═══════════════════════════════╗");
+            Console.WriteLine("║       ACTIVOS SIN BACKUP      ║");
+            Console.WriteLine("╚═══════════════════════════════╝");
 
             List<Activo> sinBackup = s.ActivosSinBackup();
 
