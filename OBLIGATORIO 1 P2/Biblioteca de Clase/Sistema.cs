@@ -260,7 +260,7 @@ namespace Biblioteca_de_Clase
 
         #endregion
 
-        #region 4b Mosttrar inciddente de una persona
+        #region 4b Mostrar inciddente de una persona
         public Persona BuscarPersonaPorCedula(int cedula)
         {
             foreach (Persona p in _personas)

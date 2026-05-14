@@ -123,19 +123,6 @@ namespace Aplicaciones_de_Consola
 
             Console.Write("Ingrese la cedula de la persona: ");
             int cedula = int.Parse(Console.ReadLine());
-
-            //Persona persona = s.BuscarPersonaPorCedula(cedula);
-            //
-            //if (persona == null)
-            //{
-            //    Console.WriteLine("\nNo se encontro ninguna persona con esa cedula");
-            //}
-            //else
-            //{
-            //    Console.WriteLine($"\nPersona: {persona}");
-            //    Console.WriteLine("\n--- INCIDENTES ---\n");
-            //
-            //    List<Incidente> incidentes = persona.ObtenerMisIncidentes(s.Incidentes);
             Console.WriteLine("\n--- INCIDENTES ---\n");
             List<Incidente> incidentes = s.ListarIncidentesPersona(cedula);
             if (incidentes.Count == 0)
@@ -149,8 +136,6 @@ namespace Aplicaciones_de_Consola
                     Console.WriteLine(inc.ToString());  // Polimorfismo
                 }
             }
-
-
 
             Console.WriteLine("\nPresione cualquier tecla para continuar");
             Console.ReadKey();
