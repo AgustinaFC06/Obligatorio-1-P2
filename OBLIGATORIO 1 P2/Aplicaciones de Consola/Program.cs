@@ -157,26 +157,38 @@ namespace Aplicaciones_de_Consola
 
         static void Opcion3_AltaPersona(Sistema s)
         {
-            //Console.Clear();
-            Console.WriteLine("\n=== ALTA DE PERSONA ===\n");
+            try
+            {
+                //Console.Clear();
+                Console.WriteLine("\n=== ALTA DE PERSONA ===\n");
 
-            Console.Write("Ingrese la cedula: ");
-            int cedula = int.Parse(Console.ReadLine());
+                Console.Write("Ingrese la cedula: ");
+                int cedula = int.Parse(Console.ReadLine());
 
-            Console.Write("Ingrese el nombre: ");
-            string nombre = Console.ReadLine();
+                Console.Write("Ingrese el nombre: ");
+                string nombre = Console.ReadLine();
 
-            Console.Write("Ingrese el email: ");
-            string email = Console.ReadLine();
+                Console.Write("Ingrese el email: ");
+                string email = Console.ReadLine();
 
-            Console.Write("Ingrese el teléfono: ");
-            string telefono = Console.ReadLine();
+                Console.Write("Ingrese el teléfono: ");
+                string telefono = Console.ReadLine();
 
-            Persona nueva = new Persona(cedula, nombre, email, telefono);
-            s.AltaPersona(nueva);
+                Persona nueva = new Persona(cedula, nombre, email, telefono);
+                s.AltaPersona(nueva);
 
-            Console.WriteLine($"\n✓ Persona '{nombre}' agregada correctamente.");
+                Console.WriteLine($"\n✓ Persona '{nombre}' agregada correctamente.");
+            }
+            catch (FormatException)
+            {
 
+                Console.WriteLine("\nError: Debe ingresar nuevamente.");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"\nError: {e.Message}");
+            }
+           
             Console.WriteLine("\nPresione cualquier tecla para continuar...");
             Console.ReadKey();
             Console.Clear();
