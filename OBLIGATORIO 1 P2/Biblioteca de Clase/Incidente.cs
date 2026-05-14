@@ -44,7 +44,7 @@ namespace Biblioteca_de_Clase
 
         #region METODOS
 
-        public void Validar()
+        public virtual void Validar()
         {
             ValidarDescripcion();
             ValidarImpacto();
