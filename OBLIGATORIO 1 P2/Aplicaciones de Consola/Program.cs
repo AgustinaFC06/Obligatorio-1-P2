@@ -8,6 +8,7 @@ namespace Aplicaciones_de_Consola
         static void Main(string[] args)
         {
             Sistema s = Sistema.GetInstancia();
+            #region Opciones en Consola
             int opcionSeleccionada = -1;
 
             while (opcionSeleccionada != 0)
@@ -69,8 +70,9 @@ namespace Aplicaciones_de_Consola
                 }
             }
         }
+            #endregion
 
-        #region Metodos del UI
+            #region Metodos del UI
 
         static void Opcion1_ListarPersonasConActivos(Sistema s)
         {
@@ -85,33 +87,33 @@ namespace Aplicaciones_de_Consola
             }
             else
             {
-            foreach (Persona persona in personas)
-            {
-                Console.WriteLine(persona.ToString());
+                foreach (Persona persona in personas)
+                {
+                    Console.WriteLine(persona.ToString());
 
-                  bool tieneActivos = false;
+                    bool tieneActivos = false;
 
-            foreach (Cuenta cuenta in persona.Cuenta)
-            {
-            foreach (Activo activo in cuenta.Activo)
-            {
-                 Console.WriteLine($"-{activo.CrearAlfanumerico()}-{activo.Nombre}");
-                    tieneActivos = true;
-            }
+                    foreach (Cuenta cuenta in persona.Cuenta)
+                    {
+                        foreach (Activo activo in cuenta.Activo)
+                        {
+                            Console.WriteLine($"-{activo.CrearAlfanumerico()}-{activo.Nombre}");
+                            tieneActivos = true;
+                        }
+                    }
+
+                    if (!tieneActivos)
+                    {
+                        Console.WriteLine("(Sin activos asignados)");
+                    }
+
+                    Console.WriteLine();
+                }
             }
 
-            if (!tieneActivos)
-            {
-                 Console.WriteLine("(Sin activos asignados)");
-            }
-
-                 Console.WriteLine();
-            }
-            }
-
-                 Console.WriteLine("\nPresione cualquier tecla para continuar");
-                 Console.ReadKey();
-                Console.Clear();
+            Console.WriteLine("\nPresione cualquier tecla para continuar");
+            Console.ReadKey();
+            Console.Clear();
         }
 
         static void Opcion2_ListarIncidentesPersona(Sistema s)
@@ -188,7 +190,7 @@ namespace Aplicaciones_de_Consola
             {
                 Console.WriteLine($"\nError: {e.Message}");
             }
-           
+
             Console.WriteLine("\nPresione cualquier tecla para continuar...");
             Console.ReadKey();
             Console.Clear();

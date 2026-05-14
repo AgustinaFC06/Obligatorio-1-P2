@@ -31,10 +31,12 @@ namespace Biblioteca_de_Clase
         }
         #endregion
 
+        #region ToString
         public override string ToString()
         {
             return $"[{Id}] Ransomware - {Descripcion} - Estado: {Estado} - Encriptados: {(Encriptados ? "Si" : "No")}";
         }
+        #endregion
 
     }
 

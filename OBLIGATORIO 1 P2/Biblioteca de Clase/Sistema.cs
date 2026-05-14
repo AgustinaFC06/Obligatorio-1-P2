@@ -227,18 +227,12 @@ namespace Biblioteca_de_Clase
 
         #endregion
 
-
-
-
-
-
         #region 4a Obtener personas
         public List<Persona> ObtenerPersonasConActivos()
         {
             return _personas;
         }
         #endregion
-
 
         #region 4c Alta persona
         public void AltaPersona(Persona persona)
