@@ -243,22 +243,9 @@ namespace Biblioteca_de_Clase
         public List<Persona> ObtenerPersonasConActivos()
         {
             List<Persona> aux = new List<Persona>();
-            foreach (Persona p in _personas)
             {
-                
-                bool tieneActivo = false;  // Revisamos si alguna de sus cuentas tiene al menos un activo
-                foreach (Cuenta c in p.Cuenta)
-                {
-                    if (c.Activo.Count > 0)
-                    {
-                        tieneActivo = true;
-                        break;
-                    }
-                }
-                if (tieneActivo) aux.Add(p);
+                return _personas;
             }
-            return aux;
-            // return _personas;
         }
         #endregion
 
