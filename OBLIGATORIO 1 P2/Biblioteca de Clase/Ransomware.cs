@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Biblioteca_de_Clase
 {
-    public class Ramsomware : Incidente
+    public class Ransomware : Incidente
     {
         #region Get and Set
         public bool Encriptados { get; set; }
@@ -14,9 +14,9 @@ namespace Biblioteca_de_Clase
         #endregion
 
         #region CONSTRUCTORES
-        public Ramsomware(){}
+        public Ransomware(){}
 
-        public Ramsomware(bool encriptados, bool exfiltracion, DateTime fechaReporte, Activo activo, string descripcion, Estado estado, int impacto, int probabilidad) :base ( fechaReporte,  activo,  descripcion,  estado,  impacto,  probabilidad)
+        public Ransomware(bool encriptados, bool exfiltracion, DateTime fechaReporte, Activo activo, string descripcion, Estado estado, int impacto, int probabilidad) :base ( fechaReporte,  activo,  descripcion,  estado,  impacto,  probabilidad)
         {
             Encriptados = encriptados;
             Exfiltracion = exfiltracion;

@@ -12,7 +12,7 @@ namespace Biblioteca_de_Clase
         private List<Cuenta> _cuentas { get; } = new List<Cuenta>();
         private List<Activo> _activos { get; } = new List<Activo>();
         private List<Incidente> _incidentes { get; } = new List<Incidente>();
-        public List<Incidente> Incidentes { get { return _incidentes; } }
+        public List<Incidente> Incidentes { get { return new List<Incidente>(_incidentes); } }
 
         private static Sistema _instancia;
         #endregion
@@ -220,21 +220,21 @@ namespace Biblioteca_de_Clase
             AltaIncidente(new Phishing("redes sociales", false, false, new DateTime(2024, 9, 5), _activos[14], "Phishing en LinkedIn a tablet logística", Estado.EnAnalisis, 3, 3));
 
             // 15 Ransomware
-            AltaIncidente(new Ramsomware(true, false, new DateTime(2024, 1, 20), _activos[0], "Ransomware cifró archivos de ventas", Estado.Cerrado, 5, 4));
-            AltaIncidente(new Ramsomware(true, true, new DateTime(2024, 2, 8), _activos[1], "Ransomware en laptop gerencia", Estado.Cerrado, 5, 5));
-            AltaIncidente(new Ramsomware(false, false, new DateTime(2024, 3, 15), _activos[2], "Ransomware en PC recepción", Estado.Contenido, 3, 2));
-            AltaIncidente(new Ramsomware(true, true, new DateTime(2024, 4, 1), _activos[3], "Ransomware cifró base contable", Estado.Contenido, 5, 4));
-            AltaIncidente(new Ramsomware(false, false, new DateTime(2024, 4, 18), _activos[4], "Ransomware detectado en PC soporte", Estado.EnAnalisis, 3, 3));
-            AltaIncidente(new Ramsomware(true, true, new DateTime(2024, 5, 10), _activos[5], "Ransomware en servidor principal", Estado.EnAnalisis, 5, 5));
-            AltaIncidente(new Ramsomware(true, false, new DateTime(2024, 5, 28), _activos[6], "Ransomware en servidor backup", Estado.Abierto, 4, 4));
-            AltaIncidente(new Ramsomware(true, true, new DateTime(2024, 6, 12), _activos[7], "Ransomware cifró servidor web", Estado.Abierto, 5, 5));
-            AltaIncidente(new Ramsomware(true, true, new DateTime(2024, 7, 3), _activos[8], "Ransomware en servidor de base de datos", Estado.Cerrado, 5, 5));
-            AltaIncidente(new Ramsomware(false, false, new DateTime(2024, 7, 20), _activos[9], "Ransomware en servidor de correo", Estado.Contenido, 4, 3));
-            AltaIncidente(new Ramsomware(true, false, new DateTime(2024, 8, 5), _activos[10], "Ransomware en celular de gerencia", Estado.Abierto, 4, 4));
-            AltaIncidente(new Ramsomware(false, false, new DateTime(2024, 8, 22), _activos[11], "Ransomware detectado en celular ventas", Estado.EnAnalisis, 2, 2));
-            AltaIncidente(new Ramsomware(false, false, new DateTime(2024, 9, 8), _activos[12], "Ransomware en celular soporte", Estado.Cerrado, 3, 2));
-            AltaIncidente(new Ramsomware(true, true, new DateTime(2024, 9, 25), _activos[13], "Ransomware cifró tablet dirección", Estado.Abierto, 4, 5));
-            AltaIncidente(new Ramsomware(false, false, new DateTime(2024, 10, 3), _activos[14], "Ransomware en tablet logística", Estado.EnAnalisis, 2, 3));
+            AltaIncidente(new Ransomware(true, false, new DateTime(2024, 1, 20), _activos[0], "Ransomware cifró archivos de ventas", Estado.Cerrado, 5, 4));
+            AltaIncidente(new Ransomware(true, true, new DateTime(2024, 2, 8), _activos[1], "Ransomware en laptop gerencia", Estado.Cerrado, 5, 5));
+            AltaIncidente(new Ransomware(false, false, new DateTime(2024, 3, 15), _activos[2], "Ransomware en PC recepción", Estado.Contenido, 3, 2));
+            AltaIncidente(new Ransomware(true, true, new DateTime(2024, 4, 1), _activos[3], "Ransomware cifró base contable", Estado.Contenido, 5, 4));
+            AltaIncidente(new Ransomware(false, false, new DateTime(2024, 4, 18), _activos[4], "Ransomware detectado en PC soporte", Estado.EnAnalisis, 3, 3));
+            AltaIncidente(new Ransomware(true, true, new DateTime(2024, 5, 10), _activos[5], "Ransomware en servidor principal", Estado.EnAnalisis, 5, 5));
+            AltaIncidente(new Ransomware(true, false, new DateTime(2024, 5, 28), _activos[6], "Ransomware en servidor backup", Estado.Abierto, 4, 4));
+            AltaIncidente(new Ransomware(true, true, new DateTime(2024, 6, 12), _activos[7], "Ransomware cifró servidor web", Estado.Abierto, 5, 5));
+            AltaIncidente(new Ransomware(true, true, new DateTime(2024, 7, 3), _activos[8], "Ransomware en servidor de base de datos", Estado.Cerrado, 5, 5));
+            AltaIncidente(new Ransomware(false, false, new DateTime(2024, 7, 20), _activos[9], "Ransomware en servidor de correo", Estado.Contenido, 4, 3));
+            AltaIncidente(new Ransomware(true, false, new DateTime(2024, 8, 5), _activos[10], "Ransomware en celular de gerencia", Estado.Abierto, 4, 4));
+            AltaIncidente(new Ransomware(false, false, new DateTime(2024, 8, 22), _activos[11], "Ransomware detectado en celular ventas", Estado.EnAnalisis, 2, 2));
+            AltaIncidente(new Ransomware(false, false, new DateTime(2024, 9, 8), _activos[12], "Ransomware en celular soporte", Estado.Cerrado, 3, 2));
+            AltaIncidente(new Ransomware(true, true, new DateTime(2024, 9, 25), _activos[13], "Ransomware cifró tablet dirección", Estado.Abierto, 4, 5));
+            AltaIncidente(new Ransomware(false, false, new DateTime(2024, 10, 3), _activos[14], "Ransomware en tablet logística", Estado.EnAnalisis, 2, 3));
         }
 
         #endregion
@@ -242,7 +242,23 @@ namespace Biblioteca_de_Clase
         #region 4a Obtener personas
         public List<Persona> ObtenerPersonasConActivos()
         {
-            return _personas;
+            List<Persona> aux = new List<Persona>();
+            foreach (Persona p in _personas)
+            {
+                
+                bool tieneActivo = false;  // Revisamos si alguna de sus cuentas tiene al menos un activo
+                foreach (Cuenta c in p.Cuenta)
+                {
+                    if (c.Activo.Count > 0)
+                    {
+                        tieneActivo = true;
+                        break;
+                    }
+                }
+                if (tieneActivo) aux.Add(p);
+            }
+            return aux;
+            // return _personas;
         }
         #endregion
 
@@ -286,7 +302,10 @@ namespace Biblioteca_de_Clase
         public List<Incidente> ListarIncidentesPersona(int cedula)
         {
             Persona persona = BuscarPersonaPorCedula(cedula);
-            if (persona == null) return new List<Incidente>();
+            if (persona == null)
+            {
+                throw new Exception("No existe una persona registrada con esa cedula.");
+            }
             return persona.ObtenerMisIncidentes(_incidentes);
         }
 
@@ -313,6 +332,10 @@ namespace Biblioteca_de_Clase
 
         public void AltaIncidente(Incidente incidente)
         {
+            if (incidente != null)
+            {
+                incidente.Validar();
+            }
             if (!_incidentes.Contains(incidente))
             {
                 _incidentes.Add(incidente);

@@ -133,7 +133,7 @@ namespace Aplicaciones_de_Consola
 
         static void Opcion2_ListarIncidentesPersona(Sistema s)
         {
-            //Console.Clear();
+            
             Console.ForegroundColor = ConsoleColor.Cyan;
 
             Console.WriteLine("╔═════════════════════════════════════════╗");
@@ -199,7 +199,7 @@ namespace Aplicaciones_de_Consola
             catch (FormatException)
             {
 
-                Console.WriteLine("\nError: Debe ingresar nuevamente.");
+                Console.WriteLine("\nError: Debe ingresar nuevamente la cedula.");
             }
             catch (Exception e)
             {
