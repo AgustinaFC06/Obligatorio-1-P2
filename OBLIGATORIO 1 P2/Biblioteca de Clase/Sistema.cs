@@ -91,7 +91,7 @@ namespace Biblioteca_de_Clase
             _cuentas[1].Activo.Add(a2);
             AltaActivo(a2);
 
-            Activo a3 = new Activo("PC Recepción", TipoActivo.PC, 1, false);
+            Activo a3 = new Activo("PC Recepción", TipoActivo.PC, 1, true);
             _cuentas[2].Activo.Add(a3);
             AltaActivo(a3);
 
@@ -99,7 +99,7 @@ namespace Biblioteca_de_Clase
             _cuentas[3].Activo.Add(a4);
             AltaActivo(a4);
 
-            Activo a5 = new Activo("PC Soporte", TipoActivo.PC, 2, false);
+            Activo a5 = new Activo("PC Soporte", TipoActivo.PC, 2, true);
             _cuentas[4].Activo.Add(a5);
             AltaActivo(a5);
 
@@ -111,7 +111,7 @@ namespace Biblioteca_de_Clase
             _cuentas[6].Activo.Add(a7);
             AltaActivo(a7);
 
-            Activo a8 = new Activo("Servidor Web", TipoActivo.SERVER, 5, false);
+            Activo a8 = new Activo("Servidor Web", TipoActivo.SERVER, 5, true);
             _cuentas[7].Activo.Add(a8);
             AltaActivo(a8);
 
@@ -119,7 +119,7 @@ namespace Biblioteca_de_Clase
             _cuentas[8].Activo.Add(a9);
             AltaActivo(a9);
 
-            Activo a10 = new Activo("Servidor de Correo", TipoActivo.SERVER, 3, false);
+            Activo a10 = new Activo("Servidor de Correo", TipoActivo.SERVER, 3, true);
             _cuentas[9].Activo.Add(a10);
             AltaActivo(a10);
 
@@ -127,11 +127,11 @@ namespace Biblioteca_de_Clase
             _cuentas[0].Activo.Add(a11);
             AltaActivo(a11);
 
-            Activo a12 = new Activo("Celular Ventas", TipoActivo.MOVIL, 2, false);
+            Activo a12 = new Activo("Celular Ventas", TipoActivo.MOVIL, 2, true);
             _cuentas[1].Activo.Add(a12);
             AltaActivo(a12);
 
-            Activo a13 = new Activo("Celular Soporte", TipoActivo.MOVIL, 2, false);
+            Activo a13 = new Activo("Celular Soporte", TipoActivo.MOVIL, 2, true);
             _cuentas[2].Activo.Add(a13);
             AltaActivo(a13);
 
@@ -139,7 +139,7 @@ namespace Biblioteca_de_Clase
             _cuentas[3].Activo.Add(a14);
             AltaActivo(a14);
 
-            Activo a15 = new Activo("Tablet Logística", TipoActivo.MOVIL, 1, false);
+            Activo a15 = new Activo("Tablet Logística", TipoActivo.MOVIL, 1, true);
             _cuentas[4].Activo.Add(a15);
             AltaActivo(a15);
         }
