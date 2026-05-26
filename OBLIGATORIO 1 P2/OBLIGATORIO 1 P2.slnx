@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="Aplicaciones de Consola/Aplicaciones de Consola.csproj" />
   <Project Path="Biblioteca de Clase/Biblioteca de Clase.csproj" Id="bed42c1c-6ccd-431b-a99c-41ad39e51db9" />
+  <Project Path="WebApp/WebApp.csproj" Id="101ea37a-8028-4866-abeb-8496840ad616" />
 </Solution>
