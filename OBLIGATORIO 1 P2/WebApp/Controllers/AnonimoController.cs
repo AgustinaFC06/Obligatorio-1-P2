@@ -5,7 +5,7 @@ namespace WebApp.Controllers
 {
     public class AnonimoController : Controller
     {
-        private Sistema s = Sistema.GetInstancia();
+        Sistema s = Sistema.GetInstancia();
         // public IActionResult Index()
         // {
         //     return View();
@@ -28,12 +28,8 @@ namespace WebApp.Controllers
                     // 2. Nos quedamos con el email y la cédula guardándolos en la Sesión
                     HttpContext.Session.SetString("UsuarioEmail", usuarioLogueado.Email);
                     HttpContext.Session.SetInt32("UsuarioCedula", usuarioLogueado.Cedula);
-
-                    // 3. VALIDAMOS EL ROL:
-                    // Según la letra de la parte 1, el administrador es fijo (ej: admin.garcia@empresa.com o similar)
-                    // O podés usar una propiedad de tu clase si la agregaron.
-                    // Ejemplo de chequeo por Email:
-                    if (usuarioLogueado.Email.Equals("ana.garcia@empresa.com", StringComparison.OrdinalIgnoreCase))
+                    // Validacion con ENUM
+                    if (usuarioLogueado.Rol == TipoUsuario.Administrador)
                     {
                         // Guardamos el rol en sesión para proteger las pantallas después
                         HttpContext.Session.SetString("UsuarioRol", "ADMIN");
@@ -64,5 +60,5 @@ namespace WebApp.Controllers
         }
     }
 }
-    }
-}
+    
+

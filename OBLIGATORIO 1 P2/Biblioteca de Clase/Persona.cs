@@ -14,6 +14,7 @@ namespace Biblioteca_de_Clase
         public string Nombre { get; set; }
         public string Email { get; set; }
         public string Telefono { get; set; }
+        public TipoUsuario Rol {  get; set; }
         private List<Cuenta>_cuentas {  get; }= new List<Cuenta>();
         public List<Cuenta> Cuenta { get { return new List<Cuenta>(_cuentas); } }
 
@@ -33,6 +34,7 @@ namespace Biblioteca_de_Clase
             Nombre = nombre;
             Email = email;
             Telefono = telefono;
+            Rol = TipoUsuario.Operario; 
             Validar();
         }       
          #endregion

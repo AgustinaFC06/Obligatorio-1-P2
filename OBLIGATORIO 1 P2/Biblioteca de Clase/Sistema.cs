@@ -75,7 +75,12 @@ namespace Biblioteca_de_Clase
             AltaPersona(new Persona(89012345, "Martín Díaz", "martin.diaz@empresa.com", "092888999"));
             AltaPersona(new Persona(90123456, "Valentina Torres", "valentina.torres@empresa.com", "091999000"));
             AltaPersona(new Persona(11223344, "Pablo Sánchez", "pablo.sanchez@empresa.com", "090000111"));
-            AltaPersona(new Persona(47485283, "Agustina Figueroa", "agustinafigueroacardozo@gmail.com", "099456653"));
+            
+            Persona admin = new Persona(47485283, "Agustina Figueroa", "agustina@empresa.com", "099123456");
+            admin.Rol = TipoUsuario.Administrador;
+            AltaPersona(admin);
+            
+            
             AltaPersona(new Persona(52066838, "Enzo Curbelo", "enzo.curbelo@koin.com.br", "091186172"));
 
         }
