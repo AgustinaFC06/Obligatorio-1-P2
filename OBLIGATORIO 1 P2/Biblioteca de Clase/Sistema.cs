@@ -368,6 +368,26 @@ namespace Biblioteca_de_Clase
         }
         #endregion
 
+        #region Validar Email y Contrasena
+        public Persona ValidarEmailContrasena(string email, string contrasena)
+        {
+
+            foreach (Persona p in _personas) // persona por mail
+            {
+                if (p.Email.Equals(email, StringComparison.OrdinalIgnoreCase))
+                {
+                    foreach (Cuenta c in p.Cuenta) // teniendo la persoan recisamos si la contrasena de su cuenta coincide
+                    {
+                        if (c.Contrasena == contrasena)
+                        {
+                            return p;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+        #endregion
 
 
     }
