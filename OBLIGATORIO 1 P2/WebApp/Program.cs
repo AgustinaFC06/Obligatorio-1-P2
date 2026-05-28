@@ -5,6 +5,7 @@ namespace WebApp
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddSession(); // Inicializo el uso de Session
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
@@ -25,6 +26,9 @@ namespace WebApp
             app.UseAuthorization();
 
             app.MapStaticAssets();
+
+            app.UseSession(); //Aviso que voy a usar Session
+
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}")
