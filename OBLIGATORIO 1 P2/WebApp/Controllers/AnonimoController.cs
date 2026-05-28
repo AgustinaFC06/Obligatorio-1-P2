@@ -20,7 +20,7 @@ namespace WebApp.Controllers
         {
             try
             {
-                // 1. Buscamos la persona en tus listas precargadas
+                // 1. Buscamos la persona en listas precargadas
                 Persona usuarioLogueado = s.ValidarEmailContrasena(txtEmail, txtContrasena);
 
                 if (usuarioLogueado != null)
@@ -57,6 +57,11 @@ namespace WebApp.Controllers
                 ViewBag.Error = "Ocurrió un error: " + ex.Message;
                 return View();
             }
+        }
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Login");
         }
     }
 }
