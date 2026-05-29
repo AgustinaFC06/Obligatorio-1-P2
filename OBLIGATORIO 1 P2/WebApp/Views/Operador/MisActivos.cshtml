@@ -1,0 +1,41 @@
+﻿@using Biblioteca_de_Clase
+@model List<Activo>
+
+@{
+    ViewData["Title"] = "Mis Activos";
+}
+
+<h2>Mis Activos</h2>
+
+@if (Model == null || Model.Count == 0)
+{
+    <div class="alert alert-info">
+        No tenés activos asociados.
+    </div>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Nombre</th>
+                <th>Tipo</th>
+                <th>Criticidad</th>
+                <th>Backup</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Activo activo in Model)
+            {
+                <tr>
+                    <td>@activo.CrearAlfanumerico()</td>
+                    <td>@activo.Nombre</td>
+                    <td>@activo.TipoActivo</td>
+                    <td>@activo.Criticidad</td>
+                    <td>@(activo.Backup ? "Sí" : "No")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

@@ -35,21 +35,20 @@ namespace WebApp.Controllers
                         HttpContext.Session.SetString("UsuarioRol", "ADMIN");
 
                         // REDIRECCIÓN: Lo mandamos al Index del AdminController
-                        return RedirectToAction("Index", "Admin");
+                        return RedirectToAction("Index", "Administrador");
                     }
                     else
                     {
                         HttpContext.Session.SetString("UsuarioRol", "OPERADOR");
 
                         // REDIRECCIÓN: Lo mandamos al Index del OperadorController
-                        return RedirectToAction("Index", "Operador");
+                        return RedirectToAction("MisActivos", "Operador");
                     }
                 }
                 else
                 {   // Como vamos a usar un Redirect, guardamos el mensaje en TempleDate
-                    TempData["Error"] = "El correo electrononico o la contraseña son incorrectos.";
-                                        
-                    return RedirectToAction("Login");
+                    ViewBag.Error = "El correo electrónico o la contraseña son incorrectos."; // cambie temp por un viewbag 
+                    return View();
                 }
             }
             catch (Exception ex)
@@ -104,17 +103,13 @@ namespace WebApp.Controllers
                 HttpContext.Session.SetInt32("UsuarioCedula", p.Cedula);
 
                 // Todo correcto, ingresamos al panel
-                return RedirectToAction("Index", "Operador");
+                return RedirectToAction("MisActivos", "Operador");
             }
-            catch (Exception e)
-            {
-                // Si la contraseña vino vacía o falló el mail/cédula, cae acá 
-                // e imprime el mensaje en el cartel alert-danger que creamos hoy
-                ViewBag.Msg = e.Message;
+            catch(Exception e)
+{
+                ViewBag.Msg = e.Message; 
+                return View(p);
             }
-
-            // Volvemos a mostrar la vista Registro reteniendo los datos digitados
-            return View("Registro");
         }
     }
 }

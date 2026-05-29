@@ -1,10 +1,17 @@
 ﻿
 <h1>Login</h1>
 
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">  <!-- Para mostrar mensaje de error a corregir las dimensiones!!! -->
+        @ViewBag.Error
+    </div>
+}
+
 <form method="post">
     <input type="email" placeholder="Email" name="txtEmail" />
     <br />
-    <input type="text" placeholder="Password" name="txtContrasena" />
+    <input type="password" placeholder="Password" name="txtContrasena" /> 
     <br />
     <input type="submit" value="Login" />
 </form>
