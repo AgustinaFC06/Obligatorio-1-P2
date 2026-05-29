@@ -46,22 +46,75 @@ namespace WebApp.Controllers
                     }
                 }
                 else
-                {
-                    // Si el método devolvió null, las credenciales no existen
-                    ViewBag.Error = "El correo electrónico o la contraseña son incorrectos.";
-                    return View();
+                {   // Como vamos a usar un Redirect, guardamos el mensaje en TempleDate
+                    TempData["Error"] = "El correo electrononico o la contraseña son incorrectos.";
+                                        
+                    return RedirectToAction("Login");
                 }
             }
             catch (Exception ex)
             {
-                ViewBag.Error = "Ocurrió un error: " + ex.Message;
-                return View();
+                TempData["Error"] = "Ocurrió un error inesperado: " + ex.Message;
+                return RedirectToAction("Login");
             }
         }
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
             return RedirectToAction("Login");
+        }
+        [HttpGet]
+        public IActionResult Registro()
+        {
+            return View();
+        }
+
+        // 2. EL POST: Procesa los datos cuando el usuario le da al botón "Registrarse"
+        [HttpPost]
+        public IActionResult Registro(Persona p, string Contrasena) // El framework arma el objeto 'p' solo con los datos de la web
+        {
+            try
+            {
+                // 1. Validamos la contraseña acá antes de hacer nada, para que no pase vacía
+                if (string.IsNullOrWhiteSpace(Contrasena))
+                {
+                    throw new Exception("La contraseña no puede ser vacia");
+                }
+
+                // Forzamos el rol del operador
+                p.Rol = TipoUsuario.Operador;
+
+                // 2. Ejecutamos tus validaciones de Persona (Nombre, Cédula, Email, Teléfono)
+                p.Validar();
+
+                // 3. Si la persona es válida, le creamos su Cuenta de forma obligatoria 
+                // Pasamos 'false' en MFA por defecto y la Contrasena que capturamos
+                Cuenta nuevaCuenta = new Cuenta(false, Contrasena);
+
+                // Usamos tu propio método para meter la cuenta adentro de la lista de la persona
+                p.AgregarCuenta(nuevaCuenta);
+
+                // 4. Invocamos el alta en tu clase Sistema (capa Dominio)
+                // Nota: Asegurate de que tu método AltaPersona agregue a la persona 'p' a tu lista del sistema
+                s.AltaPersona(p);
+
+                // Guardamos los datos simétricos en la Sesión para el Login automático
+                HttpContext.Session.SetString("UsuarioEmail", p.Email);
+                HttpContext.Session.SetString("UsuarioRol", "OPERADOR");
+                HttpContext.Session.SetInt32("UsuarioCedula", p.Cedula);
+
+                // Todo correcto, ingresamos al panel
+                return RedirectToAction("Index", "Operador");
+            }
+            catch (Exception e)
+            {
+                // Si la contraseña vino vacía o falló el mail/cédula, cae acá 
+                // e imprime el mensaje en el cartel alert-danger que creamos hoy
+                ViewBag.Msg = e.Message;
+            }
+
+            // Volvemos a mostrar la vista Registro reteniendo los datos digitados
+            return View("Registro");
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Biblioteca_de_Clase
 {
     public enum TipoUsuario
     {
-        Operario = 1,
+        Operador = 1,
         Administrador = 2
     }
 }

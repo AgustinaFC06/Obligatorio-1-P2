@@ -1,7 +1,12 @@
 ﻿
-@{
-    ViewData["Title"] = "Login";
-}
-
 <h1>Login</h1>
 
+<form method="post">
+    <input type="email" placeholder="Email" name="txtEmail" />
+    <br />
+    <input type="text" placeholder="Password" name="txtContrasena" />
+    <br />
+    <input type="submit" value="Login" />
+</form>
+
+<p>@TempData["Error"]</p>

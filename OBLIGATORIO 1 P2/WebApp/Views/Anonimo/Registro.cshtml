@@ -1,0 +1,61 @@
+﻿@{
+    Layout = null; // Mantenemos la pantalla sin el menú del sistema
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crear Cuenta - GestiónSegura</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body class="bg-light d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+
+    <div class="card shadow p-4" style="width: 100%; max-width: 500px; background: white; border-radius: 8px;">
+        <h2 class="text-center mb-4 text-primary">Crear Cuenta de Operador</h2>
+
+        @if (ViewBag.Msg != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @ViewBag.Msg
+            </div>
+        }
+
+        <form method="post" novalidate>
+            <div class="mb-3">
+                <label class="form-label font-weight-bold">Cédula de Identidad:</label>
+                <input type="number" name="Cedula" class="form-control"  />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label font-weight-bold">Nombre Completo:</label>
+                <input type="text" name="Nombre" class="form-control"  />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label font-weight-bold">Correo Electrónico:</label>
+                <input type="email" name="Email" class="form-control"  />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label font-weight-bold">Teléfono:</label>
+                <input type="text" name="Telefono" class="form-control"  />
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label font-weight-bold">Contraseña:</label>
+                <input type="password" name="Contrasena" class="form-control"  />
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 mb-3">Registrarse</button>
+        </form>
+
+        <div class="text-center">
+            <a href="/Anonimo/Login" class="text-decoration-none">¿Ya tenés cuenta? Volver al Login</a>
+        </div>
+    </div>
+
+</body>
+</html>

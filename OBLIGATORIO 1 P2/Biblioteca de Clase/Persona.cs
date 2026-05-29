@@ -34,7 +34,7 @@ namespace Biblioteca_de_Clase
             Nombre = nombre;
             Email = email;
             Telefono = telefono;
-            Rol = TipoUsuario.Operario; 
+            Rol = TipoUsuario.Operador; 
             Validar();
         }       
          #endregion
@@ -73,7 +73,7 @@ namespace Biblioteca_de_Clase
         {
             if (Cedula <= 0)
             {
-                throw new Exception("No puede ser vacia");  
+                throw new Exception("Ingrese la cedula");  
             }
         }
 
