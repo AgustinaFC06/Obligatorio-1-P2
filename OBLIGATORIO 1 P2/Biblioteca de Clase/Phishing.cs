@@ -45,7 +45,7 @@ namespace Biblioteca_de_Clase
         #region ToString
         public override string ToString()
         {
-            return $"[{Id}] Phishing - {Descripcion} - Estado: {Estado} - Canal: {Canal}";
+            return $"Phishing ({base.ToString()},- {Descripcion} - Estado: {Estado} - Canal: {Canal}";
         }
         #endregion
 

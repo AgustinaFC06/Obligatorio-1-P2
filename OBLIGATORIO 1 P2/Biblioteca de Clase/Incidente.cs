@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Biblioteca_de_Clase
 {
-        #region GET and SET
+    #region GET and SET
 
     public abstract class Incidente : IValidable
     {
@@ -24,7 +24,7 @@ namespace Biblioteca_de_Clase
         public Incidente()
         {
             Id = UltimoId++;
-            FechaReporte = DateTime.Now; 
+            FechaReporte = DateTime.Now;
         }
 
         public Incidente(DateTime fechaReporte, Activo activo, string descripcion, Estado estado, int impacto, int probabilidad)
@@ -49,7 +49,7 @@ namespace Biblioteca_de_Clase
             ValidarDescripcion();
             ValidarImpacto();
             ValidarProbabilidad();
-           
+
         }
 
         private void ValidarDescripcion()
@@ -72,7 +72,7 @@ namespace Biblioteca_de_Clase
 
         private void ValidarProbabilidad()
         {
-            if (Probabilidad  < 1 || Probabilidad > 5)
+            if (Probabilidad < 1 || Probabilidad > 5)
             {
                 throw new Exception("Probabilidad debe estar entre 1 y 5");
             }
@@ -94,6 +94,13 @@ namespace Biblioteca_de_Clase
                 Id == incidente.Id;
         }
         #endregion
+        #region ToString
+        public virtual string ToString()
+        {
+            return $"incidente(id={Id}, Activo ={Activo.Nombre}, Estado = {Estado})";
+        }
+
+        #endregion
     }
+
 }
- 
