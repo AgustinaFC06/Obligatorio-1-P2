@@ -1,0 +1,80 @@
+﻿@using Biblioteca_de_Clase
+@model Persona
+
+@{
+    ViewData["Title"] = "Cuentas";
+}
+
+<h2>Cuentas de @Model.Nombre</h2>
+
+<p>
+    <strong>Cedula:</strong> @Model.Cedula <br />
+    <strong>Email:</strong> @Model.Email <br />
+    <strong>Rol:</strong> @Model.Rol
+</p>
+
+@if (TempData["Mensaje"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Mensaje"]
+    </div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}
+
+<a class="btn btn-success mb-3"
+       asp-controller="Administrador"
+       asp-action="CrearCuenta"
+       asp-route-cedula="@Model.Cedula">
+    Crear nueva cuenta
+</a>
+
+@if (Model.Cuenta == null || Model.Cuenta.Count == 0)
+{
+    <div class="alert alert-info">
+        Esta persona no tiene cuentas asociadas.
+    </div>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id Cuenta</th>
+                <th>MFA</th>
+                <th>Ultimo cambio de contraseña</th>
+                <th>Activos</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Cuenta cuenta in Model.Cuenta)
+            {
+                <tr>
+                    <td>@cuenta.Id</td>
+                    <td>@(cuenta.Mfa ? "Activado" : "Desactivado")</td>
+                    <td>@cuenta.FechaUltimoCambioPassword.ToString("dd/MM/yyyy HH:mm")</td>
+                    <td>
+                        <a class="btn btn-primary btn-sm"
+                               asp-controller="Administrador"
+                               asp-action="ActivosCuenta"
+                               asp-route-cedula="@Model.Cedula"
+                               asp-route-cuentaId="@cuenta.Id">
+                            Ver activos
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<a class="btn btn-secondary"
+       asp-controller="Administrador"
+       asp-action="Personas">
+    Volver a personas
+</a>

@@ -1,0 +1,109 @@
+@using Biblioteca_de_Clase
+@model Persona
+
+@{
+    ViewData["Title"] = "Mi Perfil";
+
+    int cantidadCuentas = 0;
+    int cantidadActivos = 0;
+
+    if (Model != null)
+    {
+        foreach (Cuenta cuenta in Model.Cuenta)
+        {
+            cantidadCuentas++;
+            cantidadActivos += cuenta.Activo.Count;
+        }
+    }
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h2 class="h4 mb-0">Mi Perfil</h2>
+            </div>
+
+            <div class="card-body">
+                @if (Model == null)
+                {
+                    <div class="alert alert-warning mb-0">
+                        No se encontraron datos del operador.
+                    </div>
+                }
+                else
+                {
+                    <div class="mb-4">
+                        <h3 class="h5 mb-1">@Model.Nombre</h3>
+                        <p class="text-muted mb-0">@Model.Email</p>
+                    </div>
+
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <div class="border rounded p-3 h-100">
+                                <span class="text-muted d-block">Cedula</span>
+                                <strong>@Model.Cedula</strong>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="border rounded p-3 h-100">
+                                <span class="text-muted d-block">Telefono</span>
+                                <strong>@Model.Telefono</strong>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="border rounded p-3 h-100">
+                                <span class="text-muted d-block">Rol</span>
+                                <strong>@Model.Rol</strong>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="border rounded p-3 h-100">
+                                <span class="text-muted d-block">Activos asociados</span>
+                                <strong>@cantidadActivos</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="h5">Cuentas</h3>
+
+                    @if (cantidadCuentas == 0)
+                    {
+                        <div class="alert alert-info">
+                            No tenes cuentas asociadas.
+                        </div>
+                    }
+                    else
+                    {
+                        <table class="table table-striped align-middle">
+                            <thead>
+                                <tr>
+                                    <th>Cuenta</th>
+                                    <th>MFA</th>
+                                    <th>Ultimo cambio de contrasena</th>
+                                    <th>Activos</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (Cuenta cuenta in Model.Cuenta)
+                                {
+                                    <tr>
+                                        <td>#@cuenta.Id</td>
+                                        <td>@(cuenta.Mfa ? "Activado" : "Desactivado")</td>
+                                        <td>@cuenta.FechaUltimoCambioPassword.ToString("dd/MM/yyyy HH:mm")</td>
+                                        <td>@cuenta.Activo.Count</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+
+                    <div class="d-flex gap-2">
+                        <a class="btn btn-primary" asp-controller="Operador" asp-action="MisActivos">Ver mis activos</a>
+                        <a class="btn btn-outline-secondary" asp-controller="Anonimo" asp-action="Logout">Cerrar sesion</a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

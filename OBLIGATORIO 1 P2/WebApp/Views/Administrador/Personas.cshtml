@@ -1,0 +1,50 @@
+﻿@using Biblioteca_de_Clase
+@model List<Persona>
+
+@{
+    ViewData["Title"] = "Personas";
+}
+
+<h2>Personas</h2>
+
+@if (Model == null || Model.Count == 0)
+{
+    <div class="alert alert-info">
+        No hay personas registradas.
+    </div>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Cedula</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Telefono</th>
+                <th>Rol</th>
+                <th>Cuentas</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Persona persona in Model)
+            {
+                <tr>
+                    <td>@persona.Cedula</td>
+                    <td>@persona.Nombre</td>
+                    <td>@persona.Email</td>
+                    <td>@persona.Telefono</td>
+                    <td>@persona.Rol</td>
+                    <td>
+                        <a class="btn btn-primary btn-sm"
+                               asp-controller="Administrador"
+                               asp-action="Cuentas"
+                               asp-route-cedula="@persona.Cedula">
+                            Ver cuentas
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
