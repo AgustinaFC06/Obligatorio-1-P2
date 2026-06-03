@@ -77,16 +77,13 @@ namespace WebApp.Controllers
 
                 // 1. Le asignamos la contraseña que vino desde la web a la propiedad de la Persona
                 p.Contrasena = Contrasena;
-
-                // 2. Ejecutamos tus validaciones de Persona (Nombre, Cédula, Email, Teléfono)
-                p.Validar();
-
-                // 4. Invocamos el alta en clase Sistema (capa Dominio)
-
-                s.AltaPersona(p);
-
+               
                 // Forzamos el rol del operador
                 p.Rol = TipoUsuario.Operador;
+                
+                // 2. Ejecutamos tus validaciones de Persona (Nombre, Cédula, Email, Teléfono)
+                p.Validar();
+                            
                                
                 // 3. Si la persona es válida, le creamos su Cuenta de forma obligatoria 
                 // Pasamos 'false' en MFA por defecto y la Contrasena que capturamos
@@ -95,7 +92,9 @@ namespace WebApp.Controllers
                 // Usamos tu propio método para meter la cuenta adentro de la lista de la persona
                 p.AgregarCuenta(nuevaCuenta);
 
-               
+                // 4. Invocamos el alta en clase Sistema (capa Dominio)
+
+                s.AltaPersona(p);
 
                 // Guardamos los datos simétricos en la Sesión para el Login automático
                 HttpContext.Session.SetString("UsuarioEmail", p.Email);
