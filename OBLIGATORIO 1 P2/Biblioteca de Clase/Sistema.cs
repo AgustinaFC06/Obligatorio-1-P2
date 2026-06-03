@@ -65,23 +65,23 @@ namespace Biblioteca_de_Clase
 
         private void PrecargarPersonas()
         {
-            AltaPersona(new Persona(12345678, "Ana García", "ana.garcia@empresa.com", "099111222"));
-            AltaPersona(new Persona(23456789, "Luis Pérez", "luis.perez@empresa.com", "098222333"));
-            AltaPersona(new Persona(34567890, "María López", "maria.lopez@empresa.com", "097333444"));
-            AltaPersona(new Persona(45678901, "Carlos Rodríguez", "carlos.rodriguez@empresa.com", "096444555"));
-            AltaPersona(new Persona(56789012, "Laura Martínez", "laura.martinez@empresa.com", "095555666"));
-            AltaPersona(new Persona(67890123, "Diego Fernández", "diego.fernandez@empresa.com", "094666777"));
-            AltaPersona(new Persona(78901234, "Sofía González", "sofia.gonzalez@empresa.com", "093777888"));
-            AltaPersona(new Persona(89012345, "Martín Díaz", "martin.diaz@empresa.com", "092888999"));
-            AltaPersona(new Persona(90123456, "Valentina Torres", "valentina.torres@empresa.com", "091999000"));
-            AltaPersona(new Persona(11223344, "Pablo Sánchez", "pablo.sanchez@empresa.com", "090000111"));
-            
-            Persona admin = new Persona(47485283, "Agustina Figueroa", "agustina@empresa.com", "099123456");
+            AltaPersona(new Persona(12345678, "Ana García", "ana.garcia@empresa.com", "099111222", "AnaGarcía123"));
+            AltaPersona(new Persona(23456789, "Luis Pérez", "luis.perez@empresa.com", "098222333", "LuisPérez234"));
+            AltaPersona(new Persona(34567890, "María López", "maria.lopez@empresa.com", "097333444", "MaríaLópez345"));
+            AltaPersona(new Persona(45678901, "Carlos Rodríguez", "carlos.rodriguez@empresa.com", "096444555", "CarlosRod456"));
+            AltaPersona(new Persona(56789012, "Laura Martínez", "laura.martinez@empresa.com", "095555666", "LauraMar567"));
+            AltaPersona(new Persona(67890123, "Diego Fernández", "diego.fernandez@empresa.com", "094666777", "DiegoFer678"));
+            AltaPersona(new Persona(78901234, "Sofía González", "sofia.gonzalez@empresa.com", "093777888", "SofíaGon789"));
+            AltaPersona(new Persona(89012345, "Martín Díaz", "martin.diaz@empresa.com", "092888999", "MartínDíaz890"));
+            AltaPersona(new Persona(90123456, "Valentina Torres", "valentina.torres@empresa.com", "091999000", "ValeTorres901"));
+            AltaPersona(new Persona(11223344, "Pablo Sánchez", "pablo.sanchez@empresa.com", "090000111", "PabloSán112"));
+
+            Persona admin = new Persona(47485283, "Agustina Figueroa", "agustina@empresa.com", "099456653", "1234");
             admin.Rol = TipoUsuario.Administrador;
             AltaPersona(admin);
             
             
-            AltaPersona(new Persona(52066838, "Enzo Curbelo", "enzo.curbelo@koin.com.br", "091186172"));
+            AltaPersona(new Persona(52066838, "Enzo Curbelo", "enzo.curbelo@koin.com.br", "091186172", "1234"));
 
         }
 

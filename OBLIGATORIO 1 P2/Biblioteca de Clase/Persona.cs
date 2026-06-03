@@ -14,6 +14,7 @@ namespace Biblioteca_de_Clase
         public string Nombre { get; set; }
         public string Email { get; set; }
         public string Telefono { get; set; }
+        public string Contrasena { get; set; }
         public TipoUsuario Rol {  get; set; }
         private List<Cuenta>_cuentas {  get; }= new List<Cuenta>();
         public List<Cuenta> Cuenta { get { return new List<Cuenta>(_cuentas); } }
@@ -27,13 +28,14 @@ namespace Biblioteca_de_Clase
             Id = UltimoId++;
         }
 
-        public Persona(int cedula, string nombre, string email, string telefono)
+        public Persona(int cedula, string nombre, string email, string telefono, string contrasena)
         {   
             Id = UltimoId++;
             Cedula = cedula;
             Nombre = nombre;
             Email = email;
             Telefono = telefono;
+            Contrasena = contrasena;
             Rol = TipoUsuario.Operador; 
             Validar();
         }       
@@ -46,36 +48,51 @@ namespace Biblioteca_de_Clase
             ValidarNombre();
             ValidarEmail();
             ValidarTelefono();
-        }
-
-        private void ValidarTelefono()
-        { 
-            if (string.IsNullOrWhiteSpace(Telefono))
-            throw new Exception("El telefono no puede ser vacio");
-        }
-
-        private void ValidarEmail()
-        { 
-        
-            if (string.IsNullOrWhiteSpace(Email) || !Email.Contains("@"))
-            throw new Exception("Email tiene que contener @ y no puede ser vacio");
-        }
-
-        private void ValidarNombre()
-        {
-            if (string.IsNullOrWhiteSpace(Nombre))
-            {
-                throw new Exception("Nombre no puede ser vacio");            
-            }
+            ValidarContrasena();
         }
 
         private void ValidarCedula() //hacer unica
         {
             if (Cedula <= 0)
             {
-                throw new Exception("Ingrese la cedula");  
+                throw new Exception("Ingrese la cedula");
             }
         }
+        private void ValidarNombre()
+        {
+            if (string.IsNullOrWhiteSpace(Nombre))
+            {
+                throw new Exception("Nombre no puede ser vacio");
+            }
+        }
+        private void ValidarEmail()
+        {
+
+            if (string.IsNullOrWhiteSpace(Email) || !Email.Contains("@"))
+            {
+                throw new Exception("Email tiene que contener @ y no puede ser vacio");
+            }
+
+        }
+
+        private void ValidarTelefono()
+        { 
+            if (string.IsNullOrWhiteSpace(Telefono))
+            {
+                throw new Exception("El telefono no puede ser vacio");
+            }
+            
+        }
+           
+               
+          private void ValidarContrasena()
+        {
+            if (string.IsNullOrWhiteSpace(Contrasena))
+            {
+                throw new Exception("No puede ser vacio");
+            }
+        }
+        
 
 
 
