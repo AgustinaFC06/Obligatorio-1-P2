@@ -45,7 +45,18 @@ namespace Biblioteca_de_Clase
         #region ToString
         public override string ToString()
         {
-            return $"Phishing ({base.ToString()},- {Descripcion} - Estado: {Estado} - Canal: {Canal}";
+            return $"Phishing ({base.ToString()},- {Descripcion} - Canal: {Canal}";
+        }
+        #endregion
+
+        #region Calcular Severidad
+        public override double CalcularSeveridad()
+        {
+            double severidad = base.CalcularSeveridad();
+            if (severidad > 100) severidad = 100; // Phishing no tiene ajustes adicionales, solo aplica el tope de 100
+            
+                return severidad;
+            
         }
         #endregion
 

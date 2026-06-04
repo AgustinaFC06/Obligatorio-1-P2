@@ -21,20 +21,24 @@ namespace Biblioteca_de_Clase
             Encriptados = encriptados;
             Exfiltracion = exfiltracion;
         }
-        #endregion
-
-        #region Metodos
-
-        public override double CalcularSeveridad()
-        {
-            throw new Exception("Se hara en segunda entrega");
-        }
-        #endregion
-
+        #endregion            
+     
         #region ToString
         public override string ToString()
         {
-            return $"[{Id}] Ransomware - {Descripcion} - Estado: {Estado} - Encriptados: {(Encriptados ? "Si" : "No")}";
+            return $"[{Id}] Ransomware - {base.ToString} - Encriptados: {(Encriptados ? "Si" : "No")} - Exfiltrados: {(Exfiltracion ? "Si" : "No")}";
+        }
+        #endregion
+
+        #region Calcular Severidad
+        public override double CalcularSeveridad()
+        {
+            double severidad = base.CalcularSeveridad();
+            if ( Encriptados ) severidad += 20; //Si los datos estan encriptados se suma 20
+            if ( Exfiltracion ) severidad += 25; //Si hubo exfiltracion se suma 25
+            if (Activo != null && Activo.Backup) severidad -= 15; //Si el activo tien backup se resta 15
+            if (severidad > 100) severidad = 100; // Tope maximo de 100
+            return severidad;
         }
         #endregion
 

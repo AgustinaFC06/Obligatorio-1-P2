@@ -18,7 +18,7 @@ namespace Biblioteca_de_Clase
         #endregion
 
         #region Corroboracion de cuenta tiene que tener una persona
-        private void CuentaTienePersona() 
+        private void CuentaTienePersona()
         {
             foreach (Cuenta cuenta in _cuentas)
             {
@@ -79,8 +79,8 @@ namespace Biblioteca_de_Clase
             Persona admin = new Persona(47485283, "Agustina Figueroa", "agustina@empresa.com", "099456653", "1234");
             admin.Rol = TipoUsuario.Administrador;
             AltaPersona(admin);
-            
-            
+
+
             AltaPersona(new Persona(52066838, "Enzo Curbelo", "enzo.curbelo@koin.com.br", "091186172", "1234"));
 
         }
@@ -149,7 +149,7 @@ namespace Biblioteca_de_Clase
             AltaActivo(a15);
         }
 
-        
+
 
         private void PrecargarCuentas()
         {
@@ -381,19 +381,36 @@ namespace Biblioteca_de_Clase
             {
                 if (p.Email.Equals(email, StringComparison.OrdinalIgnoreCase))
                 {
-                    foreach (Cuenta c in p.Cuenta) // teniendo la persoan recisamos si la contrasena de su cuenta coincide
+
+                    if (p.Contrasena == contrasena)
                     {
-                        if (c.Contrasena == contrasena)
-                        {
-                            return p;
-                        }
+                        return p;
                     }
+
                 }
             }
             return null;
         }
         #endregion
+        #region Agrgar Cuenta A Persona
+        public void AgregarCuentaAPersona(Persona persona, Cuenta cuenta)
+        {
+            cuenta.Validar();
+            persona.AgregarCuenta(cuenta);
+            _cuentas.Add(cuenta); // Sistema mantiene su lista interna
+        }
 
+
+        #endregion
+
+        #region Agregar Activo A Cuenta 
+        public void AgregarActivoACuenta(Cuenta cuenta, Activo activo)
+        {
+            activo.Validar();
+            cuenta.Activo.Add(activo);
+            _activos.Add(activo); // Sistema mantiene su lista interna
+        }
+        #endregion
 
     }
 }

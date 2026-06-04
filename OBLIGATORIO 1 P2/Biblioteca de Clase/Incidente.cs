@@ -81,7 +81,9 @@ namespace Biblioteca_de_Clase
 
         public virtual double CalcularSeveridad()
         {
-            throw new Exception("Se aplicara en la segunda entrega");
+            double severidad = (Impacto * 12) + (Probabilidad * 8); // Formula base: impacto * 12 + probabilidad * 8
+            return severidad;
+            
         }
 
 
@@ -95,9 +97,9 @@ namespace Biblioteca_de_Clase
         }
         #endregion
         #region ToString
-        public virtual string ToString()
+        public override string ToString()
         {
-            return $"incidente(id={Id}, Activo ={Activo.Nombre}, Estado = {Estado})";
+            return $"incidente(id={Id}, Activo ={Activo.Nombre}, Estado = {Estado}, severidad{CalcularSeveridad()})";
         }
 
         #endregion
