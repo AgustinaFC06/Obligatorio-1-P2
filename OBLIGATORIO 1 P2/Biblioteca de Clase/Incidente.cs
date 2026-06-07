@@ -30,13 +30,13 @@ namespace Biblioteca_de_Clase
         public Incidente(DateTime fechaReporte, Activo activo, string descripcion, Estado estado, int impacto, int probabilidad)
         {
             Id = UltimoId++;
-            FechaReporte = DateTime.Now;
+            FechaReporte = fechaReporte;
             Activo = activo;
             Descripcion = descripcion;
             Estado = estado;
             Impacto = impacto;
             Probabilidad = probabilidad;
-            Validar();
+            //Validar();
         }
 
 

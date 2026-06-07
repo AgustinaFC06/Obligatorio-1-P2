@@ -21,13 +21,14 @@ namespace Biblioteca_de_Clase
             Canal = canal;
             Credenciales = credenciales;
             TransferenciaDatos = transferenciaDatos;
+           // Validar();
         }
 
         #endregion
 
         #region Validar
 
-        public void Validar()
+        public override void Validar()
         {
             base.Validar();
             ValidarCanal();

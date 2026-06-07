@@ -158,7 +158,8 @@ namespace WebApp.Controllers
             try
             {
                 Cuenta cuenta = new Cuenta(mfa, contrasena);
-                persona.AgregarCuenta(cuenta);
+                s.AgregarCuentaAPersona(persona, cuenta);
+                //persona.AgregarCuenta(cuenta); // No es necesario porque el sistema ya lo hace al agregar la cuenta a la persona.
 
                 TempData["Mensaje"] = "Cuenta creada correctamente.";
                 return RedirectToAction("Cuentas", new { cedula = cedula });
@@ -231,7 +232,8 @@ namespace WebApp.Controllers
             try
             {
                 Activo activo = new Activo(nombre, tipoActivo, criticidad, backup);
-                cuenta.Activo.Add(activo);
+                s.AgregarActivoACuenta(cuenta, activo);
+                //cuenta.Activo.Add(activo); // No es necesario porque el sistema ya lo hace al agregar el activo a la cuenta.
 
                 TempData["Mensaje"] = "Activo creado correctamente.";
                 return RedirectToAction("ActivosCuenta", new { cedula = cedula, cuentaId = cuentaId });
@@ -268,22 +270,32 @@ namespace WebApp.Controllers
             if (cuenta == null)
             {
                 TempData["Error"] = "No se encontro la cuenta.";
-                return RedirectToAction("Cuentas", new { cedula = cedula });
+                return RedirectToAction("Cuentas", new { cedula });
             }
 
             Activo activo = BuscarActivoDeCuenta(cuenta, activoId);
 
             if (activo != null)
             {
-                cuenta.Activo.Remove(activo);
-                TempData["Mensaje"] = "Activo desasociado correctamente.";
+                try
+                {
+                    s.DesasociarActivoDeCuenta(cuenta, activo);
+                    TempData["Mensaje"] = "Activo desasociado correctamente.";
+                }
+                catch (Exception ex)
+                {
+                    
+                    TempData["Error"] = ex.Message;
+                }
+                // cuenta.Activo.Remove(activo);
+                // TempData["Mensaje"] = "Activo desasociado correctamente.";
             }
             else
             {
                 TempData["Error"] = "No se encontro el activo.";
             }
 
-            return RedirectToAction("ActivosCuenta", new { cedula = cedula, cuentaId = cuentaId });
+            return RedirectToAction("ActivosCuenta", new { cedula, cuentaId });
         }
 
         // Lista todos los incidentes del sistema.

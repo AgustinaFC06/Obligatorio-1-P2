@@ -74,35 +74,24 @@ namespace WebApp.Controllers
         {
             try
             {
-
-                // 1. Le asignamos la contraseña que vino desde la web a la propiedad de la Persona
+                                
                 p.Contrasena = Contrasena;
-               
-                // Forzamos el rol del operador
+                               
                 p.Rol = TipoUsuario.Operador;
                 
-                // 2. Ejecutamos tus validaciones de Persona (Nombre, Cédula, Email, Teléfono)
-                p.Validar();
-                            
-                               
-                // 3. Si la persona es válida, le creamos su Cuenta de forma obligatoria 
-                // Pasamos 'false' en MFA por defecto y la Contrasena que capturamos
-                Cuenta nuevaCuenta = new Cuenta(false, Contrasena);
-
-                // Usamos tu propio método para meter la cuenta adentro de la lista de la persona
-                p.AgregarCuenta(nuevaCuenta);
-
-                // 4. Invocamos el alta en clase Sistema (capa Dominio)
-
+                p.Validar();                       
+                                           
                 s.AltaPersona(p);
 
-                // Guardamos los datos simétricos en la Sesión para el Login automático
-                HttpContext.Session.SetString("UsuarioEmail", p.Email);
+                Cuenta nuevaCuenta = new Cuenta(false, Contrasena);
+                s.AgregarCuentaAPersona(p, nuevaCuenta);
+                //p.AgregarCuenta(nuevaCuenta); se va a agregar a la persona desde el sistema, no desde la persona misma, para mantener la lógica de negocio en un solo lugar
+                                               
+                HttpContext.Session.SetString("UsuarioEmail", p.Email); // Guardamos los datos simétricos en la Sesión para el Login automático
                 HttpContext.Session.SetString("UsuarioRol", "OPERADOR");
                 HttpContext.Session.SetInt32("UsuarioCedula", p.Cedula);
-
-                // Todo correcto, ingresamos al panel
-                return RedirectToAction("MisActivos", "Operador");
+                                
+                return RedirectToAction("MisActivos", "Operador"); // Todo correcto, ingresamos al panel
             }
             catch(Exception e)
 {

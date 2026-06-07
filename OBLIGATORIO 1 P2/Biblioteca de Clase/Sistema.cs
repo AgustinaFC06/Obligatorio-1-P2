@@ -247,11 +247,39 @@ namespace Biblioteca_de_Clase
         #region 4a Obtener personas
         public List<Persona> ObtenerPersonasConActivos()
         {
-            List<Persona> aux = new List<Persona>();
+            List<Persona> filtradas = new List<Persona>();
+
+            foreach (Persona p in _personas)
             {
-                return _personas;
+                bool tieneActivos = false;
+
+
+                foreach (Cuenta c in p.Cuenta)
+                {
+                    if (c.Activo != null && c.Activo.Count > 0)
+                    {
+                        tieneActivos = true;
+                        break;
+                    }
+
+                }
+
+                if (tieneActivos)
+                {
+                    filtradas.Add(p);
+                }
             }
+
+            return filtradas;
         }
+
+        // public List<Persona> ObtenerPersonasConActivos()
+        // {
+        //     List<Persona> aux = new List<Persona>();
+        //     {
+        //         return _personas;
+        //     }
+        // }
         #endregion
 
         #region 4c Alta persona
@@ -412,5 +440,26 @@ namespace Biblioteca_de_Clase
         }
         #endregion
 
+        #region Desasignar Activo de Cuenta
+        public void DesasociarActivoDeCuenta(Cuenta cuenta, Activo activo)
+        {
+            if (cuenta == null || activo == null)
+            {
+                throw new Exception("Datos inválidos para realizar la desasociación.");
+            }
+
+            if (cuenta.Activo.Contains(activo)) // Remueve el activo de la lista interna de la cuenta
+            {
+                cuenta.Activo.Remove(activo);
+            }
+            else
+            {
+                throw new Exception("El activo no pertenece a la cuenta seleccionada.");
+            }
+        }
+
+        #endregion
+
     }
+
 }
