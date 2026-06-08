@@ -1,0 +1,42 @@
+﻿@model Biblioteca_de_Clase.Cuenta
+
+@{
+    ViewData["Title"] = "Crear Nueva Cuenta";
+    var persona = ViewBag.Persona as Biblioteca_de_Clase.Persona;
+}
+
+<h2>Crear Cuenta para @persona?.Nombre</h2>
+<p><strong>Cédula del Propietario:</strong> @persona?.Cedula</p>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">
+        @ViewBag.Error
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-6">
+        @* Formulario POST que envía los datos correctos al Controlador *@
+        <form asp-action="CrearCuenta" asp-controller="Administrador" method="post">
+            
+            @* CRUCIAL: Este input hidden asegura que la cédula viaje al HttpPost y no se pierda *@
+            <input type="hidden" name="cedula" value="@persona?.Cedula" />
+
+            <div class="form-group mb-3">
+                <label class="form-label">Contraseña de la Cuenta:</label>
+                <input type="password" name="contrasena" class="form-control" required placeholder="Ingrese la contraseña inicial" />
+            </div>
+
+            <div class="form-check form-switch mb-3">
+                <input class="form-check-input" type="checkbox" name="mfa" id="mfa" value="true" />
+                <label class="form-check-label" for="mfa">Habilitar Multi-Factor Authentication (MFA)</label>
+                @* Truco de ASP.NET para los booleanos en formularios estándar *@
+                <input type="hidden" name="mfa" value="false" />
+            </div>
+
+            <button type="submit" class="btn btn-success">Guardar Cuenta</button>
+            <a asp-action="Cuentas" asp-route-cedula="@persona?.Cedula" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>

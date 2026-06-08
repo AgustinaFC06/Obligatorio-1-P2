@@ -1,0 +1,60 @@
+﻿@model Biblioteca_de_Clase.Cuenta
+@{
+    ViewData["Title"] = "Crear Nuevo Activo";
+    var persona = ViewBag.Persona as Biblioteca_de_Clase.Persona;
+    var cuenta = ViewBag.Cuenta as Biblioteca_de_Clase.Cuenta;
+}
+
+<h2>Crear Nuevo Activo</h2>
+<p>Asociando a la cuenta <strong>ID: @cuenta?.Id</strong> de <strong>@persona?.Nombre</strong></p>
+
+@* Captura de mensajes de error de las validaciones de tu clase Activo *@
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">
+        @ViewBag.Error
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="CrearActivo" asp-controller="Administrador" method="post">
+            
+            @* Inputs ocultos para mantener las referencias de la cuenta *@
+            <input type="hidden" name="cedula" value="@persona?.Cedula" />
+            <input type="hidden" name="cuentaId" value="@cuenta?.Id" />
+
+            <div class="form-group mb-3">
+                <label class="form-label fw-bold">Nombre del Activo:</label>
+                <input type="text" name="nombre" class="form-control" required placeholder="Ej: Laptop Dell, Servidor de Producción" />
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="form-label fw-bold">Tipo de Activo:</label>
+                <select name="tipoActivo" class="form-select" required>
+                    <option value="">-- Seleccione un tipo --</option>
+                    <option value="1">Hardware</option>
+                    <option value="2">Software</option>
+                    <option value="3">Redes / Datos</option>
+                </select>
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="form-label fw-bold">Nivel de Criticidad (1 al 5):</label>
+                <input type="number" name="criticidad" class="form-control" min="1" max="5" required placeholder="Ej: 3" />
+            </div>
+
+            <div class="form-check form-switch mb-3">
+                <input class="form-check-input" type="checkbox" name="backup" id="backup" value="true" />
+                <label class="form-check-label fw-bold" for="backup">¿Posee copia de seguridad (Backup)?</label>
+                @* Campo oculto obligatorio para que HTML envíe 'false' si el switch no se activa *@
+                <input type="hidden" name="backup" value="false" />
+            </div>
+
+            <div class="mt-4">
+                <button type="submit" class="btn btn-success">Guardar Activo</button>
+                <a asp-action="ActivosCuenta" asp-route-cedula="@persona?.Cedula" asp-route-cuentaId="@cuenta?.Id" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>

@@ -28,6 +28,14 @@
 }
 <p><strong>ID de Cuenta:</strong> @Model.Id</p>
 
+<a class="btn btn-success mb-3"
+       asp-controller="Administrador"
+       asp-action="CrearActivo"
+       asp-route-cedula="@persona?.Cedula"
+       asp-route-cuentaId="@Model.Id">
+    Crear Nuevo Activo
+</a>
+
 <hr />
 <table class="table table-striped">
     <thead>
