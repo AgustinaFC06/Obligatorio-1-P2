@@ -1,0 +1,73 @@
+﻿@model Biblioteca_de_Clase.Cuenta
+
+@{
+    ViewData["Title"] = "Activos de la Cuenta";
+    
+    var persona = ViewBag.Persona as Biblioteca_de_Clase.Persona; // Recuperamos la persona desde el ViewBag
+}
+
+<h2>Activos de la Cuenta</h2>
+@if (TempData["Mensaje"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Mensaje"]
+    </div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}
+
+@if (persona != null)
+{
+    
+    <p><strong>Propietario:</strong> @persona.Nombre (C.I: @persona.Cedula)</p>
+}
+<p><strong>ID de Cuenta:</strong> @Model.Id</p>
+
+<hr />
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID Activo</th>
+            <th>Nombre del Activo</th>
+            <th>Acciones</th> 
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Activo != null && Model.Activo.Count > 0)
+        {
+            foreach (var unActivo in Model.Activo)
+            {
+                <tr>
+                    <td>@unActivo.Id</td>
+                    <td>@unActivo.Nombre</td>
+                    <td>
+                        
+                        <form asp-action="DesasociarActivo" asp-controller="Administrador" method="post" style="display:inline;">
+                            <input type="hidden" name="cedula" value="@persona?.Cedula" />
+                            <input type="hidden" name="cuentaId" value="@Model.Id" />
+                            <input type="hidden" name="activoId" value="@unActivo.Id" />
+                            
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro que deseas desasociar este activo de la cuenta?');">
+                                Desasociar
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="3" class="text-center text-muted">Esta cuenta no tiene activos asociados.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+<a asp-action="Cuentas" asp-controller="Administrador" asp-route-cedula="@persona?.Cedula" class="btn btn-secondary">Volver a Cuentas</a>

@@ -326,7 +326,7 @@ namespace WebApp.Controllers
         }
 
         // Busca una cuenta dentro de las cuentas de una persona.
-        // Se hace manualmente con foreach para evitar usar LINQ.
+        
         private Cuenta BuscarCuentaDePersona(Persona persona, int cuentaId)
         {
             foreach (Cuenta cuenta in persona.Cuenta)
