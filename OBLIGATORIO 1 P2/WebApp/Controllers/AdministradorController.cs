@@ -63,7 +63,7 @@ namespace WebApp.Controllers
                 return RedirectToAction("Login", "Anonimo");
             }
 
-            return View(persona);
+            return View("~/Views/Operador/Perfil.cshtml", persona);
         }
 
         // Muestra las cuentas asociadas a una persona.

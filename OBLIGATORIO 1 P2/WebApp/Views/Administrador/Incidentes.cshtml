@@ -1,0 +1,58 @@
+﻿@using Biblioteca_de_Clase
+@model List<Incidente>
+
+@{
+    ViewData["Title"] = "Listado de Incidentes";
+}
+
+<h2>Listado de Incidentes del Sistema</h2>
+<p class="text-muted">Ordenados de mayor a menor según su nivel de severidad.</p>
+
+@if (Model == null || Model.Count == 0)
+{
+    <div class="alert alert-info">
+        No se registran incidentes en el sistema actualmente.
+    </div>
+}
+else
+{
+    <table class="table table-striped table-hover mt-3">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Activo Afectado</th>
+                <th>Descripción</th>
+                <th>Fecha de Reporte</th>
+                <th>Estado</th>
+                <th>Severidad</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Incidente inc in Model)
+            {
+                <tr>
+                    <td>@inc.Id</td>
+                    <td>@(inc.Activo != null ? inc.Activo.Nombre : "Sin activo asignado")</td>
+                    <td>@inc.Descripcion</td>
+                    <td>@inc.FechaReporte.ToString("dd/MM/yyyy HH:mm")</td>
+                    <td>
+                        <span class="badge bg-secondary">
+                            @inc.Estado
+                        </span>
+                    </td>
+                    <td>
+                        <span class="badge bg-danger fs-6">
+                            @inc.CalcularSeveridad()
+                        </span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<div class="mt-4">
+    <a asp-controller="Administrador" asp-action="Personas" class="btn btn-secondary">
+        Volver al Inicio
+    </a>
+</div>
