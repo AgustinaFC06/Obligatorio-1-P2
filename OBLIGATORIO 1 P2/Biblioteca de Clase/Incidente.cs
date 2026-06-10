@@ -36,7 +36,7 @@ namespace Biblioteca_de_Clase
             Estado = estado;
             Impacto = impacto;
             Probabilidad = probabilidad;
-            //Validar();
+            
         }
 
 

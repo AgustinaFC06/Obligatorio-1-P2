@@ -13,7 +13,7 @@ namespace Biblioteca_de_Clase
         public string Contrasena { get; set; }
         public DateTime FechaUltimoCambioPassword { get; set; }
         private List<Activo> _activos { get; } = new List<Activo>();
-        public List<Activo> Activo { get { return _activos; } }
+        public List<Activo> Activo { get { return _activos; } }/// nombre d ela listas en plural 
 
 
         #endregion
@@ -22,7 +22,7 @@ namespace Biblioteca_de_Clase
         public Cuenta()
         {
             Id = UltimoId++;
-            FechaUltimoCambioPassword = DateTime.Now; ////?????
+            FechaUltimoCambioPassword = DateTime.Now; //// fechas ponesrlas a mano para que no queden todas con la misma fecha 
 
         }
 

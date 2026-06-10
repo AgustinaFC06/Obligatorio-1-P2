@@ -21,7 +21,7 @@ namespace Biblioteca_de_Clase
             Canal = canal;
             Credenciales = credenciales;
             TransferenciaDatos = transferenciaDatos;
-           // Validar();
+           Validar();
         }
 
         #endregion
