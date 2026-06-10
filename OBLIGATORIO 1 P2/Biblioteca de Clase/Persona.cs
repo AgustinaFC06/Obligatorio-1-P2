@@ -17,7 +17,7 @@ namespace Biblioteca_de_Clase
         public string Contrasena { get; set; }
         public TipoUsuario Rol {  get; set; }
         private List<Cuenta>_cuentas {  get; }= new List<Cuenta>();
-        public List<Cuenta> Cuenta { get { return new List<Cuenta>(_cuentas); } }
+        public List<Cuenta> Cuentas { get { return new List<Cuenta>(_cuentas); } }
 
 
         #endregion
@@ -128,9 +128,9 @@ namespace Biblioteca_de_Clase
             List<Incidente> listRet = new List<Incidente>();
 
             
-            foreach (Cuenta c in this.Cuenta) 
+            foreach (Cuenta c in this.Cuentas) 
             {                
-                foreach (Activo a in c.Activo)  
+                foreach (Activo a in c.Activos)  
                 {                    
                     foreach (Incidente i in todosLosIncidentes)
                     {                        

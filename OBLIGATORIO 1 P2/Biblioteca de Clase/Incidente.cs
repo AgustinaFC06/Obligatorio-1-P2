@@ -81,7 +81,7 @@ namespace Biblioteca_de_Clase
 
         public virtual double CalcularSeveridad()
         {
-            double severidad = (Impacto * 12) + (Probabilidad * 8); // Formula base: impacto * 12 + probabilidad * 8
+            double severidad = (Impacto * 12) + (Probabilidad * 8); // Formula base
             return severidad;
             
         }

@@ -10,19 +10,19 @@ namespace Biblioteca_de_Clase
         public int Id { get; set; }
         public static int UltimoId { get; set; } = 1;
         public bool Mfa { get; set; }
-        public string Contrasena { get; set; }
+        //public string Contrasena { get; set; }
         public DateTime FechaUltimoCambioPassword { get; set; }
         private List<Activo> _activos { get; } = new List<Activo>();
-        public List<Activo> Activo { get { return _activos; } }/// nombre d ela listas en plural 
+        public List<Activo> Activos { get { return _activos; } }/// nombre d ela listas en plural 
 
 
         #endregion
 
         #region CONSTRUCTORES
-        public Cuenta()
+        public Cuenta(DateTime fechaPassword)
         {
             Id = UltimoId++;
-            FechaUltimoCambioPassword = DateTime.Now; //// fechas ponesrlas a mano para que no queden todas con la misma fecha 
+            FechaUltimoCambioPassword = fechaPassword; //// fechas ponesrlas a mano para que no queden todas con la misma fecha 
 
         }
 
@@ -30,27 +30,27 @@ namespace Biblioteca_de_Clase
         {
             Id = UltimoId++;
             Mfa = mfa;
-            Contrasena = contrasena;
+            //Contrasena = contrasena;
             FechaUltimoCambioPassword = DateTime.Now;
-            Validar();
+            //Validar();
         }
-                 
+
 
         #endregion
 
         #region VALIDACIONES
-        public void Validar()
-        {
-            ValidarContrasena();
-        }
-
-        private void ValidarContrasena()
-        {
-            if (string.IsNullOrWhiteSpace(Contrasena))
-            {
-                throw new Exception("No puede ser vacio");
-            }
-        }
+        // public void Validar() ESTO SE VE PORQUE CONTRASEÑA ESTA EN PERSONA
+        // {
+        //     ValidarContrasena();
+        // }
+        //
+        // private void ValidarContrasena()
+        // {
+        //     if (string.IsNullOrWhiteSpace(Contrasena))
+        //     {
+        //         throw new Exception("No puede ser vacio");
+        //     }
+        // }
         #endregion
 
         #region   Equals

@@ -22,12 +22,8 @@ namespace Biblioteca_de_Clase
             Exfiltracion = exfiltracion;
             
         }
-        #endregion
-
-       
+        #endregion   
         
-
-
         #region ToString
         public override string ToString()
         {

@@ -25,7 +25,7 @@ namespace Biblioteca_de_Clase
                 bool tienePersona = false;
                 foreach (Persona persona in _personas)
                 {
-                    if (persona.Cuenta.Contains(cuenta))
+                    if (persona.Cuentas.Contains(cuenta))
                     {
                         tienePersona = true;
                         break;
@@ -89,63 +89,63 @@ namespace Biblioteca_de_Clase
         private void PrecargarActivos()
         {
             Activo a1 = new Activo("Laptop Ventas", TipoActivo.PC, 3, true);
-            _cuentas[0].Activo.Add(a1);
+            _cuentas[0].Activos.Add(a1);
             AltaActivo(a1);
 
             Activo a2 = new Activo("Laptop Gerencia", TipoActivo.PC, 5, true);
-            _cuentas[1].Activo.Add(a2);
+            _cuentas[1].Activos.Add(a2);
             AltaActivo(a2);
 
             Activo a3 = new Activo("PC Recepción", TipoActivo.PC, 1, true);
-            _cuentas[2].Activo.Add(a3);
+            _cuentas[2].Activos.Add(a3);
             AltaActivo(a3);
 
             Activo a4 = new Activo("PC Contabilidad", TipoActivo.PC, 4, true);
-            _cuentas[3].Activo.Add(a4);
+            _cuentas[3].Activos.Add(a4);
             AltaActivo(a4);
 
             Activo a5 = new Activo("PC Soporte", TipoActivo.PC, 2, true);
-            _cuentas[4].Activo.Add(a5);
+            _cuentas[4].Activos.Add(a5);
             AltaActivo(a5);
 
             Activo a6 = new Activo("Servidor Principal", TipoActivo.SERVER, 5, true);
-            _cuentas[5].Activo.Add(a6);
+            _cuentas[5].Activos.Add(a6);
             AltaActivo(a6);
 
             Activo a7 = new Activo("Servidor Backup", TipoActivo.SERVER, 4, true);
-            _cuentas[6].Activo.Add(a7);
+            _cuentas[6].Activos.Add(a7);
             AltaActivo(a7);
 
             Activo a8 = new Activo("Servidor Web", TipoActivo.SERVER, 5, true);
-            _cuentas[7].Activo.Add(a8);
+            _cuentas[7].Activos.Add(a8);
             AltaActivo(a8);
 
             Activo a9 = new Activo("Servidor Base de Datos", TipoActivo.SERVER, 5, true);
-            _cuentas[8].Activo.Add(a9);
+            _cuentas[8].Activos.Add(a9);
             AltaActivo(a9);
 
             Activo a10 = new Activo("Servidor de Correo", TipoActivo.SERVER, 3, true);
-            _cuentas[9].Activo.Add(a10);
+            _cuentas[9].Activos.Add(a10);
             AltaActivo(a10);
 
             Activo a11 = new Activo("Celular Gerencia", TipoActivo.MOVIL, 4, true);
-            _cuentas[0].Activo.Add(a11);
+            _cuentas[0].Activos.Add(a11);
             AltaActivo(a11);
 
             Activo a12 = new Activo("Celular Ventas", TipoActivo.MOVIL, 2, true);
-            _cuentas[1].Activo.Add(a12);
+            _cuentas[1].Activos.Add(a12);
             AltaActivo(a12);
 
             Activo a13 = new Activo("Celular Soporte", TipoActivo.MOVIL, 2, true);
-            _cuentas[2].Activo.Add(a13);
+            _cuentas[2].Activos.Add(a13);
             AltaActivo(a13);
 
             Activo a14 = new Activo("Tablet Dirección", TipoActivo.MOVIL, 3, true);
-            _cuentas[3].Activo.Add(a14);
+            _cuentas[3].Activos.Add(a14);
             AltaActivo(a14);
 
             Activo a15 = new Activo("Tablet Logística", TipoActivo.MOVIL, 1, true);
-            _cuentas[4].Activo.Add(a15);
+            _cuentas[4].Activos.Add(a15);
             AltaActivo(a15);
         }
 
@@ -245,34 +245,7 @@ namespace Biblioteca_de_Clase
         #endregion
 
         #region 4a Obtener personas
-        //public List<Persona> ObtenerPersonasConActivos()
-        //{
-        //    List<Persona> filtradas = new List<Persona>();
-        //
-        //    foreach (Persona p in _personas)
-        //    {
-        //        bool tieneActivos = false;
-        //
-        //
-        //        foreach (Cuenta c in p.Cuenta)
-        //        {
-        //            if (c.Activo != null && c.Activo.Count > 0)
-        //            {
-        //                tieneActivos = true;
-        //                break;
-        //            }
-        //
-        //        }
-        //
-        //        if (tieneActivos)
-        //        {
-        //            filtradas.Add(p);
-        //        }
-        //    }
-        //
-        //    return filtradas;
-        //}
-
+        
          public List<Persona> ObtenerPersonasConActivos()
          {
              List<Persona> aux = new List<Persona>();
@@ -374,7 +347,7 @@ namespace Biblioteca_de_Clase
 
                 if (!_cuentas.Contains(cuenta))
                 {
-                    _cuentas.Add(cuenta);
+                    _cuentas.Add(cuenta);///// seguir ACAAAAAAAAAAAAAAAAAAAAAAAAAA yoooooooooooooooooo
                 }
                 else
                 {
