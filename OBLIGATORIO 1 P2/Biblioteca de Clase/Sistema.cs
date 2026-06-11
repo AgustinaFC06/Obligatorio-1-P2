@@ -459,7 +459,31 @@ namespace Biblioteca_de_Clase
         }
 
         #endregion
+        #region Ordenar Activos por Critticidad
+        public List<Activo> ObtenerActivosOrdenadosPorPersona(Persona persona)
+        {
+            List<Activo> activos = new List<Activo>();
 
+            if (persona != null)
+            {
+                // 1. Recopilamos todos los activos de las cuentas de la persona
+                foreach (Cuenta cuenta in persona.Cuentas)
+                {
+                    foreach (Activo activo in cuenta.Activos)
+                    {
+                        activos.Add(activo);
+                    }
+                }
+
+                // 2. ¡HACEMOS LA MAGIA!
+                // .Sort() buscará automáticamente el CompareTo que pusiste en la clase Activo
+                // y los ordenará de forma ascendente.
+                activos.Sort();
+            }
+
+            return activos;
+        }
+        #endregion
     }
 
 }
