@@ -8,9 +8,9 @@
     int cantidadCuentas = 0;
     int cantidadActivos = 0;
 
-    if (Model != null && Model.Cuenta != null)
+    if (Model != null && Model.Cuentas != null)
     {
-        foreach (Cuenta cuenta in Model.Cuenta)
+        foreach (Cuenta cuenta in Model.Cuentas)
         {
             cantidadCuentas++;
             cantidadActivos += cuenta.Activo?.Count ?? 0;
@@ -86,7 +86,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (Cuenta cuenta in Model.Cuenta)
+                                @foreach (Cuenta cuenta in Model.Cuentas)
                                 {
                                     <tr>
                                         <td>#@cuenta.Id</td>

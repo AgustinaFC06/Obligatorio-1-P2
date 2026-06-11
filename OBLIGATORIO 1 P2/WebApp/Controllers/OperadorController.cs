@@ -40,9 +40,9 @@ namespace WebApp.Controllers
 
             List<Activo> activos = new List<Activo>();
 
-            foreach (Cuenta cuenta in persona.Cuenta)
+            foreach (Cuenta cuenta in persona.Cuentas)
             {
-                foreach (Activo activo in cuenta.Activo)
+                foreach (Activo activo in cuenta.Activos)
                 {
                     activos.Add(activo);
                 }

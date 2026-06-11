@@ -302,34 +302,40 @@ namespace WebApp.Controllers
         // Antes de enviarlos a la vista, los ordena por severidad descendente.
         public IActionResult Incidentes()
         {
-            if (!EsAdmin())
-            {
-                return RedirectToAction("Login", "Anonimo");
-            }
+            List<Incidente> incidentes = new List<Incidente>(s.Incidentes);
 
-            List<Incidente> incidentes = s.Incidentes;
-
-            for (int i = 0; i < incidentes.Count - 1; i++)
-            {
-                for (int j = i + 1; j < incidentes.Count; j++)
-                {
-                    if (incidentes[i].CalcularSeveridad() < incidentes[j].CalcularSeveridad())
-                    {
-                        Incidente aux = incidentes[i];
-                        incidentes[i] = incidentes[j];
-                        incidentes[j] = aux;
-                    }
-                }
-            }
+            // .Sort() leerá el CompareTo que acabamos de agregar y ordenará todo de mayor a menor
+            incidentes.Sort();
 
             return View(incidentes);
+            //if (!EsAdmin())
+            //{
+            //    return RedirectToAction("Login", "Anonimo");
+            //}
+            //
+            //List<Incidente> incidentes = s.Incidentes;
+            //
+            //for (int i = 0; i < incidentes.Count - 1; i++)
+            //{
+            //    for (int j = i + 1; j < incidentes.Count; j++)
+            //    {
+            //        if (incidentes[i].CalcularSeveridad() < incidentes[j].CalcularSeveridad())
+            //        {
+            //            Incidente aux = incidentes[i];
+            //            incidentes[i] = incidentes[j];
+            //            incidentes[j] = aux;
+            //        }
+            //    }
+            //}
+
+            //return View(incidentes);
         }
 
         // Busca una cuenta dentro de las cuentas de una persona.
         
         private Cuenta BuscarCuentaDePersona(Persona persona, int cuentaId)
         {
-            foreach (Cuenta cuenta in persona.Cuenta)
+            foreach (Cuenta cuenta in persona.Cuentas)
             {
                 if (cuenta.Id == cuentaId)
                 {

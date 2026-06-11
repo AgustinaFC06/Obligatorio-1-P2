@@ -338,23 +338,50 @@ namespace Biblioteca_de_Clase
                 throw new Exception("Ya existe ese incidente");
             }
         }
-
-        private void AltaCuenta(Cuenta cuenta)
+            private void AltaCuenta(Cuenta cuenta)
         {
-            if (cuenta != null)
+            
+            if (cuenta == null)
             {
-                cuenta.Validar();
+                throw new Exception("El objeto cuenta no puede ser nulo.");
+            }
 
-                if (!_cuentas.Contains(cuenta))
+           
+            bool yaExiste = false;
+            foreach (Cuenta c in _cuentas)
+            {
+                if (c.Id == cuenta.Id)
                 {
-                    _cuentas.Add(cuenta);///// seguir ACAAAAAAAAAAAAAAAAAAAAAAAAAA yoooooooooooooooooo
-                }
-                else
-                {
-                    throw new Exception("Ya existe esa cuenta");
+                    yaExiste = true;
+                    break; 
                 }
             }
+
+            
+            if (!yaExiste)
+            {
+                _cuentas.Add(cuenta); 
+            }
+            else
+            {
+                throw new Exception("Ya existe una cuenta con ese ID.");
+            }
         }
+       // {
+       //     if (cuenta != null)
+       //     {
+       //         cuenta.Validar();
+       //
+       //         if (!_cuentas.Contains(cuenta))
+       //         {
+       //             _cuentas.Add(cuenta);///// seguir ACAAAAAAAAAAAAAAAAAAAAAAAAAA yoooooooooooooooooo
+       //         }
+       //         else
+       //         {
+       //             throw new Exception("Ya existe esa cuenta");
+       //         }
+       //     }
+       // }
 
         private void AltaActivo(Activo activo)
         {
@@ -396,7 +423,7 @@ namespace Biblioteca_de_Clase
         #region Agrgar Cuenta A Persona
         public void AgregarCuentaAPersona(Persona persona, Cuenta cuenta)
         {
-            cuenta.Validar();
+            //cuenta.Validar();
             persona.AgregarCuenta(cuenta);
             _cuentas.Add(cuenta); // Sistema mantiene su lista interna
         }
@@ -408,7 +435,7 @@ namespace Biblioteca_de_Clase
         public void AgregarActivoACuenta(Cuenta cuenta, Activo activo)
         {
             activo.Validar();
-            cuenta.Activo.Add(activo);
+            cuenta.Activos.Add(activo);
             _activos.Add(activo); // Sistema mantiene su lista interna
         }
         #endregion
@@ -421,9 +448,9 @@ namespace Biblioteca_de_Clase
                 throw new Exception("Datos inválidos para realizar la desasociación.");
             }
 
-            if (cuenta.Activo.Contains(activo)) // Remueve el activo de la lista interna de la cuenta
+            if (cuenta.Activos.Contains(activo)) // Remueve el activo de la lista interna de la cuenta
             {
-                cuenta.Activo.Remove(activo);
+                cuenta.Activos.Remove(activo);
             }
             else
             {

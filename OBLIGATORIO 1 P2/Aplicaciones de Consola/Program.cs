@@ -190,8 +190,10 @@ namespace Aplicaciones_de_Consola
 
                 Console.Write("Ingrese el teléfono: ");
                 string telefono = Console.ReadLine();
+                Console.Write("Ingrese la contraseña: ");
+                string contrasena = Console.ReadLine();
 
-                Persona nueva = new Persona(cedula, nombre, email, telefono);
+                Persona nueva = new Persona(cedula, nombre, email, telefono, contrasena);
                 s.AltaPersona(nueva);
 
                 Console.WriteLine($"\n✓ Persona '{nombre}' agregada correctamente.");

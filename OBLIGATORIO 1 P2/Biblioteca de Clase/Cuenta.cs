@@ -13,7 +13,9 @@ namespace Biblioteca_de_Clase
         //public string Contrasena { get; set; }
         public DateTime FechaUltimoCambioPassword { get; set; }
         private List<Activo> _activos { get; } = new List<Activo>();
-        public List<Activo> Activos { get { return _activos; } }/// nombre d ela listas en plural 
+        public List<Activo> Activos { get { return _activos; } } /// nombre de la listas en plural
+        // Alias para mantener compatibilidad con el resto del código que usa `cuenta.Activo`
+        public List<Activo> Activo { get { return _activos; } }
 
 
         #endregion
@@ -58,6 +60,15 @@ namespace Biblioteca_de_Clase
         {
             return obj is Cuenta cuenta &&
                 Id == cuenta.Id;
+        }
+        #endregion
+
+        #region IValidable
+        public void Validar()
+        {
+            // Validación mínima: la cuenta es válida por estructura.
+            // Si en el futuro se requiere validar contraseña u otros datos,
+            // implementar las comprobaciones correspondientes aquí.
         }
         #endregion
 
