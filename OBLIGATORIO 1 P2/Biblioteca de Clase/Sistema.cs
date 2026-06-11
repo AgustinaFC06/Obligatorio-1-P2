@@ -475,10 +475,8 @@ namespace Biblioteca_de_Clase
                     }
                 }
 
-                // 2. ¡HACEMOS LA MAGIA!
-                // .Sort() buscará automáticamente el CompareTo que pusiste en la clase Activo
-                // y los ordenará de forma ascendente.
-                activos.Sort();
+                
+                activos.Sort();// llama a ComerTo que esta en activos trae list aodenada de forma acendente
             }
 
             return activos;
