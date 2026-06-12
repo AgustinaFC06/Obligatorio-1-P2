@@ -91,6 +91,7 @@ namespace Biblioteca_de_Clase
         }
 
         #endregion
+
         #region CompareTo  
         public int CompareTo(Activo? other)
         {

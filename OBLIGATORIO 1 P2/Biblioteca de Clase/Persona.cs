@@ -92,10 +92,10 @@ namespace Biblioteca_de_Clase
                 throw new Exception("No puede ser vacio");
             }
         }
-        
 
+        #endregion
 
-
+        #region AgregarCuenta
         public void AgregarCuenta(Cuenta cuenta) //??????????
         {
             if(cuenta != null && !_cuentas.Contains(cuenta))
@@ -103,7 +103,9 @@ namespace Biblioteca_de_Clase
                 _cuentas.Add(cuenta); 
             }
         }
+        #endregion
 
+        #region ToString 
         public override string ToString()
         {
             return $"[{Id}] {Nombre} - CI: {Cedula} - {Email} - Tel: {Telefono}";
@@ -147,4 +149,4 @@ namespace Biblioteca_de_Clase
 
     }
 }
-    
+  

@@ -334,7 +334,7 @@ namespace Biblioteca_de_Clase
 
         #endregion
 
-        #region 4b Mostrar inciddente de una persona
+        #region Buscar
         public Persona BuscarPersonaPorCedula(int cedula)
         {
             foreach (Persona p in _personas)
@@ -380,6 +380,9 @@ namespace Biblioteca_de_Clase
 
             return null;
         }
+        #endregion
+
+        #region 4b Mostrar inciddente de una persona
 
         public List<Incidente> ListarIncidentesPersona(int cedula)
         {
@@ -540,6 +543,7 @@ namespace Biblioteca_de_Clase
             return null;
         }
         #endregion
+
         #region Agrgar Cuenta A Persona
         public void AgregarCuentaAPersona(Persona persona, Cuenta cuenta)
         {
@@ -579,6 +583,7 @@ namespace Biblioteca_de_Clase
         }
 
         #endregion
+
         #region Ordenar Activos por Critticidad
         public List<Activo> ListarActivosDePersonaOrdenados(int cedula)
         {

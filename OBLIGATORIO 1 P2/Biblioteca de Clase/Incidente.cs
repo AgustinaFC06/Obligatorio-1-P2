@@ -42,7 +42,7 @@ namespace Biblioteca_de_Clase
 
         #endregion
 
-        #region METODOS
+        #region Validar
 
         public virtual void Validar()
         {
@@ -77,8 +77,9 @@ namespace Biblioteca_de_Clase
                 throw new Exception("Probabilidad debe estar entre 1 y 5");
             }
         }
+        #endregion
 
-
+        #region Calcular Severidad 
         public virtual double CalcularSeveridad()
         {
             double severidad = (Impacto * 12) + (Probabilidad * 8); // Formula base
@@ -86,7 +87,8 @@ namespace Biblioteca_de_Clase
             
         }
         #endregion
-        #region
+
+        #region CompareTo
         public int CompareTo(Incidente? other)
         {
             if (other == null) return 1; // Un incidente siempre es mayor que null
@@ -101,6 +103,7 @@ namespace Biblioteca_de_Clase
                 Id == incidente.Id;
         }
         #endregion
+
         #region ToString
         public override string ToString()
         {
