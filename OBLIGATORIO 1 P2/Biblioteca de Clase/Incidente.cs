@@ -8,6 +8,7 @@ namespace Biblioteca_de_Clase
 
     public abstract class Incidente : IValidable, IComparable<Incidente>
     {
+        #region GET and SET
         public int Id { get; set; }
         public static int UltimoId { get; set; } = 1;
         public DateTime FechaReporte { get; set; }
