@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Biblioteca_de_Clase
 {
-    public class Activo : IValidable
+    public class Activo : IValidable, IComparable<Activo>
     {
         #region GET and SET
         public int Id { get; set; }
@@ -37,7 +37,8 @@ namespace Biblioteca_de_Clase
 
         #region VALIDACIONES
         public void Validar()
-        {   ValidarNombre();
+        {
+            ValidarNombre();
             ValidarCriticidad();
         }
 
@@ -90,6 +91,16 @@ namespace Biblioteca_de_Clase
         }
 
         #endregion
+        #region CompareTo  
+        public int CompareTo(Activo? other)
+        {
+            
+            if (other == null) return 1; // Un activo existente siempre es mayor que un objeto nulo
+
+            return this.CrearAlfanumerico().CompareTo(other.CrearAlfanumerico()); //Acendente por codigo de activo
+        }
+        #endregion
+
 
     }
 }

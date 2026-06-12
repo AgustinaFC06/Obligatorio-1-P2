@@ -85,6 +85,59 @@ namespace Biblioteca_de_Clase
 
         }
 
+        private void PrecargarCuentas()
+        {
+            // C1: Usa el constructor de (bool mfa, DateTime fecha)
+            // Pasamos el booleano de MFA y la fecha manual ficticia al final
+            Cuenta c1 = new Cuenta(true, new DateTime(2024, 5, 15, 10, 30, 0));
+            _personas[0].AgregarCuenta(c1);
+            AltaCuenta(c1);
+
+            // C2: MFA en false y su fecha inventada
+            Cuenta c2 = new Cuenta(false, new DateTime(2025, 11, 20, 16, 45, 0));
+            _personas[1].AgregarCuenta(c2);
+            AltaCuenta(c2);
+
+            Cuenta c3 = new Cuenta(true, new DateTime(2026, 1, 5, 9, 0, 0));
+            _personas[2].AgregarCuenta(c3);
+            AltaCuenta(c3);
+
+            Cuenta c4 = new Cuenta(false, new DateTime(2023, 7, 14, 23, 15, 0));
+            _personas[3].AgregarCuenta(c4);
+            AltaCuenta(c4);
+
+            Cuenta c5 = new Cuenta(true, new DateTime(2025, 8, 30, 14, 0, 0));
+            _personas[4].AgregarCuenta(c5);
+            AltaCuenta(c5);
+
+            Cuenta c6 = new Cuenta(false, new DateTime(2025, 8, 30, 14, 0, 0));
+            _personas[5].AgregarCuenta(c6);
+            AltaCuenta(c6);
+
+            Cuenta c7 = new Cuenta(true, new DateTime(2002, 6, 15, 14, 0, 0));
+            _personas[6].AgregarCuenta(c7);
+            AltaCuenta(c7);
+
+            Cuenta c8 = new Cuenta(true, new DateTime(1991, 7, 6, 22, 0, 0));
+            _personas[7].AgregarCuenta(c8);
+            AltaCuenta(c8);
+
+            Cuenta c9 = new Cuenta(false, new DateTime(1990, 2, 8, 14, 0, 0));
+            _personas[8].AgregarCuenta(c9);
+            AltaCuenta(c9);
+
+            Cuenta c10 = new Cuenta(true, new DateTime(2026, 06, 11, 21, 09, 0));
+            _personas[9].AgregarCuenta(c10);
+            AltaCuenta(c10);
+
+            Cuenta c11 = new Cuenta(true, new DateTime(2016, 12, 18, 20, 49, 0));
+            _personas[10].AgregarCuenta(c11);
+            AltaCuenta(c11);
+
+            Cuenta c12 = new Cuenta(true, DateTime.Now);
+            _personas[11].AgregarCuenta(c12);
+            AltaCuenta(c12);
+        }
 
         private void PrecargarActivos()
         {
@@ -515,7 +568,29 @@ namespace Biblioteca_de_Clase
         }
 
         #endregion
+        #region Ordenar Activos por Critticidad
+        public List<Activo> ObtenerActivosOrdenadosPorPersona(Persona persona)
+        {
+            List<Activo> activos = new List<Activo>();
 
+            if (persona != null)
+            {
+                // 1. Recopilamos todos los activos de las cuentas de la persona
+                foreach (Cuenta cuenta in persona.Cuentas)
+                {
+                    foreach (Activo activo in cuenta.Activos)
+                    {
+                        activos.Add(activo);
+                    }
+                }
+
+                
+                activos.Sort();// llama a ComerTo que esta en activos trae list aodenada de forma acendente
+            }
+
+            return activos;
+        }
+        #endregion
     }
 
 }

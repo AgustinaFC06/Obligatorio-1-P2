@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Biblioteca_de_Clase
 {
-    public class Cuenta : IValidable
+    public class Cuenta 
     {
         #region GET and SET
         public int Id { get; set; }
@@ -18,10 +18,10 @@ namespace Biblioteca_de_Clase
         #endregion
 
         #region CONSTRUCTORES
-        public Cuenta(DateTime fechaPassword)
+        public Cuenta(DateTime fechaUltimoCambioPassword)
         {
             Id = UltimoId++;
-            FechaUltimoCambioPassword = fechaPassword; //// fechas ponesrlas a mano para que no queden todas con la misma fecha 
+            FechaUltimoCambioPassword = fechaUltimoCambioPassword; //// fechas ponesrlas a mano para que no queden todas con la misma fecha 
 
         }
 
