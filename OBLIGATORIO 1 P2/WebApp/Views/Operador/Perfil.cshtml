@@ -13,7 +13,7 @@
         foreach (Cuenta cuenta in Model.Cuentas)
         {
             cantidadCuentas++;
-            cantidadActivos += cuenta.Activo?.Count ?? 0;
+            cantidadActivos += cuenta.Activos?.Count ?? 0;
         }
     }
 }
@@ -92,7 +92,7 @@
                                         <td>#@cuenta.Id</td>
                                         <td>@(cuenta.Mfa ? "Activado" : "Desactivado")</td>
                                         <td>@cuenta.FechaUltimoCambioPassword.ToString("dd/MM/yyyy HH:mm")</td>
-                                        <td>@(cuenta.Activo != null ? cuenta.Activo.Count : 0)</td>
+                                        <td>@(cuenta.Activos != null ? cuenta.Activos.Count : 0)</td>
                                     </tr>
                                 }
                             </tbody>

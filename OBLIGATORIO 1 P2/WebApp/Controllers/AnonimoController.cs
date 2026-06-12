@@ -83,7 +83,7 @@ namespace WebApp.Controllers
                                            
                 s.AltaPersona(p);
 
-                Cuenta nuevaCuenta = new Cuenta(false, Contrasena);
+                Cuenta nuevaCuenta = new Cuenta(false, DateTime.Now);
                 s.AgregarCuentaAPersona(p, nuevaCuenta);
                 //p.AgregarCuenta(nuevaCuenta); se va a agregar a la persona desde el sistema, no desde la persona misma, para mantener la lógica de negocio en un solo lugar
                                                

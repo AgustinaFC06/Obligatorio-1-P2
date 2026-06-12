@@ -157,7 +157,7 @@ namespace WebApp.Controllers
 
             try
             {
-                Cuenta cuenta = new Cuenta(mfa, contrasena);
+                Cuenta cuenta = new Cuenta(mfa, DateTime.Now);
                 s.AgregarCuentaAPersona(persona, cuenta);
                 //persona.AgregarCuenta(cuenta); // No es necesario porque el sistema ya lo hace al agregar la cuenta a la persona.
 
@@ -350,7 +350,7 @@ namespace WebApp.Controllers
         // Se usa para poder desasociarlo desde la vista del administrador.
         private Activo BuscarActivoDeCuenta(Cuenta cuenta, int activoId)
         {
-            foreach (Activo activo in cuenta.Activo)
+            foreach (Activo activo in cuenta.Activos)
             {
                 if (activo.Id == activoId)
                 {
