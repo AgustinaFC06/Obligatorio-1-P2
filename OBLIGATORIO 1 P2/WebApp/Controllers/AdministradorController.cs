@@ -145,7 +145,7 @@ namespace WebApp.Controllers
 
             try
             {
-                Cuenta cuenta = new Cuenta(vm.Mfa);
+                Cuenta cuenta = new Cuenta(vm.Mfa, vm.FechaUltimoCambioPassword);
                 s.AgregarCuentaAPersona(persona, cuenta);
 
                 TempData["Mensaje"] = "Cuenta creada correctamente.";

@@ -25,11 +25,11 @@ namespace Biblioteca_de_Clase
 
         }
 
-        public Cuenta(bool mfa)
+        public Cuenta(bool mfa, DateTime fechaUltimoCambioPassword)
         {
             Id = UltimoId++;
             Mfa = mfa;
-            FechaUltimoCambioPassword = DateTime.Now;
+            FechaUltimoCambioPassword = fechaUltimoCambioPassword;
         }
 
 

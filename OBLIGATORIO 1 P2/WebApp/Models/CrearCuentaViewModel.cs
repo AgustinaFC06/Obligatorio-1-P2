@@ -5,5 +5,6 @@ namespace WebApp.Models
         public int Cedula { get; set; }
         public string NombrePersona { get; set; } = "";
         public bool Mfa { get; set; }
+        public DateTime FechaUltimoCambioPassword { get; set; }
     }
 }

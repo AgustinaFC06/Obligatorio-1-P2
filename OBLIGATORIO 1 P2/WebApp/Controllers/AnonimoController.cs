@@ -68,7 +68,7 @@ namespace WebApp.Controllers
 
                 s.AltaPersona(persona);
 
-                Cuenta nuevaCuenta = new Cuenta(false);
+                Cuenta nuevaCuenta = new Cuenta(false, DateTime.Now);
                 s.AgregarCuentaAPersona(persona, nuevaCuenta);
 
                 HttpContext.Session.SetString("UsuarioEmail", persona.Email);
