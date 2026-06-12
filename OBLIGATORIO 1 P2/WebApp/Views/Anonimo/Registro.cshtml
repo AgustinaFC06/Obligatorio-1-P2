@@ -1,7 +1,7 @@
-﻿@model Biblioteca_de_Clase.Persona // agregue esto para que se conserven los datos escritos, y lo referencio en los value de  cedula nombre email telefono
+@model WebApp.Models.RegistroViewModel
 
 @{
-    Layout = null; // Mantenemos la pantalla sin el menú del sistema
+    Layout = null;
 }
 
 <!DOCTYPE html>
@@ -9,7 +9,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Crear Cuenta - GestiónSegura</title>
+    <title>Crear Cuenta - GestionSegura</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
@@ -27,7 +27,7 @@
 
         <form method="post" novalidate>
             <div class="mb-3">
-                <label class="form-label font-weight-bold">Cédula de Identidad:</label>
+                <label class="form-label font-weight-bold">Cedula de Identidad:</label>
                 <input type="number" name="Cedula" class="form-control" value="@Model?.Cedula" />
             </div>
 
@@ -37,25 +37,25 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label font-weight-bold">Correo Electrónico:</label>
+                <label class="form-label font-weight-bold">Correo Electronico:</label>
                 <input type="email" name="Email" class="form-control" value="@Model?.Email" />
             </div>
 
             <div class="mb-3">
-                <label class="form-label font-weight-bold">Teléfono:</label>
+                <label class="form-label font-weight-bold">Telefono:</label>
                 <input type="text" name="Telefono" class="form-control" value="@Model?.Telefono" />
             </div>
 
             <div class="mb-4">
-                <label class="form-label font-weight-bold">Contraseña:</label>
-                <input type="password" name="Contrasena" class="form-control"  />
+                <label class="form-label font-weight-bold">Contrasena:</label>
+                <input type="password" name="Contrasena" class="form-control" />
             </div>
 
             <button type="submit" class="btn btn-primary w-100 mb-3">Registrarse</button>
         </form>
 
         <div class="text-center">
-            <a href="/Anonimo/Login" class="text-decoration-none">¿Ya tenés cuenta? Volver al Login</a>
+            <a href="/Anonimo/Login" class="text-decoration-none">Ya tenes cuenta? Volver al Login</a>
         </div>
     </div>
 

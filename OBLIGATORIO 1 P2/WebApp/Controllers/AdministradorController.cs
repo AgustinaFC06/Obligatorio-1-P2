@@ -1,5 +1,6 @@
-﻿using Biblioteca_de_Clase;
+using Biblioteca_de_Clase;
 using Microsoft.AspNetCore.Mvc;
+using WebApp.Models;
 
 namespace WebApp.Controllers
 {
@@ -7,16 +8,13 @@ namespace WebApp.Controllers
     {
         Sistema s = Sistema.GetInstancia();
 
-        // Verifica si el usuario logueado tiene rol de administrador.
-        // Se usa en todas las acciones para proteger las pantallas del admin.
+        // verifico si el usuario logueado es admin
         private bool EsAdmin()
         {
             return HttpContext.Session.GetString("UsuarioRol") == "ADMIN";
         }
 
-        // Pantalla inicial del administrador.
-        // Si el usuario no es admin, lo manda al login.
-        // Si es admin, lo redirige directamente al listado de personas.
+        // si es admin lo mando al listado de personas
         public IActionResult Index()
         {
             if (!EsAdmin())
@@ -27,8 +25,7 @@ namespace WebApp.Controllers
             return RedirectToAction("Personas");
         }
 
-        // Lista todas las personas del sistema.
-        // Desde esta vista el admin puede entrar a ver las cuentas de cada persona.
+        // muestro todas las personas del sistema
         public IActionResult Personas()
         {
             if (!EsAdmin())
@@ -40,34 +37,13 @@ namespace WebApp.Controllers
             return View(personas);
         }
 
-        // Muestra el perfil del administrador logueado.
-        // Usa la cedula guardada en Session para buscar la Persona correspondiente.
+        // mando al perfil comun que esta en home
         public IActionResult Perfil()
         {
-            if (!EsAdmin())
-            {
-                return RedirectToAction("Login", "Anonimo");
-            }
-
-            int? cedula = HttpContext.Session.GetInt32("UsuarioCedula");
-
-            if (cedula == null)
-            {
-                return RedirectToAction("Login", "Anonimo");
-            }
-
-            Persona persona = s.BuscarPersonaPorCedula(cedula.Value);
-
-            if (persona == null)
-            {
-                return RedirectToAction("Login", "Anonimo");
-            }
-
-            return View("~/Views/Operador/Perfil.cshtml", persona);
+            return RedirectToAction("Perfil", "Home");
         }
 
-        // Muestra las cuentas asociadas a una persona.
-        // Recibe la cedula porque es el dato que identifica a la Persona.
+        // muestro las cuentas de una persona
         public IActionResult Cuentas(int cedula)
         {
             if (!EsAdmin())
@@ -86,8 +62,7 @@ namespace WebApp.Controllers
             return View(persona);
         }
 
-        // Muestra los activos asociados a una cuenta puntual de una persona.
-        // Se recibe cedula para encontrar la persona y cuentaId para encontrar la cuenta.
+        // muestro los activos de una cuenta
         public IActionResult ActivosCuenta(int cedula, int cuentaId)
         {
             if (!EsAdmin())
@@ -103,7 +78,7 @@ namespace WebApp.Controllers
                 return RedirectToAction("Personas");
             }
 
-            Cuenta cuenta = BuscarCuentaDePersona(persona, cuentaId);
+            Cuenta cuenta = s.BuscarCuentaDePersona(persona, cuentaId);
 
             if (cuenta == null)
             {
@@ -115,8 +90,7 @@ namespace WebApp.Controllers
             return View(cuenta);
         }
 
-        // Muestra el formulario para crear una nueva cuenta para una persona.
-        // La persona debe existir para poder asignarle la cuenta.
+        // muestro el formulario para crear cuenta
         [HttpGet]
         public IActionResult CrearCuenta(int cedula)
         {
@@ -133,21 +107,29 @@ namespace WebApp.Controllers
                 return RedirectToAction("Personas");
             }
 
-            ViewBag.Persona = persona;
-            return View();
+            if (persona.Rol != TipoUsuario.Operador)
+            {
+                TempData["Error"] = "Solo se pueden crear cuentas para operadores.";
+                return RedirectToAction("Cuentas", new { cedula = cedula });
+            }
+
+            CrearCuentaViewModel vm = new CrearCuentaViewModel();
+            vm.Cedula = persona.Cedula;
+            vm.NombrePersona = persona.Nombre;
+
+            return View(vm);
         }
 
-        // Procesa el formulario de creacion de cuenta.
-        // Crea la cuenta y la asocia a la Persona seleccionada.
+        // creo la cuenta y la asocio a la persona
         [HttpPost]
-        public IActionResult CrearCuenta(int cedula, bool mfa, string contrasena)
+        public IActionResult CrearCuenta(CrearCuentaViewModel vm)
         {
             if (!EsAdmin())
             {
                 return RedirectToAction("Login", "Anonimo");
             }
 
-            Persona persona = s.BuscarPersonaPorCedula(cedula);
+            Persona persona = s.BuscarPersonaPorCedula(vm.Cedula);
 
             if (persona == null)
             {
@@ -155,25 +137,29 @@ namespace WebApp.Controllers
                 return RedirectToAction("Personas");
             }
 
+            if (persona.Rol != TipoUsuario.Operador)
+            {
+                TempData["Error"] = "Solo se pueden crear cuentas para operadores.";
+                return RedirectToAction("Cuentas", new { cedula = vm.Cedula });
+            }
+
             try
             {
-                Cuenta cuenta = new Cuenta(mfa, contrasena);
+                Cuenta cuenta = new Cuenta(vm.Mfa);
                 s.AgregarCuentaAPersona(persona, cuenta);
-                //persona.AgregarCuenta(cuenta); // No es necesario porque el sistema ya lo hace al agregar la cuenta a la persona.
 
                 TempData["Mensaje"] = "Cuenta creada correctamente.";
-                return RedirectToAction("Cuentas", new { cedula = cedula });
+                return RedirectToAction("Cuentas", new { cedula = vm.Cedula });
             }
             catch (Exception ex)
             {
-                ViewBag.Persona = persona;
                 ViewBag.Error = ex.Message;
-                return View();
+                vm.NombrePersona = persona.Nombre;
+                return View(vm);
             }
         }
 
-        // Muestra el formulario para crear un activo dentro de una cuenta.
-        // Primero se valida que existan la persona y la cuenta.
+        // muestro el formulario para crear activo
         [HttpGet]
         public IActionResult CrearActivo(int cedula, int cuentaId)
         {
@@ -190,7 +176,7 @@ namespace WebApp.Controllers
                 return RedirectToAction("Personas");
             }
 
-            Cuenta cuenta = BuscarCuentaDePersona(persona, cuentaId);
+            Cuenta cuenta = s.BuscarCuentaDePersona(persona, cuentaId);
 
             if (cuenta == null)
             {
@@ -198,22 +184,24 @@ namespace WebApp.Controllers
                 return RedirectToAction("Cuentas", new { cedula = cedula });
             }
 
-            ViewBag.Persona = persona;
-            ViewBag.Cuenta = cuenta;
-            return View();
+            CrearActivoViewModel vm = new CrearActivoViewModel();
+            vm.Cedula = persona.Cedula;
+            vm.CuentaId = cuenta.Id;
+            vm.NombrePersona = persona.Nombre;
+
+            return View(vm);
         }
 
-        // Procesa el formulario de creacion de activo.
-        // Crea el activo y lo agrega automaticamente a la cuenta seleccionada.
+        // creo el activo y lo agrego a la cuenta
         [HttpPost]
-        public IActionResult CrearActivo(int cedula, int cuentaId, string nombre, TipoActivo tipoActivo, int criticidad, bool backup)
+        public IActionResult CrearActivo(CrearActivoViewModel vm)
         {
             if (!EsAdmin())
             {
                 return RedirectToAction("Login", "Anonimo");
             }
 
-            Persona persona = s.BuscarPersonaPorCedula(cedula);
+            Persona persona = s.BuscarPersonaPorCedula(vm.Cedula);
 
             if (persona == null)
             {
@@ -221,34 +209,31 @@ namespace WebApp.Controllers
                 return RedirectToAction("Personas");
             }
 
-            Cuenta cuenta = BuscarCuentaDePersona(persona, cuentaId);
+            Cuenta cuenta = s.BuscarCuentaDePersona(persona, vm.CuentaId);
 
             if (cuenta == null)
             {
                 TempData["Error"] = "No se encontro la cuenta.";
-                return RedirectToAction("Cuentas", new { cedula = cedula });
+                return RedirectToAction("Cuentas", new { cedula = vm.Cedula });
             }
 
             try
             {
-                Activo activo = new Activo(nombre, tipoActivo, criticidad, backup);
+                Activo activo = new Activo(vm.Nombre, vm.TipoActivo, vm.Criticidad, vm.Backup);
                 s.AgregarActivoACuenta(cuenta, activo);
-                //cuenta.Activo.Add(activo); // No es necesario porque el sistema ya lo hace al agregar el activo a la cuenta.
 
                 TempData["Mensaje"] = "Activo creado correctamente.";
-                return RedirectToAction("ActivosCuenta", new { cedula = cedula, cuentaId = cuentaId });
+                return RedirectToAction("ActivosCuenta", new { cedula = vm.Cedula, cuentaId = vm.CuentaId });
             }
             catch (Exception ex)
             {
-                ViewBag.Persona = persona;
-                ViewBag.Cuenta = cuenta;
                 ViewBag.Error = ex.Message;
-                return View();
+                vm.NombrePersona = persona.Nombre;
+                return View(vm);
             }
         }
 
-        // Desasocia un activo de una cuenta.
-        // No borra el activo del sistema completo, solamente lo quita de esa cuenta.
+        // desasocio un activo de una cuenta
         [HttpPost]
         public IActionResult DesasociarActivo(int cedula, int cuentaId, int activoId)
         {
@@ -265,15 +250,15 @@ namespace WebApp.Controllers
                 return RedirectToAction("Personas");
             }
 
-            Cuenta cuenta = BuscarCuentaDePersona(persona, cuentaId);
+            Cuenta cuenta = s.BuscarCuentaDePersona(persona, cuentaId);
 
             if (cuenta == null)
             {
                 TempData["Error"] = "No se encontro la cuenta.";
-                return RedirectToAction("Cuentas", new { cedula });
+                return RedirectToAction("Cuentas", new { cedula = cedula });
             }
 
-            Activo activo = BuscarActivoDeCuenta(cuenta, activoId);
+            Activo activo = s.BuscarActivoDeCuenta(cuenta, activoId);
 
             if (activo != null)
             {
@@ -284,81 +269,42 @@ namespace WebApp.Controllers
                 }
                 catch (Exception ex)
                 {
-                    
                     TempData["Error"] = ex.Message;
                 }
-                // cuenta.Activo.Remove(activo);
-                // TempData["Mensaje"] = "Activo desasociado correctamente.";
             }
             else
             {
                 TempData["Error"] = "No se encontro el activo.";
             }
 
-            return RedirectToAction("ActivosCuenta", new { cedula, cuentaId });
+            return RedirectToAction("ActivosCuenta", new { cedula = cedula, cuentaId = cuentaId });
         }
 
-        // Lista todos los incidentes del sistema.
-        // Antes de enviarlos a la vista, los ordena por severidad descendente.
+        // muestro los incidentes ordenados por severidad
         public IActionResult Incidentes()
         {
-            List<Incidente> incidentes = new List<Incidente>(s.Incidentes);
-
-            // .Sort() leerá el CompareTo que acabamos de agregar y ordenará todo de mayor a menor
-            incidentes.Sort();
-
-            return View(incidentes);
-            //if (!EsAdmin())
-            //{
-            //    return RedirectToAction("Login", "Anonimo");
-            //}
-            //
-            //List<Incidente> incidentes = s.Incidentes;
-            //
-            //for (int i = 0; i < incidentes.Count - 1; i++)
-            //{
-            //    for (int j = i + 1; j < incidentes.Count; j++)
-            //    {
-            //        if (incidentes[i].CalcularSeveridad() < incidentes[j].CalcularSeveridad())
-            //        {
-            //            Incidente aux = incidentes[i];
-            //            incidentes[i] = incidentes[j];
-            //            incidentes[j] = aux;
-            //        }
-            //    }
-            //}
-
-            //return View(incidentes);
-        }
-
-        // Busca una cuenta dentro de las cuentas de una persona.
-        
-        private Cuenta BuscarCuentaDePersona(Persona persona, int cuentaId)
-        {
-            foreach (Cuenta cuenta in persona.Cuentas)
+            if (!EsAdmin())
             {
-                if (cuenta.Id == cuentaId)
-                {
-                    return cuenta;
-                }
+                return RedirectToAction("Login", "Anonimo");
             }
 
-            return null;
-        }
+            List<Incidente> incidentes = s.ListarIncidentesOrdenadosPorSeveridad();
+            List<IncidenteListadoViewModel> lista = new List<IncidenteListadoViewModel>();
 
-        // Busca un activo dentro de una cuenta.
-        // Se usa para poder desasociarlo desde la vista del administrador.
-        private Activo BuscarActivoDeCuenta(Cuenta cuenta, int activoId)
-        {
-            foreach (Activo activo in cuenta.Activo)
+            foreach (Incidente incidente in incidentes)
             {
-                if (activo.Id == activoId)
-                {
-                    return activo;
-                }
+                IncidenteListadoViewModel vm = new IncidenteListadoViewModel();
+                vm.Id = incidente.Id;
+                vm.FechaReporte = incidente.FechaReporte;
+                vm.Estado = incidente.Estado;
+                vm.CodigoActivo = incidente.Activo != null ? incidente.Activo.CrearAlfanumerico() : "Sin activo";
+                vm.Severidad = incidente.CalcularSeveridad();
+
+                lista.Add(vm);
             }
 
-            return null;
+            return View(lista);
         }
+
     }
 }

@@ -1,16 +1,26 @@
-﻿@using Biblioteca_de_Clase
-@model List<Activo>
+@using Biblioteca_de_Clase
+@model IEnumerable<Activo>
 
 @{
     ViewData["Title"] = "Mis Activos";
+
+    bool tieneActivos = false;
+    if (Model != null)
+    {
+        foreach (Activo activo in Model)
+        {
+            tieneActivos = true;
+            break;
+        }
+    }
 }
 
 <h2>Mis Activos</h2>
 
-@if (Model == null || Model.Count == 0)
+@if (Model == null || !tieneActivos)
 {
     <div class="alert alert-info">
-        No tenés activos asociados.
+        No tenes activos asociados.
     </div>
 }
 else
@@ -18,7 +28,7 @@ else
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Código</th>
+                <th>Codigo</th>
                 <th>Nombre</th>
                 <th>Tipo</th>
                 <th>Criticidad</th>
@@ -33,7 +43,7 @@ else
                     <td>@activo.Nombre</td>
                     <td>@activo.TipoActivo</td>
                     <td>@activo.Criticidad</td>
-                    <td>@(activo.Backup ? "Sí" : "No")</td>
+                    <td>@(activo.Backup ? "Si" : "No")</td>
                 </tr>
             }
         </tbody>

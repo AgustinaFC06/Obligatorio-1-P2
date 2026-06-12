@@ -6,7 +6,7 @@ namespace Biblioteca_de_Clase
 {
     #region GET and SET
 
-    public abstract class Incidente : IValidable, IComparable<Incidente>
+    public abstract class Incidente : IValidable
     {
         public int Id { get; set; }
         public static int UltimoId { get; set; } = 1;
@@ -85,12 +85,6 @@ namespace Biblioteca_de_Clase
             return severidad;
             
         }
-        public int CompareTo(Incidente? other)
-        {
-            if (other == null) return 1; // Un incidente siempre es mayor que null
-            return -CalcularSeveridad().CompareTo(other.CalcularSeveridad());
-        }
-
         #endregion
 
         #region   Equals

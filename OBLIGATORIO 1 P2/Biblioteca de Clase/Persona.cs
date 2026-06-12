@@ -134,7 +134,7 @@ namespace Biblioteca_de_Clase
                 {                    
                     foreach (Incidente i in todosLosIncidentes)
                     {                        
-                        if (i.Activo != null && i.Activo.Equals(a))   //Persona conoce sus propios y filtra sus propios incidentes
+                        if (i.Activo != null && i.Activo.Equals(a))   // Persona filtra sus propios incidentes
                         {
                             listRet.Add(i);
                         }

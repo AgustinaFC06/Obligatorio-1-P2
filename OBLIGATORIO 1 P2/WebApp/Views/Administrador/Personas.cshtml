@@ -1,13 +1,23 @@
-﻿@using Biblioteca_de_Clase
-@model List<Persona>
+@using Biblioteca_de_Clase
+@model IEnumerable<Persona>
 
 @{
     ViewData["Title"] = "Personas";
+
+    bool tienePersonas = false;
+    if (Model != null)
+    {
+        foreach (Persona persona in Model)
+        {
+            tienePersonas = true;
+            break;
+        }
+    }
 }
 
 <h2>Personas</h2>
 
-@if (Model == null || Model.Count == 0)
+@if (Model == null || !tienePersonas)
 {
     <div class="alert alert-info">
         No hay personas registradas.
@@ -37,9 +47,9 @@ else
                     <td>@persona.Rol</td>
                     <td>
                         <a class="btn btn-primary btn-sm"
-                               asp-controller="Administrador"
-                               asp-action="Cuentas"
-                               asp-route-cedula="@persona.Cedula">
+                           asp-controller="Administrador"
+                           asp-action="Cuentas"
+                           asp-route-cedula="@persona.Cedula">
                             Ver cuentas
                         </a>
                     </td>

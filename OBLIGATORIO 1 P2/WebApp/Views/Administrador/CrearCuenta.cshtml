@@ -1,12 +1,11 @@
-﻿@model Biblioteca_de_Clase.Cuenta
+@model WebApp.Models.CrearCuentaViewModel
 
 @{
     ViewData["Title"] = "Crear Nueva Cuenta";
-    var persona = ViewBag.Persona as Biblioteca_de_Clase.Persona;
 }
 
-<h2>Crear Cuenta para @persona?.Nombre</h2>
-<p><strong>Cédula del Propietario:</strong> @persona?.Cedula</p>
+<h2>Crear Cuenta para @Model.NombrePersona</h2>
+<p><strong>Cedula del Propietario:</strong> @Model.Cedula</p>
 
 @if (ViewBag.Error != null)
 {
@@ -17,26 +16,18 @@
 
 <div class="row">
     <div class="col-md-6">
-        @* Formulario POST que envía los datos correctos al Controlador *@
         <form asp-action="CrearCuenta" asp-controller="Administrador" method="post">
-            
-            @* CRUCIAL: Este input hidden asegura que la cédula viaje al HttpPost y no se pierda *@
-            <input type="hidden" name="cedula" value="@persona?.Cedula" />
-
-            <div class="form-group mb-3">
-                <label class="form-label">Contraseña de la Cuenta:</label>
-                <input type="password" name="contrasena" class="form-control" required placeholder="Ingrese la contraseña inicial" />
-            </div>
+            <input type="hidden" name="Cedula" value="@Model.Cedula" />
+            <input type="hidden" name="NombrePersona" value="@Model.NombrePersona" />
 
             <div class="form-check form-switch mb-3">
-                <input class="form-check-input" type="checkbox" name="mfa" id="mfa" value="true" />
-                <label class="form-check-label" for="mfa">Habilitar Multi-Factor Authentication (MFA)</label>
-                @* Truco de ASP.NET para los booleanos en formularios estándar *@
-                <input type="hidden" name="mfa" value="false" />
+                <input class="form-check-input" type="checkbox" name="Mfa" id="mfa" value="true" />
+                <label class="form-check-label" for="mfa">Habilitar MFA</label>
+                <input type="hidden" name="Mfa" value="false" />
             </div>
 
             <button type="submit" class="btn btn-success">Guardar Cuenta</button>
-            <a asp-action="Cuentas" asp-route-cedula="@persona?.Cedula" class="btn btn-secondary">Cancelar</a>
+            <a asp-action="Cuentas" asp-route-cedula="@Model.Cedula" class="btn btn-secondary">Cancelar</a>
         </form>
     </div>
 </div>

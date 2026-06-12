@@ -153,51 +153,51 @@ namespace Biblioteca_de_Clase
 
         private void PrecargarCuentas()
         {
-            Cuenta c1 = new Cuenta(true, "Pass123!");
+            Cuenta c1 = new Cuenta(true);
             _personas[0].AgregarCuenta(c1);
             AltaCuenta(c1);
 
-            Cuenta c2 = new Cuenta(false, "Clave456!");
+            Cuenta c2 = new Cuenta(false);
             _personas[1].AgregarCuenta(c2);
             AltaCuenta(c2);
 
-            Cuenta c3 = new Cuenta(true, "Segura789!");
+            Cuenta c3 = new Cuenta(true);
             _personas[2].AgregarCuenta(c3);
             AltaCuenta(c3);
 
-            Cuenta c4 = new Cuenta(false, "Admin2024!");
+            Cuenta c4 = new Cuenta(false);
             _personas[3].AgregarCuenta(c4);
             AltaCuenta(c4);
 
-            Cuenta c5 = new Cuenta(true, "Empresa001!");
+            Cuenta c5 = new Cuenta(true);
             _personas[4].AgregarCuenta(c5);
             AltaCuenta(c5);
 
-            Cuenta c6 = new Cuenta(false, "Usuario555!");
+            Cuenta c6 = new Cuenta(false);
             _personas[5].AgregarCuenta(c6);
             AltaCuenta(c6);
 
-            Cuenta c7 = new Cuenta(true, "Acceso321!");
+            Cuenta c7 = new Cuenta(true);
             _personas[6].AgregarCuenta(c7);
             AltaCuenta(c7);
 
-            Cuenta c8 = new Cuenta(true, "Sistema789!");
+            Cuenta c8 = new Cuenta(true);
             _personas[7].AgregarCuenta(c8);
             AltaCuenta(c8);
 
-            Cuenta c9 = new Cuenta(false, "Contable11!");
+            Cuenta c9 = new Cuenta(false);
             _personas[8].AgregarCuenta(c9);
             AltaCuenta(c9);
 
-            Cuenta c10 = new Cuenta(true, "Gerencia22!");
+            Cuenta c10 = new Cuenta(true);
             _personas[9].AgregarCuenta(c10);
             AltaCuenta(c10);
 
-            Cuenta c11 = new Cuenta(true, "Contaduria12!");
+            Cuenta c11 = new Cuenta(true);
             _personas[10].AgregarCuenta(c11);
             AltaCuenta(c11);
 
-            Cuenta c12 = new Cuenta(true, "Porteria01!");
+            Cuenta c12 = new Cuenta(true);
             _personas[11].AgregarCuenta(c12);
             AltaCuenta(c12);
 
@@ -207,7 +207,7 @@ namespace Biblioteca_de_Clase
 
         private void PrecargarIncidentes()
         {
-            // 15 Phishing
+            // 15 phishing
             AltaIncidente(new Phishing("email", false, false, new DateTime(2024, 1, 10), _activos[0], "Correo falso suplantando al banco", Estado.Cerrado, 3, 2));
             AltaIncidente(new Phishing("whatsapp", true, false, new DateTime(2024, 2, 14), _activos[1], "Phishing por WhatsApp con link malicioso", Estado.Cerrado, 4, 3));
             AltaIncidente(new Phishing("llamada", false, false, new DateTime(2024, 3, 5), _activos[2], "Llamada falsa solicitando credenciales", Estado.Contenido, 2, 2));
@@ -224,7 +224,7 @@ namespace Biblioteca_de_Clase
             AltaIncidente(new Phishing("email", true, true, new DateTime(2024, 8, 28), _activos[13], "Correo falso simulando ser de dirección", Estado.Abierto, 4, 4));
             AltaIncidente(new Phishing("redes sociales", false, false, new DateTime(2024, 9, 5), _activos[14], "Phishing en LinkedIn a tablet logística", Estado.EnAnalisis, 3, 3));
 
-            // 15 Ransomware
+            // 15 ransomware
             AltaIncidente(new Ransomware(true, false, new DateTime(2024, 1, 20), _activos[0], "Ransomware cifró archivos de ventas", Estado.Cerrado, 5, 4));
             AltaIncidente(new Ransomware(true, true, new DateTime(2024, 2, 8), _activos[1], "Ransomware en laptop gerencia", Estado.Cerrado, 5, 5));
             AltaIncidente(new Ransomware(false, false, new DateTime(2024, 3, 15), _activos[2], "Ransomware en PC recepción", Estado.Contenido, 3, 2));
@@ -292,6 +292,42 @@ namespace Biblioteca_de_Clase
             return null;
         }
 
+        public Cuenta BuscarCuentaDePersona(Persona persona, int cuentaId)
+        {
+            if (persona == null)
+            {
+                return null;
+            }
+
+            foreach (Cuenta cuenta in persona.Cuentas)
+            {
+                if (cuenta.Id == cuentaId)
+                {
+                    return cuenta;
+                }
+            }
+
+            return null;
+        }
+
+        public Activo BuscarActivoDeCuenta(Cuenta cuenta, int activoId)
+        {
+            if (cuenta == null)
+            {
+                return null;
+            }
+
+            foreach (Activo activo in cuenta.Activos)
+            {
+                if (activo.Id == activoId)
+                {
+                    return activo;
+                }
+            }
+
+            return null;
+        }
+
         public List<Incidente> ListarIncidentesPersona(int cedula)
         {
             Persona persona = BuscarPersonaPorCedula(cedula);
@@ -300,6 +336,26 @@ namespace Biblioteca_de_Clase
                 throw new Exception("No existe una persona registrada con esa cedula.");
             }
             return persona.ObtenerMisIncidentes(_incidentes);
+        }
+
+        public List<Incidente> ListarIncidentesOrdenadosPorSeveridad()
+        {
+            List<Incidente> incidentesOrdenados = new List<Incidente>(_incidentes);
+
+            for (int i = 0; i < incidentesOrdenados.Count - 1; i++)
+            {
+                for (int j = i + 1; j < incidentesOrdenados.Count; j++)
+                {
+                    if (incidentesOrdenados[i].CalcularSeveridad() < incidentesOrdenados[j].CalcularSeveridad())
+                    {
+                        Incidente aux = incidentesOrdenados[i];
+                        incidentesOrdenados[i] = incidentesOrdenados[j];
+                        incidentesOrdenados[j] = aux;
+                    }
+                }
+            }
+
+            return incidentesOrdenados;
         }
 
         #endregion

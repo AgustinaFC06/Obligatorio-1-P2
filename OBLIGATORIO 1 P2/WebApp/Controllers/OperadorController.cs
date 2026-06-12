@@ -48,7 +48,7 @@ namespace WebApp.Controllers
                 }
             }
 
-            // Ordena los activos por codigo ascendente!!!
+            // ordena los activos por codigo ascendente!!!
             for (int i = 0; i < activos.Count - 1; i++)
             {
                 for (int j = i + 1; j < activos.Count; j++)
@@ -66,26 +66,7 @@ namespace WebApp.Controllers
 
         public IActionResult Perfil()
         {
-            if (HttpContext.Session.GetString("UsuarioRol") != "OPERADOR")
-            {
-                return RedirectToAction("Login", "Anonimo");
-            }
-
-            int? cedula = HttpContext.Session.GetInt32("UsuarioCedula");
-
-            if (cedula == null)
-            {
-                return RedirectToAction("Login", "Anonimo");
-            }
-
-            Persona persona = s.BuscarPersonaPorCedula(cedula.Value);
-
-            if (persona == null)
-            {
-                return RedirectToAction("Login", "Anonimo");
-            }
-
-            return View(persona);
+            return RedirectToAction("Perfil", "Home");
         }
     }
 }

@@ -34,7 +34,7 @@
                                 <a class="nav-link text-dark" asp-controller="Administrador" asp-action="Incidentes">Incidentes</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Administrador" asp-action="Perfil">Mi Perfil</a>
+                                <a class="nav-link text-dark" asp-controller="Home" asp-action="Perfil">Mi Perfil</a>
                             </li>
                         }
     
@@ -42,7 +42,7 @@
                         else if (Context.Session.GetString("UsuarioRol") == "OPERADOR")
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Operador" asp-action="Perfil">Mi Perfil</a>
+                                <a class="nav-link text-dark" asp-controller="Home" asp-action="Perfil">Mi Perfil</a>
                             </li>
 
                             <li class="nav-item">

@@ -1,5 +1,4 @@
-﻿@using Biblioteca_de_Clase
-@model IEnumerable<Incidente>
+@model IEnumerable<WebApp.Models.IncidenteListadoViewModel>
 
 @{
     ViewData["Title"] = "Listado de Incidentes";
@@ -7,21 +6,18 @@
     bool tieneElementos = false;
     if (Model != null)
     {
-        foreach (Incidente inc in Model)
+        foreach (WebApp.Models.IncidenteListadoViewModel inc in Model)
         {
             tieneElementos = true;
-            break; 
+            break;
         }
     }
 }
-}
 
 <h2>Listado de Incidentes del Sistema</h2>
-<p class="text-muted">Ordenados de mayor a menor según su nivel de severidad.</p>
+<p class="text-muted">Ordenados de mayor a menor segun severidad.</p>
 
-
-
-@if (Model == null || !tieneElementos) 
+@if (Model == null || !tieneElementos)
 {
     <div class="alert alert-info">
         No se registran incidentes en el sistema actualmente.
@@ -33,31 +29,21 @@ else
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Activo Afectado</th>
-                <th>Descripción</th>
-                <th>Fecha de Reporte</th>
+                <th>Fecha</th>
                 <th>Estado</th>
+                <th>Codigo de Activo</th>
                 <th>Severidad</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (Incidente inc in Model)
+            @foreach (WebApp.Models.IncidenteListadoViewModel inc in Model)
             {
                 <tr>
                     <td>@inc.Id</td>
-                    <td>@(inc.Activo != null ? inc.Activo.Nombre : "Sin activo asignado")</td>
-                    <td>@inc.Descripcion</td>
                     <td>@inc.FechaReporte.ToString("dd/MM/yyyy HH:mm")</td>
-                    <td>
-                        <span class="badge bg-secondary">
-                            @inc.Estado
-                        </span>
-                    </td>
-                    <td>
-                        <span class="badge bg-danger fs-6">
-                            @inc.CalcularSeveridad()
-                        </span>
-                    </td>
+                    <td>@inc.Estado</td>
+                    <td>@inc.CodigoActivo</td>
+                    <td>@inc.Severidad</td>
                 </tr>
             }
         </tbody>

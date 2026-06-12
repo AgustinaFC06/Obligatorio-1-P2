@@ -1,17 +1,18 @@
-﻿
+@model WebApp.Models.LoginViewModel
+
 <h1>Login</h1>
 
 @if (ViewBag.Error != null)
 {
-    <div class="alert alert-danger">  <!-- Para mostrar mensaje de error a corregir las dimensiones!!! -->
+    <div class="alert alert-danger">
         @ViewBag.Error
     </div>
 }
 
 <form method="post">
-    <input type="email" placeholder="Email" name="txtEmail" />
+    <input type="email" placeholder="Email" name="Email" value="@Model?.Email" />
     <br />
-    <input type="password" placeholder="Password" name="txtContrasena" /> 
+    <input type="password" placeholder="Password" name="Contrasena" />
     <br />
     <input type="submit" value="Login" />
 </form>

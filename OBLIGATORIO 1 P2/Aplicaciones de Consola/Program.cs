@@ -108,9 +108,9 @@ namespace Aplicaciones_de_Consola
 
                     bool tieneActivos = false;
 
-                    foreach (Cuenta cuenta in persona.Cuenta)
+                    foreach (Cuenta cuenta in persona.Cuentas)
                     {
-                        foreach (Activo activo in cuenta.Activo)
+                        foreach (Activo activo in cuenta.Activos)
                         {
                             Console.WriteLine($"-{activo.CrearAlfanumerico()}-{activo.Nombre}");
                             tieneActivos = true;
