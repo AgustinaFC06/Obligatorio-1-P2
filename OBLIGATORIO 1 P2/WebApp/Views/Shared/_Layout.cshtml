@@ -20,13 +20,10 @@
                 
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        
+        
                         @* 1. MENU EXCLUSIVO PARA ADMINISTRADORES *@
                         @if (Context.Session.GetString("UsuarioRol") == "ADMIN")
                         {
-                            //<li class="nav-item">
-                            //    <a class="nav-link text-dark" asp-controller="Administrador" asp-action="ListaActivos">Ver Activos</a>
-                            //</li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-controller="Administrador" asp-action="Personas">Personas</a>
                             </li>
@@ -37,36 +34,35 @@
                                 <a class="nav-link text-dark" asp-controller="Home" asp-action="Perfil">Mi Perfil</a>
                             </li>
                         }
-    
+
                         @* 2. MENU EXCLUSIVO PARA OPERARIOS *@
                         else if (Context.Session.GetString("UsuarioRol") == "OPERADOR")
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-controller="Home" asp-action="Perfil">Mi Perfil</a>
                             </li>
-
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-controller="Operador" asp-action="MisActivos">Mis Activos</a>
                             </li>
                         }
-    
-                        @* 3. MENU PÚBLICO: Si NO hay ningún usuario en sesión, mostramos botones de entrada *@
+
+                        @* 3. MENU PÚBLICO: Si NO hay nadie logueado, mostramos Iniciar Sesión *@
                         else
                         {
                             <li class="nav-item ms-auto">
                                 <a class="nav-link text-dark" href="/Anonimo/Login">Iniciar Sesión</a>
                             </li>
-                            <li class="nav-item"> 
+                            <li class="nav-item">
                                 <a class="nav-link text-dark" href="/Anonimo/Registro">Registrarme</a>
                             </li>
                         }
 
-                        @* 4. Muestra el saludo si está logueado *@
+                        @* 4. BOTÓN DE CERRAR SESIÓN GLOBAL (Para cualquiera que esté logueado) *@
                         @if (Context.Session.GetString("UsuarioEmail") != null)
                         {
                             <li class="nav-item ms-auto d-flex align-items-center">
                                 <span class="navbar-text me-3 text-secondary">
-                                     @Context.Session.GetString("UsuarioEmail")
+                                    @Context.Session.GetString("UsuarioEmail")
                                 </span>
                                 <a class="btn btn-outline-danger btn-sm" asp-controller="Home" asp-action="Logout">Cerrar Sesión</a>
                             </li>
