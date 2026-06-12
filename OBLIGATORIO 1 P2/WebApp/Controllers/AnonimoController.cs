@@ -4,6 +4,7 @@ using WebApp.Models;
 
 namespace WebApp.Controllers
 {
+    [AnonimoAuth]
     public class AnonimoController : Controller
     {
         Sistema s = Sistema.GetInstancia();
@@ -46,12 +47,7 @@ namespace WebApp.Controllers
             }
         }
 
-        public IActionResult Logout()
-        {
-            HttpContext.Session.Clear();
-            return RedirectToAction("Login");
-        }
-
+       
         [HttpGet]
         public IActionResult Registro()
         {

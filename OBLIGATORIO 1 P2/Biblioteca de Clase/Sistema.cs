@@ -393,24 +393,35 @@ namespace Biblioteca_de_Clase
 
         public List<Incidente> ListarIncidentesOrdenadosPorSeveridad()
         {
-            List<Incidente> incidentesOrdenados = new List<Incidente>(_incidentes);
+           
+            List<Incidente> incidentesOrdenados = new List<Incidente>(_incidentes); // Otra lista que ordenamos 
 
-            for (int i = 0; i < incidentesOrdenados.Count - 1; i++)
-            {
-                for (int j = i + 1; j < incidentesOrdenados.Count; j++)
-                {
-                    if (incidentesOrdenados[i].CalcularSeveridad() < incidentesOrdenados[j].CalcularSeveridad())
-                    {
-                        Incidente aux = incidentesOrdenados[i];
-                        incidentesOrdenados[i] = incidentesOrdenados[j];
-                        incidentesOrdenados[j] = aux;
-                    }
-                }
-            }
+            
+            incidentesOrdenados.Sort(); // LLAMA A METODO ComperTo en Incidente
 
             return incidentesOrdenados;
         }
-
+        ///////////////ESTO SE VAAAAAAAAAAAAAAAA
+        // public List<Incidente> ListarIncidentesOrdenadosPorSeveridad()
+        // {
+        //     List<Incidente> incidentesOrdenados = new List<Incidente>(_incidentes);
+        //
+        //     for (int i = 0; i < incidentesOrdenados.Count - 1; i++)
+        //     {
+        //         for (int j = i + 1; j < incidentesOrdenados.Count; j++)
+        //         {
+        //             if (incidentesOrdenados[i].CalcularSeveridad() < incidentesOrdenados[j].CalcularSeveridad())
+        //             {
+        //                 Incidente aux = incidentesOrdenados[i];
+        //                 incidentesOrdenados[i] = incidentesOrdenados[j];
+        //                 incidentesOrdenados[j] = aux;
+        //             }
+        //         }
+        //     }
+        //
+        //     return incidentesOrdenados;
+        // }
+        //
         #endregion
 
         #region 4d Listar activos que carecen de BackUp
@@ -569,8 +580,9 @@ namespace Biblioteca_de_Clase
 
         #endregion
         #region Ordenar Activos por Critticidad
-        public List<Activo> ObtenerActivosOrdenadosPorPersona(Persona persona)
+        public List<Activo> ListarActivosDePersonaOrdenados(int cedula)
         {
+            Persona persona = BuscarPersonaPorCedula(cedula);
             List<Activo> activos = new List<Activo>();
 
             if (persona != null)
@@ -585,7 +597,7 @@ namespace Biblioteca_de_Clase
                 }
 
                 
-                activos.Sort();// llama a ComerTo que esta en activos trae list aodenada de forma acendente
+                activos.Sort();// llama a ComperTo que esta en activos trae list aodenada de forma acendente
             }
 
             return activos;
