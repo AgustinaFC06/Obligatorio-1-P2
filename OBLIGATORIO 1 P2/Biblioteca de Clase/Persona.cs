@@ -89,7 +89,7 @@ namespace Biblioteca_de_Clase
         {
             if (string.IsNullOrWhiteSpace(Contrasena))
             {
-                throw new Exception("No puede ser vacio");
+                throw new Exception("La contraseña no puede ser vacio");
             }
         }
 
