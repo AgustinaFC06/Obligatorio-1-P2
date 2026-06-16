@@ -204,60 +204,6 @@ namespace Biblioteca_de_Clase
 
 
 
-       // private void PrecargarCuentas()
-       // {
-       //     Cuenta c1 = new Cuenta(true);
-       //     _personas[0].AgregarCuenta(c1);
-       //     AltaCuenta(c1);
-       //
-       //     Cuenta c2 = new Cuenta(false);
-       //     _personas[1].AgregarCuenta(c2);
-       //     AltaCuenta(c2);
-       //
-       //     Cuenta c3 = new Cuenta(true);
-       //     _personas[2].AgregarCuenta(c3);
-       //     AltaCuenta(c3);
-       //
-       //     Cuenta c4 = new Cuenta(false);
-       //     _personas[3].AgregarCuenta(c4);
-       //     AltaCuenta(c4);
-       //
-       //     Cuenta c5 = new Cuenta(true);
-       //     _personas[4].AgregarCuenta(c5);
-       //     AltaCuenta(c5);
-       //
-       //     Cuenta c6 = new Cuenta(false);
-       //     _personas[5].AgregarCuenta(c6);
-       //     AltaCuenta(c6);
-       //
-       //     Cuenta c7 = new Cuenta(true);
-       //     _personas[6].AgregarCuenta(c7);
-       //     AltaCuenta(c7);
-       //
-       //     Cuenta c8 = new Cuenta(true);
-       //     _personas[7].AgregarCuenta(c8);
-       //     AltaCuenta(c8);
-       //
-       //     Cuenta c9 = new Cuenta(false);
-       //     _personas[8].AgregarCuenta(c9);
-       //     AltaCuenta(c9);
-       //
-       //     Cuenta c10 = new Cuenta(true);
-       //     _personas[9].AgregarCuenta(c10);
-       //     AltaCuenta(c10);
-       //
-       //     Cuenta c11 = new Cuenta(true);
-       //     _personas[10].AgregarCuenta(c11);
-       //     AltaCuenta(c11);
-       //
-       //     Cuenta c12 = new Cuenta(true);
-       //     _personas[11].AgregarCuenta(c12);
-       //     AltaCuenta(c12);
-       //
-       // }
-
-
-
         private void PrecargarIncidentes()
         {
             // 15 phishing
@@ -404,27 +350,7 @@ namespace Biblioteca_de_Clase
 
             return incidentesOrdenados;
         }
-        ///////////////ESTO SE VAAAAAAAAAAAAAAAA
-        // public List<Incidente> ListarIncidentesOrdenadosPorSeveridad()
-        // {
-        //     List<Incidente> incidentesOrdenados = new List<Incidente>(_incidentes);
-        //
-        //     for (int i = 0; i < incidentesOrdenados.Count - 1; i++)
-        //     {
-        //         for (int j = i + 1; j < incidentesOrdenados.Count; j++)
-        //         {
-        //             if (incidentesOrdenados[i].CalcularSeveridad() < incidentesOrdenados[j].CalcularSeveridad())
-        //             {
-        //                 Incidente aux = incidentesOrdenados[i];
-        //                 incidentesOrdenados[i] = incidentesOrdenados[j];
-        //                 incidentesOrdenados[j] = aux;
-        //             }
-        //         }
-        //     }
-        //
-        //     return incidentesOrdenados;
-        // }
-        //
+       
         #endregion
 
         #region 4d Listar activos que carecen de BackUp
@@ -490,21 +416,6 @@ namespace Biblioteca_de_Clase
                 throw new Exception("Ya existe una cuenta con ese ID.");
             }
         }
-       // {
-       //     if (cuenta != null)
-       //     {
-       //         cuenta.Validar();
-       //
-       //         if (!_cuentas.Contains(cuenta))
-       //         {
-       //             _cuentas.Add(cuenta);///// seguir ACAAAAAAAAAAAAAAAAAAAAAAAAAA yoooooooooooooooooo
-       //         }
-       //         else
-       //         {
-       //             throw new Exception("Ya existe esa cuenta");
-       //         }
-       //     }
-       // }
 
         private void AltaActivo(Activo activo)
         {

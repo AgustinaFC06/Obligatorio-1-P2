@@ -43,12 +43,7 @@ namespace Biblioteca_de_Clase
         }
         #endregion
 
-        //#region IValidable  ////////////////ESTO SE VAAAAAAAAAAAAAAAAAA
-        //public void Validar()
-        //{
-        //    // la cuenta no valida contrasena porque ahora esta en persona
-        //}
-        //#endregion
+  
 
 
     }

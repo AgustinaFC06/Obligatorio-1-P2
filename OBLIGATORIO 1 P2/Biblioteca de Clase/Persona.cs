@@ -96,7 +96,7 @@ namespace Biblioteca_de_Clase
         #endregion
 
         #region AgregarCuenta
-        public void AgregarCuenta(Cuenta cuenta) //??????????
+        public void AgregarCuenta(Cuenta cuenta) 
         {
             if(cuenta != null && !_cuentas.Contains(cuenta))
             {

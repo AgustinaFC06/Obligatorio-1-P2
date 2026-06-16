@@ -25,41 +25,6 @@ namespace WebApp.Controllers
             return View(activosOrdenados);
         }
 
-        //public IActionResult MisActivos()
-        //{
-        //  
-        //    int cedula = HttpContext.Session.GetInt32("UsuarioCedula")!.Value;
-        //   
-        //
-        //    Persona persona = s.BuscarPersonaPorCedula(cedula);
-        //
-        //  
-        //    List<Activo> activos = new List<Activo>();
-        //
-        //    foreach (Cuenta cuenta in persona.Cuentas)
-        //    {
-        //        foreach (Activo activo in cuenta.Activos)
-        //        {
-        //            activos.Add(activo);
-        //        }
-        //    }
-        //
-        //    // ordena los activos por codigo ascendente!!!
-        //    for (int i = 0; i < activos.Count - 1; i++)
-        //    {
-        //        for (int j = i + 1; j < activos.Count; j++)
-        //        {
-        //            if (activos[i].CrearAlfanumerico().CompareTo(activos[j].CrearAlfanumerico()) > 0)
-        //            {
-        //                Activo aux = activos[i];
-        //                activos[i] = activos[j];
-        //                activos[j] = aux;
-        //            }
-        //        }
-        //    }
-        //    return View(activos);
-        //}
-
         public IActionResult Perfil()
         {
             return RedirectToAction("Perfil", "Home");
