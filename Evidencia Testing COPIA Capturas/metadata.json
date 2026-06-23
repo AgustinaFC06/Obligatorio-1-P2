@@ -1,0 +1,30 @@
+{
+  "suffix": "389325",
+  "regCedula": "62389325",
+  "regEmail": "valentina.copia.389325@empresa.com",
+  "failCedula": "63389325",
+  "failEmail": "valentina.fallida.389325@empresa.com",
+  "createdCuentaId": 16,
+  "createdActivoId": 18,
+  "shotMap": {
+    "CP-01": "C:\\Users\\enzo.curbelo_koin\\source\\repos\\Obligatorio-1-P2\\Evidencia Testing COPIA Capturas\\CP-01.png",
+    "CP-02": "C:\\Users\\enzo.curbelo_koin\\source\\repos\\Obligatorio-1-P2\\Evidencia Testing COPIA Capturas\\CP-02.png",
+    "CP-03": "C:\\Users\\enzo.curbelo_koin\\source\\repos\\Obligatorio-1-P2\\Evidencia Testing COPIA Capturas\\CP-03.png",
+    "CP-04": "C:\\Users\\enzo.curbelo_koin\\source\\repos\\Obligatorio-1-P2\\Evidencia Testing COPIA Capturas\\CP-04.png",
+    "CP-05": "C:\\Users\\enzo.curbelo_koin\\source\\repos\\Obligatorio-1-P2\\Evidencia Testing COPIA Capturas\\CP-05.png",
+    "CP-06": "C:\\Users\\enzo.curbelo_koin\\source\\repos\\Obligatorio-1-P2\\Evidencia Testing COPIA Capturas\\CP-06.png",
+    "CP-07": "C:\\Users\\enzo.curbelo_koin\\source\\repos\\Obligatorio-1-P2\\Evidencia Testing COPIA Capturas\\CP-07.png",
+    "CP-08": "C:\\Users\\enzo.curbelo_koin\\source\\repos\\Obligatorio-1-P2\\Evidencia Testing COPIA Capturas\\CP-08.png",
+    "CP-09": "C:\\Users\\enzo.curbelo_koin\\source\\repos\\Obligatorio-1-P2\\Evidencia Testing COPIA Capturas\\CP-09.png",
+    "CP-10": "C:\\Users\\enzo.curbelo_koin\\source\\repos\\Obligatorio-1-P2\\Evidencia Testing COPIA Capturas\\CP-10.png",
+    "CP-11": "C:\\Users\\enzo.curbelo_koin\\source\\repos\\Obligatorio-1-P2\\Evidencia Testing COPIA Capturas\\CP-11.png",
+    "CP-12": "C:\\Users\\enzo.curbelo_koin\\source\\repos\\Obligatorio-1-P2\\Evidencia Testing COPIA Capturas\\CP-12.png",
+    "CP-13": "C:\\Users\\enzo.curbelo_koin\\source\\repos\\Obligatorio-1-P2\\Evidencia Testing COPIA Capturas\\CP-13.png",
+    "CP-14": "C:\\Users\\enzo.curbelo_koin\\source\\repos\\Obligatorio-1-P2\\Evidencia Testing COPIA Capturas\\CP-14.png",
+    "CP-15": "C:\\Users\\enzo.curbelo_koin\\source\\repos\\Obligatorio-1-P2\\Evidencia Testing COPIA Capturas\\CP-15.png",
+    "CP-16": "C:\\Users\\enzo.curbelo_koin\\source\\repos\\Obligatorio-1-P2\\Evidencia Testing COPIA Capturas\\CP-16.png",
+    "CP-17": "C:\\Users\\enzo.curbelo_koin\\source\\repos\\Obligatorio-1-P2\\Evidencia Testing COPIA Capturas\\CP-17.png",
+    "CP-18": "C:\\Users\\enzo.curbelo_koin\\source\\repos\\Obligatorio-1-P2\\Evidencia Testing COPIA Capturas\\CP-18.png",
+    "CP-19": "C:\\Users\\enzo.curbelo_koin\\source\\repos\\Obligatorio-1-P2\\Evidencia Testing COPIA Capturas\\CP-19.png"
+  }
+}
